@@ -17,6 +17,7 @@ export default function HomePage() {
   const [pledgeId, setPledgeId] = useState<string>("")
   const [formValues, setFormValues] = useState<PledgeFormValues | null>(null)
   const [ackChecked, setAckChecked] = useState(false)
+  const [selfieDataUrl, setSelfieDataUrl] = useState<string | null>(null)
 
   useEffect(() => {
     // generate stable pledge id per session
@@ -88,6 +89,10 @@ export default function HomePage() {
                   checked={ackChecked}
                   name={formValues?.name}
                   gender={formValues?.gender}
+                  onSelfieChange={(d) => {
+                    setSelfieDataUrl(d)
+                    ;(window as any).__pledgeSelfie = d
+                  }}
                   onCheckedChange={(v) => {
                     setAckChecked(v)
                     if (v) setStep(2)

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { generateCertificate } from "@/lib/pdf"
+import { generateCertificateFromTemplate } from "@/lib/pdf-template"
 import ShareButtons from "@/components/pledge/share-buttons"
 import type { PledgeFormValues } from "./step-form"
 
@@ -21,14 +22,29 @@ export default function StepConfirm({
     setDownloading(true)
     const safeLang = (strings as any).__lang === "hi" ? "hi" : "en"
     try {
-      generateCertificate({
-        id: pledgeId,
-        name: values.name,
-        district: values.district,
-        constituency: values.constituency,
-        village: values.village,
-        lang: safeLang,
-      })
+      ;(async () => {
+        try {
+          await generateCertificateFromTemplate({
+            id: pledgeId,
+            name: values.name,
+            district: values.district,
+            constituency: values.constituency,
+            village: values.village,
+            lang: safeLang,
+            selfieDataUrl: (typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined,
+          })
+        } catch (e) {
+          // Fallback to legacy generator if template fails
+          generateCertificate({
+            id: pledgeId,
+            name: values.name,
+            district: values.district,
+            constituency: values.constituency,
+            village: values.village,
+            lang: safeLang,
+          })
+        }
+      })()
     } catch (error: any) {
       console.log("[v0] Certificate generation error:", error?.message || error)
     } finally {
@@ -57,14 +73,28 @@ export default function StepConfirm({
           onClick={() => {
             const safeLang = (strings as any).__lang === "hi" ? "hi" : "en"
             try {
-              generateCertificate({
-                id: pledgeId,
-                name: values.name,
-                district: values.district,
-                constituency: values.constituency,
-                village: values.village,
-                lang: safeLang,
-              })
+              ;(async () => {
+                try {
+                  await generateCertificateFromTemplate({
+                    id: pledgeId,
+                    name: values.name,
+                    district: values.district,
+                    constituency: values.constituency,
+                    village: values.village,
+                    lang: safeLang,
+                    selfieDataUrl: (window as any).__pledgeSelfie ?? undefined,
+                  })
+                } catch (e) {
+                  generateCertificate({
+                    id: pledgeId,
+                    name: values.name,
+                    district: values.district,
+                    constituency: values.constituency,
+                    village: values.village,
+                    lang: safeLang,
+                  })
+                }
+              })()
             } catch (error: any) {
               console.log("[v0] Certificate generation error (manual):", error?.message || error)
             }
@@ -77,7 +107,7 @@ export default function StepConfirm({
         <ShareButtons
           label={strings.confirm.share}
           url={shareUrl}
-          text={`${values.name} ${((strings as any).__lang === "hi" ? "hi" : "en") === "hi" ? "ने जन प्रतिज्ञा ली।" : "has taken the People's Pledge."}`}
+          text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है। ${shareUrl}`}
         />
       </div>
     </section>

@@ -31,12 +31,14 @@ export default function StepAcknowledge({
   onCheckedChange,
   name,
   gender,
+  onSelfieChange,
 }: {
   strings: ReturnType<typeof getStringsMock>
   checked: boolean
   onCheckedChange: (v: boolean) => void
   name?: string
-  gender?: "male" | "female"
+  gender?: "male" | "female" | "other"
+  onSelfieChange?: (dataUrl: string | null) => void
 }) {
   const renderPledge = () => {
     const userName = (name && name.trim().length > 0)
@@ -74,6 +76,7 @@ export default function StepAcknowledge({
     reader.onload = () => {
       const result = typeof reader.result === "string" ? reader.result : null
       setImagePreview(result)
+      onSelfieChange?.(result)
     }
     reader.readAsDataURL(file)
   }
