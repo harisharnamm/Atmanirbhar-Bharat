@@ -1,0 +1,218 @@
+"use client"
+
+import { useMemo, useState, useEffect } from "react"
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
+import { Button } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import StepIntro from "@/components/pledge/step-intro"
+import StepForm, { type PledgeFormValues } from "@/components/pledge/step-form"
+import StepAcknowledge from "@/components/pledge/step-ack"
+import StepConfirm from "@/components/pledge/step-confirm"
+import Progress from "@/components/pledge/progress"
+
+type Lang = "en" | "hi"
+
+export default function HomePage() {
+  const [lang, setLang] = useState<Lang>("en")
+  const [step, setStep] = useState(0)
+  const [pledgeId, setPledgeId] = useState<string>("")
+  const [formValues, setFormValues] = useState<PledgeFormValues | null>(null)
+  const [ackChecked, setAckChecked] = useState(false)
+
+  useEffect(() => {
+    // generate stable pledge id per session
+    setPledgeId(crypto.randomUUID())
+  }, [])
+
+  const strings = useMemo(() => getStrings(lang), [lang])
+
+  const nextEnabled = useMemo(() => {
+    if (step === 0) return true
+    if (step === 1) return !!formValues
+    if (step === 2) return ackChecked
+    if (step === 3) return ackChecked
+    return false
+  }, [step, formValues, ackChecked])
+
+  const goNext = () => {
+    if (!nextEnabled) return
+    setStep((s) => Math.min(s + 1, 3))
+  }
+  const goBack = () => setStep((s) => Math.max(s - 1, 0))
+
+  return (
+    <main className="min-h-dvh p-4 pt-8">
+      <div className="w-full max-w-xl mx-auto">
+        <header className="mb-6 flex items-center justify-between">
+          <img
+            src="/atmanirbharBharat.png"
+            alt="Atmanirbhar Bharat"
+            className="h-24 w-auto"
+          />
+          <LangToggle lang={lang} setLang={setLang} />
+        </header>
+
+        <div className="mb-6 text-center">
+          <p className="text-sm text-muted-foreground leading-relaxed max-w-md mx-auto">
+            {strings.description}
+          </p>
+        </div>
+
+        <Card className="border-border">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base font-medium">{strings.subtitle}</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <Progress
+              currentStep={step}
+              labels={[
+                strings.steps.intro,
+                strings.steps.details,
+                strings.steps.ack,
+                strings.steps.confirm,
+              ]}
+            />
+
+            <div className="mt-4">
+              {step === 0 && <StepIntro strings={strings} onStart={goNext} />}
+              {step === 1 && (
+                <StepForm
+                  lang={lang}
+                  strings={strings}
+                  initialValues={formValues || undefined}
+                  onValid={(vals) => setFormValues(vals)}
+                />
+              )}
+              {step === 2 && <StepAcknowledge strings={strings} checked={ackChecked} onCheckedChange={setAckChecked} />}
+              {step === 3 && formValues && <StepConfirm strings={strings} pledgeId={pledgeId} values={formValues} />}
+            </div>
+
+            <nav
+              className={cn("mt-6 flex items-center justify-between", step === 0 ? "hidden" : "")}
+              aria-label={strings.nav}
+            >
+              <Button variant="secondary" onClick={goBack} disabled={step === 0}>
+                {strings.back}
+              </Button>
+              {step < 3 && (
+                <Button onClick={goNext} disabled={!nextEnabled}>
+                  {strings.form.continue}
+                </Button>
+              )}
+            </nav>
+          </CardContent>
+        </Card>
+      </div>
+    </main>
+  )
+}
+
+function LangToggle({ lang, setLang }: { lang: "en" | "hi"; setLang: (l: "en" | "hi") => void }) {
+  return (
+    <div className="inline-flex rounded-md border border-border p-1" role="group" aria-label="Language toggle">
+      <button
+        type="button"
+        className={cn(
+          "px-3 py-1 rounded-sm text-sm",
+          lang === "en" ? "bg-primary text-primary-foreground" : "hover:bg-accent",
+        )}
+        onClick={() => setLang("en")}
+      >
+        English
+      </button>
+      <button
+        type="button"
+        className={cn(
+          "px-3 py-1 rounded-sm text-sm",
+          lang === "hi" ? "bg-primary text-primary-foreground" : "hover:bg-accent",
+        )}
+        onClick={() => setLang("hi")}
+      >
+        हिन्दी
+      </button>
+    </div>
+  )
+}
+
+function getStrings(lang: "en" | "hi") {
+  if (lang === "hi") {
+    return {
+      __lang: "hi",
+      title: "जन प्रतिज्ञा",
+      subtitle: "अपनी प्रतिज्ञा पूरी करने के लिए चरण पूरे करें",
+      description: "आत्मनिर्भर भारत के लिए एक राष्ट्रव्यापी पहल - आर्थिक स्वतंत्रता और स्थानीय उत्पादन का समर्थन करें",
+      steps: { intro: "परिचय", details: "विवरण", ack: "प्रतिज्ञा", confirm: "पुष्टि" },
+      start: "शुरू करें",
+      next: "आगे",
+      back: "वापस",
+      nav: "नेविगेशन",
+      intro: {
+        heading: "आत्मनिर्भर भारत के लिए प्रतिज्ञा करें",
+        body: "भारतीय अर्थव्यवस्था को मजबूत बनाने और स्थानीय उद्योगों का समर्थन करने के लिए अपनी प्रतिज्ञा दें। यह पहल आपको अपनी जानकारी साझा करने, नीति सार पढ़ने, प्रतिज्ञा करने और प्रमाण पत्र प्राप्त करने में मदद करेगी।",
+        cta: "मैं तैयार हूँ",
+      },
+      form: {
+        legend: "आपका विवरण",
+        name: "पूरा नाम",
+        mobile: "मोबाइल (भारत)",
+        district: "ज़िला",
+        constituency: "विधानसभा सीट",
+        village: "गाँव/शहर",
+        continue: "जारी रखें",
+        errors: {
+          required: "यह फ़ील्ड आवश्यक है",
+          mobile: "मान्य 10 अंकों का भारतीय मोबाइल नंबर दर्ज करें",
+        },
+      },
+      ack: {
+        title: "मेरी प्रतिज्ञा",
+        startScript: "प्रतिज्ञा प्रारंभ करें",
+        checkbox: "मैं आत्मनिर्भर भारत के लिए प्रतिज्ञा करता/करती हूँ।",
+      },
+      confirm: {
+        title: "धन्यवाद! आपकी प्रतिज्ञा दर्ज हो गई है।",
+        cert: "प्रमाण पत्र डाउनलोड करें",
+        share: "शेयर करें",
+      },
+    }
+  }
+  return {
+    __lang: "en",
+    title: "People's Pledge",
+    subtitle: "Complete the steps to make your pledge",
+    description: "A nationwide initiative for Atmanirbhar Bharat - supporting economic freedom and local manufacturing",
+    steps: { intro: "Intro", details: "Details", ack: "Pledge", confirm: "Confirm" },
+    start: "Start",
+    next: "Next",
+    back: "Back",
+    nav: "Navigation",
+    intro: {
+      heading: "Pledge for Atmanirbhar Bharat",
+      body: "Make your commitment to strengthen the Indian economy and support local industries. This initiative helps you share your details, review policy summary, make your pledge, and receive a certificate.",
+      cta: "I’m ready",
+    },
+    form: {
+      legend: "Your details",
+      name: "Full name",
+      mobile: "Mobile (India)",
+      district: "District",
+      constituency: "Constituency",
+      village: "Village/City",
+      continue: "Continue",
+      errors: {
+        required: "This field is required",
+        mobile: "Enter a valid 10-digit Indian mobile number",
+      },
+    },
+    ack: {
+      title: "My pledge",
+      startScript: "Start Pledge",
+      checkbox: "I pledge to support Atmanirbhar Bharat.",
+    },
+    confirm: {
+      title: "Thank you! Your pledge is recorded.",
+      cert: "Download certificate",
+      share: "Share",
+    },
+  }
+}
