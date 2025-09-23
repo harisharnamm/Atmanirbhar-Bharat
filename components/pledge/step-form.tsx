@@ -6,7 +6,6 @@ import { useEffect, useMemo, useRef, useState } from "react"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Button } from "@/components/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
@@ -358,6 +357,8 @@ export default function StepForm({
   const [isSubmittedOnce, setIsSubmittedOnce] = useState(false)
   const [districtOpen, setDistrictOpen] = useState(false)
   const [constituencyOpen, setConstituencyOpen] = useState(false)
+  const districtRef = useRef<HTMLDivElement>(null)
+  const constituencyRef = useRef<HTMLDivElement>(null)
   const liveRegionRef = useRef<HTMLDivElement>(null)
 
   const errors = useMemo(() => {
@@ -375,6 +376,23 @@ export default function StepForm({
   useEffect(() => {
     if (formValid) onValid(values)
   }, [formValid, onValid, values])
+
+  // Close dropdowns when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (districtRef.current && !districtRef.current.contains(event.target as Node)) {
+        setDistrictOpen(false)
+      }
+      if (constituencyRef.current && !constituencyRef.current.contains(event.target as Node)) {
+        setConstituencyOpen(false)
+      }
+    }
+
+    if (districtOpen || constituencyOpen) {
+      document.addEventListener('mousedown', handleClickOutside)
+      return () => document.removeEventListener('mousedown', handleClickOutside)
+    }
+  }, [districtOpen, constituencyOpen])
 
   useEffect(() => {
     if (!isSubmittedOnce) return
@@ -437,60 +455,65 @@ export default function StepForm({
           )}
         </div>
 
-        <div className="grid gap-2">
+        <div className="grid gap-2" ref={districtRef}>
           <Label htmlFor="district">{strings.form.district}</Label>
-          <Popover open={districtOpen} onOpenChange={setDistrictOpen}>
-            <PopoverTrigger asChild>
-              <button
-                type="button"
-                role="combobox"
-                aria-expanded={districtOpen}
-                aria-invalid={!!errors.district && (touched.district || isSubmittedOnce)}
-                aria-describedby={errors.district && (touched.district || isSubmittedOnce) ? "district-error" : undefined}
-                className={cn(
-                  "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-                  !values.district && "text-muted-foreground",
-                  !!errors.district && (touched.district || isSubmittedOnce) && "border-destructive"
-                )}
-              >
-                <span className="truncate">{values.district || "Select district..."}</span>
-                <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-              </button>
-            </PopoverTrigger>
-            <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
-              <Command>
-                <CommandInput placeholder="Search districts..." />
-                <CommandList>
-                  <CommandEmpty>No district found.</CommandEmpty>
-                  <CommandGroup>
-                    {RAJASTHAN_DISTRICTS.map((district) => (
-                      <CommandItem
-                        key={district}
-                        value={district}
-                        onSelect={(currentValue) => {
-                          setValues((v) => ({
-                            ...v,
-                            district: currentValue === values.district ? "" : currentValue,
-                            constituency: "" // Clear constituency when district changes
-                          }))
-                          setDistrictOpen(false)
-                          setTouched((t) => ({ ...t, district: true, constituency: false }))
-                        }}
-                      >
-                        <Check
-                          className={cn(
-                            "mr-2 h-4 w-4",
-                            values.district === district ? "opacity-100" : "opacity-0"
-                          )}
-                        />
-                        {district}
-                      </CommandItem>
-                    ))}
-                  </CommandGroup>
-                </CommandList>
-              </Command>
-            </PopoverContent>
-          </Popover>
+          <div className="relative">
+            <button
+              type="button"
+              role="combobox"
+              aria-expanded={districtOpen}
+              aria-invalid={!!errors.district && (touched.district || isSubmittedOnce)}
+              aria-describedby={errors.district && (touched.district || isSubmittedOnce) ? "district-error" : undefined}
+              onClick={() => setDistrictOpen(!districtOpen)}
+              className={cn(
+                "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+                !values.district && "text-muted-foreground",
+                !!errors.district && (touched.district || isSubmittedOnce) && "border-destructive",
+                districtOpen && "ring-2 ring-ring ring-offset-2"
+              )}
+            >
+              <span className="truncate">{values.district || "Select district..."}</span>
+              <ChevronsUpDown className={cn("ml-2 h-4 w-4 shrink-0 transition-transform", districtOpen && "rotate-180")} />
+            </button>
+
+            {/* Attached dropdown */}
+            {districtOpen && (
+              <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border border-border rounded-md shadow-lg">
+                <Command className="w-full">
+                  <CommandInput placeholder="Search districts..." className="h-9" />
+                  <CommandList className="max-h-[200px]">
+                    <CommandEmpty>No district found.</CommandEmpty>
+                    <CommandGroup>
+                      {RAJASTHAN_DISTRICTS.map((district) => (
+                        <CommandItem
+                          key={district}
+                          value={district}
+                          onSelect={(currentValue) => {
+                            setValues((v) => ({
+                              ...v,
+                              district: currentValue === values.district ? "" : currentValue,
+                              constituency: "" // Clear constituency when district changes
+                            }))
+                            setDistrictOpen(false)
+                            setTouched((t) => ({ ...t, district: true, constituency: false }))
+                          }}
+                          className="cursor-pointer"
+                        >
+                          <Check
+                            className={cn(
+                              "mr-2 h-4 w-4",
+                              values.district === district ? "opacity-100" : "opacity-0"
+                            )}
+                          />
+                          {district}
+                        </CommandItem>
+                      ))}
+                    </CommandGroup>
+                  </CommandList>
+                </Command>
+              </div>
+            )}
+          </div>
           {(touched.district || isSubmittedOnce) && errors.district && (
             <p id="district-error" className="text-xs text-destructive">
               {errors.district}
@@ -499,56 +522,61 @@ export default function StepForm({
         </div>
 
         {values.district && (
-          <div className="grid gap-2">
+          <div className="grid gap-2" ref={constituencyRef}>
             <Label htmlFor="constituency">{strings.form.constituency || "Constituency"}</Label>
-            <Popover open={constituencyOpen} onOpenChange={setConstituencyOpen}>
-              <PopoverTrigger asChild>
-                <button
-                  type="button"
-                  role="combobox"
-                  aria-expanded={constituencyOpen}
-                  aria-invalid={!!errors.constituency && (touched.constituency || isSubmittedOnce)}
-                  aria-describedby={errors.constituency && (touched.constituency || isSubmittedOnce) ? "constituency-error" : undefined}
-                  className={cn(
-                    "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
-                    !values.constituency && "text-muted-foreground",
-                    !!errors.constituency && (touched.constituency || isSubmittedOnce) && "border-destructive"
-                  )}
-                >
-                  <span className="truncate">{values.constituency || "Select constituency..."}</span>
-                  <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-50" />
-                </button>
-              </PopoverTrigger>
-              <PopoverContent className="w-[--radix-popover-trigger-width] p-0" align="start">
-                <Command>
-                  <CommandInput placeholder="Search constituencies..." />
-                  <CommandList>
-                    <CommandEmpty>No constituency found.</CommandEmpty>
-                    <CommandGroup>
-                      {DISTRICT_CONSTITUENCIES[values.district]?.map((constituency) => (
-                        <CommandItem
-                          key={`${constituency.number}-${constituency.name}`}
-                          value={`${constituency.number} ${constituency.name}`}
-                          onSelect={(currentValue) => {
-                            setValues((v) => ({ ...v, constituency: currentValue === values.constituency ? "" : currentValue }))
-                            setConstituencyOpen(false)
-                            setTouched((t) => ({ ...t, constituency: true }))
-                          }}
-                        >
-                          <Check
-                            className={cn(
-                              "mr-2 h-4 w-4",
-                              values.constituency === `${constituency.number} ${constituency.name}` ? "opacity-100" : "opacity-0"
-                            )}
-                          />
-                          {constituency.number} - {constituency.name}
-                        </CommandItem>
-                      ))}
-                    </CommandGroup>
-                  </CommandList>
-                </Command>
-              </PopoverContent>
-            </Popover>
+            <div className="relative">
+              <button
+                type="button"
+                role="combobox"
+                aria-expanded={constituencyOpen}
+                aria-invalid={!!errors.constituency && (touched.constituency || isSubmittedOnce)}
+                aria-describedby={errors.constituency && (touched.constituency || isSubmittedOnce) ? "constituency-error" : undefined}
+                onClick={() => setConstituencyOpen(!constituencyOpen)}
+                className={cn(
+                  "flex h-10 w-full items-center justify-between rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>span]:line-clamp-1",
+                  !values.constituency && "text-muted-foreground",
+                  !!errors.constituency && (touched.constituency || isSubmittedOnce) && "border-destructive",
+                  constituencyOpen && "ring-2 ring-ring ring-offset-2"
+                )}
+              >
+                <span className="truncate">{values.constituency || "Select constituency..."}</span>
+                <ChevronsUpDown className={cn("ml-2 h-4 w-4 shrink-0 transition-transform", constituencyOpen && "rotate-180")} />
+              </button>
+
+              {/* Attached dropdown */}
+              {constituencyOpen && (
+                <div className="absolute top-full left-0 right-0 z-50 mt-1 bg-popover border border-border rounded-md shadow-lg">
+                  <Command className="w-full">
+                    <CommandInput placeholder="Search constituencies..." className="h-9" />
+                    <CommandList className="max-h-[200px]">
+                      <CommandEmpty>No constituency found.</CommandEmpty>
+                      <CommandGroup>
+                        {DISTRICT_CONSTITUENCIES[values.district]?.map((constituency) => (
+                          <CommandItem
+                            key={`${constituency.number}-${constituency.name}`}
+                            value={`${constituency.number} ${constituency.name}`}
+                            onSelect={(currentValue) => {
+                              setValues((v) => ({ ...v, constituency: currentValue === values.constituency ? "" : currentValue }))
+                              setConstituencyOpen(false)
+                              setTouched((t) => ({ ...t, constituency: true }))
+                            }}
+                            className="cursor-pointer"
+                          >
+                            <Check
+                              className={cn(
+                                "mr-2 h-4 w-4",
+                                values.constituency === `${constituency.number} ${constituency.name}` ? "opacity-100" : "opacity-0"
+                              )}
+                            />
+                            {constituency.number} - {constituency.name}
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </div>
+              )}
+            </div>
             {(touched.constituency || isSubmittedOnce) && errors.constituency && (
               <p id="constituency-error" className="text-xs text-destructive">
                 {errors.constituency}
