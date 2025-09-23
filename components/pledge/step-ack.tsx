@@ -54,28 +54,15 @@ export default function StepAcknowledge({
     const dateStr = new Date().toLocaleDateString("hi-IN", { year: "numeric", month: "long", day: "numeric" })
     text = text.replace("आज दिनांक .................", `आज दिनांक ${dateStr}`)
 
-    // Apply gendered verb forms deterministically to avoid 'undefined'
-    if (isFemale) {
-      return text
-        .replace(/लेता\/लेती/g, "लेती")
-        .replace(/दूँगा\/दूँगी/g, "दूँगी")
-        .replace(/करूँगा\/करूँगी/g, "करूँगी")
-        .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगी")
-        .replace(/करता\/करती/g, "करती")
-    }
+    // Keep both forms visible irrespective of gender selection
     return text
-      .replace(/लेता\/लेती/g, "लेता")
-      .replace(/दूँगा\/दूँगी/g, "दूँगा")
-      .replace(/करूँगा\/करूँगी/g, "करूँगा")
-      .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगा")
-      .replace(/करता\/करती/g, "करता")
   }
   const renderCheckboxLabel = () => {
     let label = strings.ack.checkbox
     const isHindi = (strings as any).__lang === "hi"
     if (isHindi) {
-      const isFemale = gender === "female"
-      label = label.replace(/करता\/करती/g, isFemale ? "करती" : "करता")
+      // Keep both forms visible
+      label = label.replace(/करता|करती/g, "करता/करती")
     }
     return label
   }

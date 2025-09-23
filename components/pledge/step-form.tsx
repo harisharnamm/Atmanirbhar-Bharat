@@ -13,7 +13,7 @@ import { cn } from "@/lib/utils"
 export type PledgeFormValues = {
   name: string
   mobile: string
-  gender: "male" | "female"
+  gender: "male" | "female" | "other"
   district: string
   constituency: string
   village: string
@@ -439,6 +439,16 @@ export default function StepForm({
                 onChange={() => setValues((v) => ({ ...v, gender: "female" }))}
               />
               {lang === "hi" ? "महिला" : "Female"}
+            </label>
+            <label className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name="gender"
+                value="other"
+                checked={values.gender === "other"}
+                onChange={() => setValues((v) => ({ ...v, gender: "other" }))}
+              />
+              {lang === "hi" ? "अन्य" : "Other"}
             </label>
           </div>
           {errors.gender && (
