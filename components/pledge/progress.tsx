@@ -9,30 +9,47 @@ export default function Progress({
   currentStep: number
   labels: string[]
 }) {
+  const progressPercentage = ((currentStep + 1) / labels.length) * 100
+
   return (
-    <ol className={cn("grid gap-2", `grid-cols-${labels.length}`)} aria-label="Progress">
-      {labels.map((label, idx) => {
-        const state = idx < currentStep ? "complete" : idx === currentStep ? "current" : "upcoming"
-        return (
-          <li key={label} className="flex flex-col items-center gap-1">
-            <span
-              className={cn(
-                "h-2 w-full rounded-sm",
-                state === "complete" && "bg-primary",
-                state === "current" && "bg-primary/70",
-                state === "upcoming" && "bg-muted",
-              )}
-              aria-hidden="true"
-            />
-            <span
-              className="text-[11px] leading-none text-muted-foreground"
-              aria-current={state === "current" ? "step" : undefined}
-            >
-              {label}
-            </span>
-          </li>
-        )
-      })}
-    </ol>
+    <div className="w-full space-y-3" aria-label="Progress">
+      {/* Progress bar */}
+      <div className="w-full bg-muted rounded-full h-3 overflow-hidden">
+        <div
+          className="h-full bg-primary transition-all duration-500 ease-out rounded-full"
+          style={{ width: `${progressPercentage}%` }}
+          aria-valuenow={progressPercentage}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        />
+      </div>
+
+      {/* Step labels */}
+      <div className="grid gap-2" style={{ gridTemplateColumns: `repeat(${labels.length}, 1fr)` }}>
+        {labels.map((label, idx) => {
+          const isActive = idx <= currentStep
+          return (
+            <div key={label} className="flex flex-col items-center gap-1">
+              <div
+                className={cn(
+                  "w-2 h-2 rounded-full transition-colors",
+                  isActive ? "bg-primary" : "bg-muted-foreground/30"
+                )}
+                aria-hidden="true"
+              />
+              <span
+                className={cn(
+                  "text-[10px] leading-none text-center transition-colors",
+                  isActive ? "text-primary font-medium" : "text-muted-foreground"
+                )}
+                aria-current={idx === currentStep ? "step" : undefined}
+              >
+                {label}
+              </span>
+            </div>
+          )
+        })}
+      </div>
+    </div>
   )
 }
