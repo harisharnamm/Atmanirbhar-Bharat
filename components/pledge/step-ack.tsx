@@ -44,26 +44,40 @@ export default function StepAcknowledge({
       : "....................................................... (अपना नाम लिखें)"
     const isFemale = gender === "female"
 
-    const withName = PLEDGE_TEXT.replace(
+    // Insert name
+    let text = PLEDGE_TEXT.replace(
       "मैं, ....................................................... (अपना नाम लिखें)",
       `मैं, ${userName}`,
     )
 
+    // Insert today's date (hi-IN formatted)
+    const dateStr = new Date().toLocaleDateString("hi-IN", { year: "numeric", month: "long", day: "numeric" })
+    text = text.replace("आज दिनांक .................", `आज दिनांक ${dateStr}`)
+
     // Apply gendered verb forms deterministically to avoid 'undefined'
     if (isFemale) {
-      return withName
+      return text
         .replace(/लेता\/लेती/g, "लेती")
         .replace(/दूँगा\/दूँगी/g, "दूँगी")
         .replace(/करूँगा\/करूँगी/g, "करूँगी")
         .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगी")
         .replace(/करता\/करती/g, "करती")
     }
-    return withName
+    return text
       .replace(/लेता\/लेती/g, "लेता")
       .replace(/दूँगा\/दूँगी/g, "दूँगा")
       .replace(/करूँगा\/करूँगी/g, "करूँगा")
       .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगा")
       .replace(/करता\/करती/g, "करता")
+  }
+  const renderCheckboxLabel = () => {
+    let label = strings.ack.checkbox
+    const isHindi = (strings as any).__lang === "hi"
+    if (isHindi) {
+      const isFemale = gender === "female"
+      label = label.replace(/करता\/करती/g, isFemale ? "करती" : "करता")
+    }
+    return label
   }
   const [imagePreview, setImagePreview] = useState<string | null>(null)
 
@@ -135,7 +149,7 @@ export default function StepAcknowledge({
           aria-describedby="ack-desc"
         />
         <Label htmlFor="ack" id="ack-desc" className="text-sm leading-relaxed">
-          {strings.ack.checkbox}
+          {renderCheckboxLabel()}
         </Label>
       </div>
       {!imagePreview && (
