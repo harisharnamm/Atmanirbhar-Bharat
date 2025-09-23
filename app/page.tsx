@@ -4,7 +4,6 @@ import { useMemo, useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { cn } from "@/lib/utils"
-import StepIntro from "@/components/pledge/step-intro"
 import StepForm, { type PledgeFormValues } from "@/components/pledge/step-form"
 import StepAcknowledge from "@/components/pledge/step-ack"
 import StepConfirm from "@/components/pledge/step-confirm"
@@ -27,16 +26,15 @@ export default function HomePage() {
   const strings = useMemo(() => getStrings(lang), [lang])
 
   const nextEnabled = useMemo(() => {
-    if (step === 0) return true
-    if (step === 1) return !!formValues
-    if (step === 2) return ackChecked
-    if (step === 3) return ackChecked
+    if (step === 0) return !!formValues // Details
+    if (step === 1) return ackChecked   // Pledge
+    if (step === 2) return false        // Confirm (no next)
     return false
   }, [step, formValues, ackChecked])
 
   const goNext = () => {
     if (!nextEnabled) return
-    setStep((s) => Math.min(s + 1, 3))
+    setStep((s) => Math.min(s + 1, 2))
   }
   const goBack = () => setStep((s) => Math.max(s - 1, 0))
 
@@ -44,11 +42,18 @@ export default function HomePage() {
     <main className="min-h-dvh p-4 pt-8">
       <div className="w-full max-w-xl mx-auto">
         <header className="mb-6 flex items-center justify-between">
-          <img
-            src="/atmanirbharBharat.png"
-            alt="Atmanirbhar Bharat"
-            className="h-24 w-auto"
-          />
+          <div className="flex items-center gap-3">
+            <img
+              src="/atmanirbharBharat.png"
+              alt="Atmanirbhar Bharat"
+              className="h-20 w-auto"
+            />
+            <img
+              src="/ghar-ghar-swadeshi-logo.png"
+              alt="Ghar Ghar Swadeshi"
+              className="h-16 w-auto"
+            />
+          </div>
           <LangToggle lang={lang} setLang={setLang} />
         </header>
 
@@ -65,17 +70,11 @@ export default function HomePage() {
           <CardContent>
             <Progress
               currentStep={step}
-              labels={[
-                strings.steps.intro,
-                strings.steps.details,
-                strings.steps.ack,
-                strings.steps.confirm,
-              ]}
+              labels={[strings.steps.details, strings.steps.ack, strings.steps.confirm]}
             />
 
             <div className="mt-4">
-              {step === 0 && <StepIntro strings={strings} onStart={goNext} />}
-              {step === 1 && (
+              {step === 0 && (
                 <StepForm
                   lang={lang}
                   strings={strings}
@@ -83,18 +82,26 @@ export default function HomePage() {
                   onValid={(vals) => setFormValues(vals)}
                 />
               )}
-              {step === 2 && <StepAcknowledge strings={strings} checked={ackChecked} onCheckedChange={setAckChecked} />}
-              {step === 3 && formValues && <StepConfirm strings={strings} pledgeId={pledgeId} values={formValues} />}
+              {step === 1 && (
+                <StepAcknowledge
+                  strings={strings}
+                  checked={ackChecked}
+                  name={formValues?.name}
+                  gender={formValues?.gender}
+                  onCheckedChange={(v) => {
+                    setAckChecked(v)
+                    if (v) setStep(2)
+                  }}
+                />
+              )}
+              {step === 2 && formValues && <StepConfirm strings={strings} pledgeId={pledgeId} values={formValues} />}
             </div>
 
-            <nav
-              className={cn("mt-6 flex items-center justify-between", step === 0 ? "hidden" : "")}
-              aria-label={strings.nav}
-            >
+            <nav className={cn("mt-6 flex items-center justify-between")} aria-label={strings.nav}>
               <Button variant="secondary" onClick={goBack} disabled={step === 0}>
                 {strings.back}
               </Button>
-              {step < 3 && (
+              {step < 2 && (
                 <Button onClick={goNext} disabled={!nextEnabled}>
                   {strings.form.continue}
                 </Button>
@@ -141,7 +148,7 @@ function getStrings(lang: "en" | "hi") {
       title: "जन प्रतिज्ञा",
       subtitle: "अपनी प्रतिज्ञा पूरी करने के लिए चरण पूरे करें",
       description: "आत्मनिर्भर भारत के लिए एक राष्ट्रव्यापी पहल - आर्थिक स्वतंत्रता और स्थानीय उत्पादन का समर्थन करें",
-      steps: { intro: "परिचय", details: "विवरण", ack: "प्रतिज्ञा", confirm: "पुष्टि" },
+      steps: { details: "विवरण", ack: "प्रतिज्ञा", confirm: "पुष्टि" },
       start: "शुरू करें",
       next: "आगे",
       back: "वापस",
@@ -165,7 +172,7 @@ function getStrings(lang: "en" | "hi") {
         },
       },
       ack: {
-        title: "मेरी प्रतिज्ञा",
+        title: "आत्मनिर्भर भारत का संकल्प",
         startScript: "प्रतिज्ञा प्रारंभ करें",
         checkbox: "मैं आत्मनिर्भर भारत के लिए प्रतिज्ञा करता/करती हूँ।",
       },
@@ -181,7 +188,7 @@ function getStrings(lang: "en" | "hi") {
     title: "People's Pledge",
     subtitle: "Complete the steps to make your pledge",
     description: "A nationwide initiative for Atmanirbhar Bharat - supporting economic freedom and local manufacturing",
-    steps: { intro: "Intro", details: "Details", ack: "Pledge", confirm: "Confirm" },
+    steps: { details: "Details", ack: "Pledge", confirm: "Confirm" },
     start: "Start",
     next: "Next",
     back: "Back",
@@ -205,7 +212,7 @@ function getStrings(lang: "en" | "hi") {
       },
     },
     ack: {
-      title: "My pledge",
+      title: "आत्मनिर्भर भारत का संकल्प",
       startScript: "Start Pledge",
       checkbox: "I pledge to support Atmanirbhar Bharat.",
     },

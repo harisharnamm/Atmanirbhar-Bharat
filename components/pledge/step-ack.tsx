@@ -1,9 +1,8 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { Checkbox } from "@/components/ui/checkbox"
 import { Label } from "@/components/ui/label"
-import { Button } from "@/components/ui/button"
 
 const PLEDGE_TEXT = `मैं, ....................................................... (अपना नाम लिखें)
 
@@ -30,73 +29,117 @@ export default function StepAcknowledge({
   strings,
   checked,
   onCheckedChange,
+  name,
+  gender,
 }: {
   strings: ReturnType<typeof getStringsMock>
   checked: boolean
   onCheckedChange: (v: boolean) => void
+  name?: string
+  gender?: "male" | "female"
 }) {
-  const [animationStarted, setAnimationStarted] = useState(false)
-  const [animationComplete, setAnimationComplete] = useState(false)
-  const [visibleText, setVisibleText] = useState("")
-  const [currentIndex, setCurrentIndex] = useState(0)
+  const renderPledge = () => {
+    const userName = (name && name.trim().length > 0)
+      ? name.trim()
+      : "....................................................... (अपना नाम लिखें)"
+    const isFemale = gender === "female"
 
-  const startAnimation = () => {
-    setAnimationStarted(true)
-    setVisibleText("")
-    setCurrentIndex(0)
-  }
+    const withName = PLEDGE_TEXT.replace(
+      "मैं, ....................................................... (अपना नाम लिखें)",
+      `मैं, ${userName}`,
+    )
 
-  useEffect(() => {
-    if (animationStarted && currentIndex < PLEDGE_TEXT.length) {
-      const timer = setTimeout(() => {
-        setVisibleText(PLEDGE_TEXT.slice(0, currentIndex + 1))
-        setCurrentIndex(currentIndex + 1)
-      }, 50) // Speed of animation - 50ms per character
-
-      return () => clearTimeout(timer)
-    } else if (animationStarted && currentIndex >= PLEDGE_TEXT.length) {
-      setAnimationComplete(true)
+    // Apply gendered verb forms deterministically to avoid 'undefined'
+    if (isFemale) {
+      return withName
+        .replace(/लेता\/लेती/g, "लेती")
+        .replace(/दूँगा\/दूँगी/g, "दूँगी")
+        .replace(/करूँगा\/करूँगी/g, "करूँगी")
+        .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगी")
+        .replace(/करता\/करती/g, "करती")
     }
-  }, [animationStarted, currentIndex])
+    return withName
+      .replace(/लेता\/लेती/g, "लेता")
+      .replace(/दूँगा\/दूँगी/g, "दूँगा")
+      .replace(/करूँगा\/करूँगी/g, "करूँगा")
+      .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगा")
+      .replace(/करता\/करती/g, "करता")
+  }
+  const [imagePreview, setImagePreview] = useState<string | null>(null)
 
+  const onSelectFile = (file?: File | null) => {
+    if (!file) return
+    const reader = new FileReader()
+    reader.onload = () => {
+      const result = typeof reader.result === "string" ? reader.result : null
+      setImagePreview(result)
+    }
+    reader.readAsDataURL(file)
+  }
   return (
     <section aria-labelledby="ack-heading">
       <h2 id="ack-heading" className="text-lg font-semibold">
         {strings.ack.title}
       </h2>
 
-      {/* Start Script Button */}
-      {!animationStarted && (
-        <div className="mt-4 text-center">
-          <Button onClick={startAnimation} className="px-6">
-            {strings.ack.startScript || "Start Script"}
-          </Button>
+      {/* Full pledge text */}
+      <div className="mt-4 p-4 bg-muted/30 rounded-lg border">
+        <div className="text-sm leading-relaxed whitespace-pre-line font-medium">
+          {renderPledge()}
         </div>
-      )}
+      </div>
 
-      {/* Animated Pledge Text */}
-      {animationStarted && (
-        <div className="mt-4 p-4 bg-muted/30 rounded-lg border">
-          <div className="text-sm leading-relaxed whitespace-pre-line font-medium">
-            {visibleText}
-            {!animationComplete && <span className="animate-pulse">|</span>}
+      {/* Selfie capture/upload */}
+      <div className="mt-4 grid gap-3">
+        <label className="text-sm font-medium">Selfie</label>
+        <div className="flex items-center gap-4">
+          <div className="h-16 w-16 rounded-full overflow-hidden bg-muted border">
+            {imagePreview ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img src={imagePreview} alt="Selfie preview" className="h-full w-full object-cover" />
+            ) : (
+              <div className="h-full w-full grid place-items-center text-xs text-muted-foreground">No photo</div>
+            )}
+          </div>
+          <div className="flex items-center gap-2">
+            <label className="inline-flex cursor-pointer items-center justify-center rounded-md border px-3 py-2 text-sm hover:bg-accent">
+              <input
+                type="file"
+                accept="image/*"
+                capture="user"
+                className="hidden"
+                onChange={(e) => onSelectFile(e.target.files?.[0])}
+              />
+              Take selfie
+            </label>
+            <label className="inline-flex cursor-pointer items-center justify-center rounded-md border px-3 py-2 text-sm hover:bg-accent">
+              <input
+                type="file"
+                accept="image/*"
+                className="hidden"
+                onChange={(e) => onSelectFile(e.target.files?.[0])}
+              />
+              Upload photo
+            </label>
           </div>
         </div>
-      )}
+      </div>
 
-      {/* Acknowledgment Checkbox - Only shown after animation completes */}
-      {animationComplete && (
-        <div className="mt-4 flex items-start gap-3">
-          <Checkbox
-            id="ack"
-            checked={checked}
-            onCheckedChange={(v) => onCheckedChange(!!v)}
-            aria-describedby="ack-desc"
-          />
-          <Label htmlFor="ack" id="ack-desc" className="text-sm leading-relaxed">
-            {strings.ack.checkbox}
-          </Label>
-        </div>
+      {/* Acknowledgment Checkbox */}
+      <div className="mt-4 flex items-start gap-3">
+        <Checkbox
+          id="ack"
+          checked={checked}
+          disabled={!imagePreview}
+          onCheckedChange={(v) => onCheckedChange(!!v)}
+          aria-describedby="ack-desc"
+        />
+        <Label htmlFor="ack" id="ack-desc" className="text-sm leading-relaxed">
+          {strings.ack.checkbox}
+        </Label>
+      </div>
+      {!imagePreview && (
+        <p className="mt-2 text-xs text-muted-foreground">कृपया पहले अपनी सेल्फ़ी जोड़ें।</p>
       )}
     </section>
   )

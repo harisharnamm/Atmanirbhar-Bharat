@@ -13,6 +13,7 @@ import { cn } from "@/lib/utils"
 export type PledgeFormValues = {
   name: string
   mobile: string
+  gender: "male" | "female"
   district: string
   constituency: string
   village: string
@@ -345,11 +346,12 @@ export default function StepForm({
   onValid: (vals: PledgeFormValues) => void
 }) {
   const [values, setValues] = useState<PledgeFormValues>(
-    initialValues ?? { name: "", mobile: "", district: "", constituency: "", village: "" },
+    initialValues ?? { name: "", mobile: "", gender: "male", district: "", constituency: "", village: "" },
   )
   const [touched, setTouched] = useState<Record<keyof PledgeFormValues, boolean>>({
     name: false,
     mobile: false,
+    gender: false,
     district: false,
     constituency: false,
     village: false,
@@ -365,6 +367,7 @@ export default function StepForm({
     const e: Partial<Record<keyof PledgeFormValues, string>> = {}
     if (!values.name.trim()) e.name = strings.form.errors.required
     if (!MOBILE_IN_PATTERN.test(values.mobile)) e.mobile = strings.form.errors.mobile
+    if (!values.gender) e.gender = strings.form.errors.required
     if (!values.district.trim()) e.district = strings.form.errors.required
     if (values.district && !values.constituency.trim()) e.constituency = strings.form.errors.required
     if (!values.village.trim()) e.village = strings.form.errors.required
@@ -414,6 +417,34 @@ export default function StepForm({
         {strings.form.legend}
       </h2>
       <form onSubmit={onSubmit} noValidate className="space-y-4">
+        <div className="grid gap-2">
+          <Label>{lang === "hi" ? "लिंग" : "Gender"}</Label>
+          <div className="flex gap-4">
+            <label className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={values.gender === "male"}
+                onChange={() => setValues((v) => ({ ...v, gender: "male" }))}
+              />
+              {lang === "hi" ? "पुरुष" : "Male"}
+            </label>
+            <label className="inline-flex items-center gap-2 text-sm">
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={values.gender === "female"}
+                onChange={() => setValues((v) => ({ ...v, gender: "female" }))}
+              />
+              {lang === "hi" ? "महिला" : "Female"}
+            </label>
+          </div>
+          {errors.gender && (
+            <p className="text-xs text-destructive">{errors.gender}</p>
+          )}
+        </div>
         <div className="grid gap-2">
           <Label htmlFor="name">{strings.form.name}</Label>
           <Input
