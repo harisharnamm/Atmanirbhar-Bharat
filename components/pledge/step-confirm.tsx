@@ -4,6 +4,8 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
+import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
+import { supabase } from "@/lib/supabase"
 import ShareButtons from "@/components/pledge/share-buttons"
 import type { PledgeFormValues } from "./step-form"
 
@@ -28,15 +30,53 @@ export default function StepConfirm({
     const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
     ;(async () => {
       try {
-        await generateCertificateFromTemplate({
+        // Upload selfie first if present and not yet uploaded
+        let selfiePublicUrl: string | undefined
+        if (selfieDataUrl) {
+          try {
+            const selfieBlob = await (await fetch(selfieDataUrl)).blob()
+            selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
+          } catch (e) {
+            console.log("[v0] Selfie upload failed:", e)
+          }
+        }
+
+        const { blob, fileName } = await generateCertificateFromTemplate({
           id: formattedId,
           name: values.name,
           district: values.district,
           constituency: values.constituency,
           village: values.village,
           lang: safeLang,
-          selfieDataUrl: selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
+          selfieDataUrl: selfiePublicUrl ?? selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
+          download: true,
         })
+
+        // Upload PDF to storage
+        let pdfPublicUrl: string | undefined
+        try {
+          pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
+        } catch (e) {
+          console.log("[v0] PDF upload failed:", e)
+        }
+
+        // Insert pledge row
+        try {
+          await supabase.from('pledges').insert({
+            pledge_id: formattedId,
+            name: values.name,
+            mobile: (values as any).mobile ?? null,
+            district: values.district,
+            constituency: values.constituency,
+            village: (values as any).village ?? null,
+            gender: (values as any).gender ?? null,
+            lang: safeLang,
+            selfie_url: selfiePublicUrl ?? null,
+            certificate_pdf_url: pdfPublicUrl ?? null,
+          })
+        } catch (e) {
+          console.log('[v0] DB insert failed:', e)
+        }
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
       } finally {
@@ -72,15 +112,53 @@ export default function StepConfirm({
             const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
             ;(async () => {
               try {
-                await generateCertificateFromTemplate({
+                // Upload selfie if available
+                let selfiePublicUrl: string | undefined
+                if (selfieDataUrl) {
+                  try {
+                    const selfieBlob = await (await fetch(selfieDataUrl)).blob()
+                    selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
+                  } catch (e) {
+                    console.log("[v0] Selfie upload failed:", e)
+                  }
+                }
+
+                const { blob, fileName } = await generateCertificateFromTemplate({
                   id: formattedId,
                   name: values.name,
                   district: values.district,
                   constituency: values.constituency,
                   village: values.village,
                   lang: safeLang,
-                  selfieDataUrl: selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
+                  selfieDataUrl: selfiePublicUrl ?? selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
+                  download: true,
                 })
+
+                // Upload PDF
+                let pdfPublicUrl: string | undefined
+                try {
+                  pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
+                } catch (e) {
+                  console.log("[v0] PDF upload failed:", e)
+                }
+
+                // Insert pledge row (upsert-on-conflict)
+                try {
+                  await supabase.from('pledges').upsert({
+                    pledge_id: formattedId,
+                    name: values.name,
+                    mobile: (values as any).mobile ?? null,
+                    district: values.district,
+                    constituency: values.constituency,
+                    village: (values as any).village ?? null,
+                    gender: (values as any).gender ?? null,
+                    lang: safeLang,
+                    selfie_url: selfiePublicUrl ?? null,
+                    certificate_pdf_url: pdfPublicUrl ?? null,
+                  }, { onConflict: 'pledge_id' })
+                } catch (e) {
+                  console.log('[v0] DB upsert failed:', e)
+                }
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)
               } finally {

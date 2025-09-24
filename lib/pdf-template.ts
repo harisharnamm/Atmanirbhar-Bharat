@@ -14,6 +14,7 @@ export async function generateCertificateFromTemplate({
   village,
   lang,
   selfieDataUrl,
+  download = true,
 }: {
   id: string
   name: string
@@ -22,6 +23,7 @@ export async function generateCertificateFromTemplate({
   village: string
   lang: "en" | "hi"
   selfieDataUrl?: string | null
+  download?: boolean
 }) {
   const [{ PDFDocument, rgb, degrees }, fontkit] = await Promise.all([
     import("pdf-lib"),
@@ -202,10 +204,14 @@ export async function generateCertificateFromTemplate({
   const blob = new Blob([new Uint8Array(pdfBytes)], { type: "application/pdf" })
   const fileName = (lang === "hi" ? "praman-patra" : "certificate") + `-${name.toLowerCase().replace(/\s+/g, "-")}-${id.slice(0, 8)}.pdf`
 
-  const link = document.createElement("a")
-  link.href = URL.createObjectURL(blob)
-  link.download = fileName
-  link.click()
+  if (download) {
+    const link = document.createElement("a")
+    link.href = URL.createObjectURL(blob)
+    link.download = fileName
+    link.click()
+  }
+
+  return { blob, fileName }
 }
 
 
