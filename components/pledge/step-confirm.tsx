@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { generateCertificate } from "@/lib/pdf"
+import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
 import ShareButtons from "@/components/pledge/share-buttons"
 import type { PledgeFormValues } from "./step-form"
@@ -22,10 +23,11 @@ export default function StepConfirm({
     setDownloading(true)
     const safeLang = (strings as any).__lang === "hi" ? "hi" : "en"
     try {
+      const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
       ;(async () => {
         try {
           await generateCertificateFromTemplate({
-            id: pledgeId,
+            id: formattedId,
             name: values.name,
             district: values.district,
             constituency: values.constituency,
@@ -36,7 +38,7 @@ export default function StepConfirm({
         } catch (e) {
           // Fallback to legacy generator if template fails
           generateCertificate({
-            id: pledgeId,
+            id: formattedId,
             name: values.name,
             district: values.district,
             constituency: values.constituency,
@@ -75,8 +77,9 @@ export default function StepConfirm({
             try {
               ;(async () => {
                 try {
+                  const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
                   await generateCertificateFromTemplate({
-                    id: pledgeId,
+                    id: formattedId,
                     name: values.name,
                     district: values.district,
                     constituency: values.constituency,
@@ -86,7 +89,7 @@ export default function StepConfirm({
                   })
                 } catch (e) {
                   generateCertificate({
-                    id: pledgeId,
+                    id: isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId(),
                     name: values.name,
                     district: values.district,
                     constituency: values.constituency,

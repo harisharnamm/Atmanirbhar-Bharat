@@ -8,22 +8,22 @@ const PLEDGE_TEXT = `मैं, ................................................
 
 आज दिनांक ................. को यह संकल्प/शपथ लेता/लेती हूँ कि –
 
-1.⁠ ⁠मैं अपने जीवन, कार्य एवं व्यवहार में आत्मनिर्भरता को प्राथमिकता दूँगा/दूँगी。
+•⁠ ⁠मैं अपने जीवन, कार्य एवं व्यवहार में आत्मनिर्भरता को प्राथमिकता दूँगा/दूँगी।
 
 
-2.⁠ ⁠मैं अपने जीवन, कार्य और व्यवहार में देशी उत्पादों व सेवाओं को प्राथमिकता दूँगा/दूँगी。
+•⁠ ⁠मैं अपने जीवन, कार्य और व्यवहार में स्वदेशी उत्पादों व सेवाओं को प्राथमिकता दूँगा/दूँगी।
 
 
-3.⁠ ⁠मैं भारतीय उद्योगों, कारीगरों, किसानों और उद्यमियों का सहयोग व प्रोत्साहन करूँगा/करूँगी。
+•⁠ ⁠मैं भारतीय उद्योगों, कारीगरों, किसानों और उद्यमियों का सहयोग व प्रोत्साहन करूँगा/करूँगी।
 
 
-4.⁠ ⁠मैं समाज में "Vocal for Local" का संदेश प्रसारित करूँगा/करूँगी और दूसरों को भी इसके लिए प्रेरित करूँगा/करूँगी。
+•⁠ ⁠मैं समाज में "Vocal for Local" का संदेश प्रसारित करूँगा/करूँगी और दूसरों को भी इसके लिए प्रेरित करूँगा/करूँगी।
 
 
-5.⁠ ⁠मैं राष्ट्रहित को सर्वोपरि मानते हुए हर परिस्थिति में स्वावलंबन का मार्ग अपनाऊँगा/अपनाऊँगी。
+•⁠ ⁠मैं राष्ट्रहित को सर्वोपरि मानते हुए हर परिस्थिति में स्वावलंबन का मार्ग अपनाऊँगा/अपनाऊँगी।
 
 
-6.⁠ ⁠मैं यह संकल्प करता/करती हूँ कि अपने आचरण, व्यवहार और कार्यों के माध्यम से भारत को आत्मनिर्भर बनाने में सक्रिय योगदान दूँगा/दूँगी।`
+•⁠ ⁠मैं यह संकल्प करता/करती हूँ कि अपने आचरण, व्यवहार और कार्यों के माध्यम से भारत को आत्मनिर्भर बनाने में सक्रिय योगदान दूँगा/दूँगी।`
 
 export default function StepAcknowledge({
   strings,
@@ -45,6 +45,7 @@ export default function StepAcknowledge({
       ? name.trim()
       : "....................................................... (अपना नाम लिखें)"
     const isFemale = gender === "female"
+    const isOther = gender === "other"
 
     // Insert name
     let text = PLEDGE_TEXT.replace(
@@ -56,15 +57,36 @@ export default function StepAcknowledge({
     const dateStr = new Date().toLocaleDateString("hi-IN", { year: "numeric", month: "long", day: "numeric" })
     text = text.replace("आज दिनांक .................", `आज दिनांक ${dateStr}`)
 
-    // Keep both forms visible irrespective of gender selection
+    // Apply gendered forms: male/female deterministic; other keeps both
+    if (isOther) return text
+    if (isFemale) {
+      return text
+        .replace(/लेता\/लेती/g, "लेती")
+        .replace(/दूँगा\/दूँगी/g, "दूँगी")
+        .replace(/करूँगा\/करूँगी/g, "करूँगी")
+        .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगी")
+        .replace(/करता\/करती/g, "करती")
+    }
     return text
+      .replace(/लेता\/लेती/g, "लेता")
+      .replace(/दूँगा\/दूँगी/g, "दूँगा")
+      .replace(/करूँगा\/करूँगी/g, "करूँगा")
+      .replace(/अपनाऊँगा\/अपनाऊँगी/g, "अपनाऊँगा")
+      .replace(/करता\/करती/g, "करता")
   }
   const renderCheckboxLabel = () => {
     let label = strings.ack.checkbox
     const isHindi = (strings as any).__lang === "hi"
     if (isHindi) {
-      // Keep both forms visible
-      label = label.replace(/करता|करती/g, "करता/करती")
+      const isFemale = gender === "female"
+      const isOther = gender === "other"
+      if (isOther) {
+        label = label.replace(/करता|करती/g, "करता/करती")
+      } else if (isFemale) {
+        label = label.replace(/करता\/करती/g, "करती").replace(/करता/g, "करती")
+      } else {
+        label = label.replace(/करता\/करती/g, "करता").replace(/करती/g, "करता")
+      }
     }
     return label
   }

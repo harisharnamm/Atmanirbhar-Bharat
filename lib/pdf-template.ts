@@ -43,16 +43,18 @@ export async function generateCertificateFromTemplate({
     ;(pdfDoc as any).registerFontkit((fontkit as any).default)
   }
 
-  // Try to load a Devanagari font from public if available
+  // Try to load a Devanagari font from public if available (only for Hindi)
   let font = null as any
-  try {
-    const fontResp = await fetch("/fonts/NotoSansDevanagari-Regular.ttf")
-    if (fontResp.ok) {
-      const fontBytes = await fontResp.arrayBuffer()
-      font = await pdfDoc.embedFont(fontBytes, { subset: true })
+  if (lang === "hi") {
+    try {
+      const fontResp = await fetch("/fonts/NotoSansDevanagari-Regular.ttf")
+      if (fontResp.ok) {
+        const fontBytes = await fontResp.arrayBuffer()
+        font = await pdfDoc.embedFont(fontBytes, { subset: true })
+      }
+    } catch (_) {
+      // ignore; we'll fall back to the template's default font
     }
-  } catch (_) {
-    // ignore; we'll fall back to the template's default font
   }
 
   // Helpers: incoming coords are specified with origin at top-left (0,0),
@@ -67,17 +69,34 @@ export async function generateCertificateFromTemplate({
     })
   }
 
+  const centerTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12) => {
+    let textWidth = 0
+    try {
+      if (font) {
+        textWidth = font.widthOfTextAtSize(text, size)
+      } else {
+        // heuristic fallback when no font metrics available
+        textWidth = text.length * size * 0.55
+      }
+    } catch {
+      textWidth = text.length * size * 0.55
+    }
+    const boxCenter = (xStart + xEnd) / 2
+    const xTL = boxCenter - textWidth / 2
+    drawTextTopLeft(text, xTL, yTL, size)
+  }
+
   // Coordinates config (in PDF points). Adjust as per your template.
   // A4 ~ 595 x 842 pt. Update these after a test render.
   const coordsTL = {
     // Positions provided with top-left origin per user's template grid
-    name: { x: 238, y: 371, size: 24 },
+    name: { x: 238, y: 428, size: 24 },
     // meta removed per request
     // DATE must start right after text "ने आज दिनांक" at this exact point
-    date: { x: 239, y: 411, size: 13 },
+    date: { x: 237, y: 461, size: 13 },
     pledgeId: { x: 194, y: 905, size: 16 },
     // Selfie: X:78 Y:69 (top-left origin). Adjust size as needed.
-    selfie: { x: 78, y: 69, w: 100, h: 100 },
+    selfie: { x: 257, y: 241, w: 100, h: 100 },
   }
 
   const now = new Date()
@@ -88,7 +107,8 @@ export async function generateCertificateFromTemplate({
   })
 
   // Draw content
-  drawTextTopLeft(name, coordsTL.name.x, coordsTL.name.y, coordsTL.name.size)
+  // Center the name between X:190 and X:440 at the provided Y
+  centerTextTopLeft(name, coordsTL.name.y, 190, 440, coordsTL.name.size)
   const metaLine =
     lang === "hi"
       ? `जिला: ${district}   विधानसभा: ${constituency}   गाँव/शहर: ${village}`

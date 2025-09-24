@@ -3,7 +3,7 @@
 import { useMemo, useState, useEffect } from "react"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
-import { cn } from "@/lib/utils"
+import { cn, generatePledgeId } from "@/lib/utils"
 import StepForm, { type PledgeFormValues } from "@/components/pledge/step-form"
 import StepAcknowledge from "@/components/pledge/step-ack"
 import StepConfirm from "@/components/pledge/step-confirm"
@@ -21,7 +21,7 @@ export default function HomePage() {
 
   useEffect(() => {
     // generate stable pledge id per session
-    setPledgeId(crypto.randomUUID())
+    setPledgeId(generatePledgeId())
   }, [])
 
   const strings = useMemo(() => getStrings(lang), [lang])
