@@ -61,20 +61,24 @@ export default function StepConfirm({
           console.log("[v0] PDF upload failed:", e)
         }
 
-        // 4) Upsert pledge row (best-effort)
+        // 4) Upsert pledge row via server API (avoids client RLS/401)
         try {
-          await supabase.from('pledges').upsert({
-            pledge_id: formattedId,
-            name: values.name,
-            mobile: (values as any).mobile ?? null,
-            district: values.district,
-            constituency: values.constituency,
-            village: (values as any).village ?? null,
-            gender: (values as any).gender ?? null,
-            lang: safeLang,
-            selfie_url: selfiePublicUrl ?? null,
-            certificate_pdf_url: pdfPublicUrl ?? null,
-          }, { onConflict: 'pledge_id' })
+          await fetch('/api/pledges', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              pledge_id: formattedId,
+              name: values.name,
+              mobile: (values as any).mobile ?? null,
+              district: values.district,
+              constituency: values.constituency,
+              village: (values as any).village ?? null,
+              gender: (values as any).gender ?? null,
+              lang: safeLang,
+              selfie_url: selfiePublicUrl ?? null,
+              certificate_pdf_url: pdfPublicUrl ?? null,
+            }),
+          })
         } catch (e) {
           console.log('[v0] DB insert failed:', e)
         }
@@ -144,20 +148,24 @@ export default function StepConfirm({
                   console.log("[v0] PDF upload failed:", e)
                 }
 
-                // 4) Upsert pledge row (upsert-on-conflict)
+                // 4) Upsert pledge row via server API
                 try {
-                  await supabase.from('pledges').upsert({
-                    pledge_id: formattedId,
-                    name: values.name,
-                    mobile: (values as any).mobile ?? null,
-                    district: values.district,
-                    constituency: values.constituency,
-                    village: (values as any).village ?? null,
-                    gender: (values as any).gender ?? null,
-                    lang: safeLang,
-                    selfie_url: selfiePublicUrl ?? null,
-                    certificate_pdf_url: pdfPublicUrl ?? null,
-                  }, { onConflict: 'pledge_id' })
+                  await fetch('/api/pledges', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({
+                      pledge_id: formattedId,
+                      name: values.name,
+                      mobile: (values as any).mobile ?? null,
+                      district: values.district,
+                      constituency: values.constituency,
+                      village: (values as any).village ?? null,
+                      gender: (values as any).gender ?? null,
+                      lang: safeLang,
+                      selfie_url: selfiePublicUrl ?? null,
+                      certificate_pdf_url: pdfPublicUrl ?? null,
+                    }),
+                  })
                 } catch (e) {
                   console.log('[v0] DB upsert failed:', e)
                 }
