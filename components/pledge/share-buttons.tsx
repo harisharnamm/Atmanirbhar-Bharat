@@ -35,7 +35,19 @@ export default function ShareButtons({
   const hashtags = '#Sankalp4AtmanirbhrBharat #PMO #SikarBJP #CMORajasthan #BJPSikar #aatamnirbharbharat'
   const finalText = `${text} ${hashtags}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}&url=${encodeURIComponent(url)}`
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(finalText)}`
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
+
+  async function onFacebookShare() {
+    try {
+      // Facebook often ignores prefilled text; copy it so users can paste after the dialog
+      await navigator.clipboard.writeText(`${finalText} ${url}`)
+      setCopied(true)
+      setTimeout(() => setCopied(false), 2000)
+    } catch {
+      // ignore copy failure
+    }
+    window.open(facebookUrl, '_blank', 'noopener,noreferrer')
+  }
 
   return (
     <div className="flex flex-col items-center gap-2">
@@ -49,20 +61,12 @@ export default function ShareButtons({
         >
           <Button variant="secondary">X</Button>
         </a>
-        <a
-          className="inline-flex"
-          href={facebookUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on Facebook"
-        >
-          <Button variant="secondary">Facebook</Button>
-        </a>
+        <Button variant="secondary" onClick={onFacebookShare} aria-label="Share on Facebook">Facebook</Button>
         <Button onClick={onShare}>{label}</Button>
       </div>
       {!navigator.share && (
         <p className="text-xs text-muted-foreground">
-          {copied ? "Link copied." : "No native share available. Click to copy link."}
+          {copied ? "Text copied. Paste it in Facebook dialog." : "No native share. We’ll copy text for you before opening Facebook."}
         </p>
       )}
     </div>
