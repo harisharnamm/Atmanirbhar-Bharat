@@ -132,18 +132,17 @@ export async function generateCertificateFromTemplate({
     name: { x: 238, y: 428, size: 24 },
     // meta removed per request
     // DATE must start right after text "ने आज दिनांक" at this exact point
-    date: { x: 232, y: 461, size: 14 },
+    date: { x: 255, y: 461, size: 16 },
     pledgeId: { x: 194, y: 905, size: 16 },
     // Selfie: X:78 Y:69 (top-left origin). Slightly larger frame.
     selfie: { x: 257, y: 241, w: 120, h: 120 },
   }
 
   const now = new Date()
-  const dateStr = now.toLocaleDateString(lang === "hi" ? "hi-IN" : "en-IN", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  })
+  const dd = String(now.getDate()).padStart(2, '0')
+  const mm = String(now.getMonth() + 1).padStart(2, '0')
+  const yyyy = String(now.getFullYear())
+  const dateStr = `${dd}/${mm}/${yyyy}`
 
   // Draw content
   // Center the name between X:190 and X:440 at the provided Y (bold)
