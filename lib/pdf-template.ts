@@ -43,14 +43,22 @@ export async function generateCertificateFromTemplate({
     ;(pdfDoc as any).registerFontkit((fontkit as any).default)
   }
 
-  // Try to load a Devanagari font from public if available (only for Hindi)
+  // Try to load Devanagari fonts from public if available (only for Hindi)
   let font = null as any
+  let fontBold = null as any
   if (lang === "hi") {
     try {
-      const fontResp = await fetch("/fonts/NotoSansDevanagari-Regular.ttf")
-      if (fontResp.ok) {
-        const fontBytes = await fontResp.arrayBuffer()
+      const [regularResp, boldResp] = await Promise.all([
+        fetch("/fonts/NotoSansDevanagari-Regular.ttf"),
+        fetch("/fonts/NotoSansDevanagari-Bold.ttf").catch(() => ({ ok: false } as Response)),
+      ])
+      if (regularResp.ok) {
+        const fontBytes = await regularResp.arrayBuffer()
         font = await pdfDoc.embedFont(fontBytes, { subset: true })
+      }
+      if (boldResp && boldResp.ok) {
+        const boldBytes = await boldResp.arrayBuffer()
+        fontBold = await pdfDoc.embedFont(boldBytes, { subset: true })
       }
     } catch (_) {
       // ignore; we'll fall back to the template's default font
@@ -59,21 +67,22 @@ export async function generateCertificateFromTemplate({
 
   // Helpers: incoming coords are specified with origin at top-left (0,0),
   // y increasing downward. pdf-lib uses bottom-left origin. Convert y.
-  const drawTextTopLeft = (text: string, xTL: number, yTL: number, size = 12) => {
+  const drawTextTopLeft = (text: string, xTL: number, yTL: number, size = 12, customFont?: any) => {
     page.drawText(text, {
       x: xTL,
       y: pageH - yTL,
       size,
-      font: font ?? undefined,
+      font: customFont ?? font ?? undefined,
       color: rgb(0, 0, 0),
     })
   }
 
-  const centerTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12) => {
+  const centerTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12, customFont?: any) => {
     let textWidth = 0
     try {
-      if (font) {
-        textWidth = font.widthOfTextAtSize(text, size)
+      const metricsFont = customFont ?? font
+      if (metricsFont) {
+        textWidth = metricsFont.widthOfTextAtSize(text, size)
       } else {
         // heuristic fallback when no font metrics available
         textWidth = text.length * size * 0.55
@@ -83,7 +92,37 @@ export async function generateCertificateFromTemplate({
     }
     const boxCenter = (xStart + xEnd) / 2
     const xTL = boxCenter - textWidth / 2
-    drawTextTopLeft(text, xTL, yTL, size)
+    drawTextTopLeft(text, xTL, yTL, size, customFont)
+  }
+
+  // Bold centered draw (uses bold font if available, else simulates bold by multi-pass)
+  const centerBoldTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12) => {
+    if (fontBold) {
+      centerTextTopLeft(text, yTL, xStart, xEnd, size, fontBold)
+      return
+    }
+    // Synthetic bold: draw multiple slight offsets
+    let textWidth = 0
+    try {
+      if (font) {
+        textWidth = font.widthOfTextAtSize(text, size)
+      } else {
+        textWidth = text.length * size * 0.55
+      }
+    } catch {
+      textWidth = text.length * size * 0.55
+    }
+    const boxCenter = (xStart + xEnd) / 2
+    const xTL = boxCenter - textWidth / 2
+    const offsets = [
+      [0, 0],
+      [0.2, 0],
+      [0, 0.2],
+      [0.2, 0.2],
+    ]
+    for (const [dx, dy] of offsets) {
+      drawTextTopLeft(text, xTL + dx, yTL + dy, size)
+    }
   }
 
   // Coordinates config (in PDF points). Adjust as per your template.
@@ -107,8 +146,8 @@ export async function generateCertificateFromTemplate({
   })
 
   // Draw content
-  // Center the name between X:190 and X:440 at the provided Y
-  centerTextTopLeft(name, coordsTL.name.y, 190, 440, coordsTL.name.size)
+  // Center the name between X:190 and X:440 at the provided Y (bold)
+  centerBoldTextTopLeft(name, coordsTL.name.y, 190, 440, coordsTL.name.size)
   const metaLine =
     lang === "hi"
       ? `जिला: ${district}   विधानसभा: ${constituency}   गाँव/शहर: ${village}`
