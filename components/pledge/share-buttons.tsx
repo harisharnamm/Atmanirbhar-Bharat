@@ -32,7 +32,7 @@ export default function ShareButtons({
     }
   }
 
-  const hashtags = '#Sankalp4atamanirbharBhart #PMO #Vocal4Local #SikarBJP'
+  const hashtags = '#Sankalp4AtmanirbhrBharat #PMO #SikarBJP #CMORajasthan #BJPSikar #aatamnirbharbharat'
   const finalText = `${text} ${hashtags}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}&url=${encodeURIComponent(url)}`
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(finalText)}`

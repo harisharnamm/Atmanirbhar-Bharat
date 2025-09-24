@@ -9,49 +9,49 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: 'Atmanirbhar Bharat – Sankalp Pledge',
-    template: '%s – Atmanirbhar Bharat',
+    default: 'Aatmanirbhar Bharat – Sankalp Pledge',
+    template: '%s – Aatmanirbhar Bharat',
   },
   description:
-    'Take the Sankalp for Atmanirbhar Bharat. Fill details, read the pledge, add a selfie, and download your certificate.',
-  applicationName: 'Atmanirbhar Bharat Pledge',
+    'Take the Sankalp for Aatmanirbhar Bharat. Fill details, read the pledge, add a selfie, and download your certificate.',
+  applicationName: 'Aatmanirbhar Bharat Pledge',
   keywords: [
-    'Atmanirbhar Bharat',
+    'Aatmanirbhar Bharat',
     'Sankalp',
     'Pledge',
     'Certificate',
     'Vocal for Local',
     'Swadeshi',
   ],
-  authors: [{ name: 'Atmanirbhar Bharat' }],
-  creator: 'Atmanirbhar Bharat',
-  publisher: 'Atmanirbhar Bharat',
+  authors: [{ name: 'Aatmanirbhar Bharat' }],
+  creator: 'Aatmanirbhar Bharat',
+  publisher: 'Aatmanirbhar Bharat',
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     url: '/',
-    title: 'Atmanirbhar Bharat – Sankalp Pledge',
+    title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
-      'Take the Sankalp for Atmanirbhar Bharat and receive your Sankalp Patra.',
-    siteName: 'Atmanirbhar Bharat',
+      'Take the Sankalp for Aatmanirbhar Bharat and receive your Sankalp Patra.',
+    siteName: 'Aatmanirbhar Bharat',
     images: [
       {
         url: '/atmanirbharBharat.png',
         width: 1200,
         height: 630,
-        alt: 'Atmanirbhar Bharat',
+        alt: 'Aatmanirbhar Bharat',
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Atmanirbhar Bharat – Sankalp Pledge',
+    title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
-      'Take the Sankalp for Atmanirbhar Bharat and receive your personalized certificate.',
+      'Take the Sankalp for Aatmanirbhar Bharat and receive your personalized certificate.',
     images: ['/atmanirbharBharat.png'],
-    creator: '@atmanirbhar',
+    creator: '@aatmanirbhar',
   },
   robots: {
     index: true,

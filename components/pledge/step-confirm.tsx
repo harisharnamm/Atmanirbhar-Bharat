@@ -97,7 +97,7 @@ export default function StepConfirm({
         <ShareButtons
           label={strings.confirm.share}
           url={shareUrl}
-          text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है। ${shareUrl} #Sankalp4atamanirbharBhart #PMO #Vocal4Local #SikarBJP`}
+          text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है। ${shareUrl}`}
         />
       </div>
     </section>

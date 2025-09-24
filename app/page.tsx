@@ -46,7 +46,7 @@ export default function HomePage() {
           <div className="flex items-center gap-3">
             <img
               src="/atmanirbharBharat.png"
-              alt="Atmanirbhar Bharat"
+              alt="Aatmanirbhar Bharat"
               className="h-20 w-auto"
             />
             <img
@@ -199,14 +199,14 @@ function getStrings(lang: "en" | "hi") {
     __lang: "en",
     title: "People's Pledge",
     subtitle: "Complete the steps to make your pledge",
-    description: "A nationwide initiative for Atmanirbhar Bharat - supporting economic freedom and local manufacturing",
+    description: "A nationwide initiative for Aatmanirbhar Bharat - supporting economic freedom and local manufacturing",
     steps: { details: "Details", ack: "Pledge", confirm: "Confirm" },
     start: "Start",
     next: "Next",
     back: "Back",
     nav: "Navigation",
     intro: {
-      heading: "Pledge for Atmanirbhar Bharat",
+      heading: "Pledge for Aatmanirbhar Bharat",
       body: "Make your commitment to strengthen the Indian economy and support local industries. This initiative helps you share your details, review policy summary, make your pledge, and receive a certificate.",
       cta: "I’m ready",
     },
@@ -226,7 +226,7 @@ function getStrings(lang: "en" | "hi") {
     ack: {
       title: "आत्मनिर्भर भारत का संकल्प",
       startScript: "Start Pledge",
-      checkbox: "I pledge to support Atmanirbhar Bharat.",
+      checkbox: "I pledge to support Aatmanirbhar Bharat.",
     },
     confirm: {
       title: "Thank you! Your pledge is recorded.",
