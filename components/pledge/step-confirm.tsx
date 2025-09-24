@@ -30,7 +30,19 @@ export default function StepConfirm({
     const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
     ;(async () => {
       try {
-        // Upload selfie first if present and not yet uploaded
+        // 1) Always embed the local selfie data URL first to avoid any network/CORS issues
+        const { blob, fileName } = await generateCertificateFromTemplate({
+          id: formattedId,
+          name: values.name,
+          district: values.district,
+          constituency: values.constituency,
+          village: values.village,
+          lang: safeLang,
+          selfieDataUrl: selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
+          download: true,
+        })
+
+        // 2) Upload selfie (best-effort)
         let selfiePublicUrl: string | undefined
         if (selfieDataUrl) {
           try {
@@ -41,18 +53,7 @@ export default function StepConfirm({
           }
         }
 
-        const { blob, fileName } = await generateCertificateFromTemplate({
-          id: formattedId,
-          name: values.name,
-          district: values.district,
-          constituency: values.constituency,
-          village: values.village,
-          lang: safeLang,
-          selfieDataUrl: selfiePublicUrl ?? selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
-          download: true,
-        })
-
-        // Upload PDF to storage
+        // 3) Upload PDF to storage (best-effort)
         let pdfPublicUrl: string | undefined
         try {
           pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
@@ -60,7 +61,7 @@ export default function StepConfirm({
           console.log("[v0] PDF upload failed:", e)
         }
 
-        // Upsert pledge row
+        // 4) Upsert pledge row (best-effort)
         try {
           await supabase.from('pledges').upsert({
             pledge_id: formattedId,
@@ -112,7 +113,19 @@ export default function StepConfirm({
             const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
             ;(async () => {
               try {
-                // Upload selfie if available
+                // 1) Generate with local selfie first
+                const { blob, fileName } = await generateCertificateFromTemplate({
+                  id: formattedId,
+                  name: values.name,
+                  district: values.district,
+                  constituency: values.constituency,
+                  village: values.village,
+                  lang: safeLang,
+                  selfieDataUrl: selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
+                  download: true,
+                })
+
+                // 2) Upload selfie
                 let selfiePublicUrl: string | undefined
                 if (selfieDataUrl) {
                   try {
@@ -123,18 +136,7 @@ export default function StepConfirm({
                   }
                 }
 
-                const { blob, fileName } = await generateCertificateFromTemplate({
-                  id: formattedId,
-                  name: values.name,
-                  district: values.district,
-                  constituency: values.constituency,
-                  village: values.village,
-                  lang: safeLang,
-                  selfieDataUrl: selfiePublicUrl ?? selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
-                  download: true,
-                })
-
-                // Upload PDF
+                // 3) Upload PDF
                 let pdfPublicUrl: string | undefined
                 try {
                   pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
@@ -142,7 +144,7 @@ export default function StepConfirm({
                   console.log("[v0] PDF upload failed:", e)
                 }
 
-                // Insert pledge row (upsert-on-conflict)
+                // 4) Upsert pledge row (upsert-on-conflict)
                 try {
                   await supabase.from('pledges').upsert({
                     pledge_id: formattedId,
