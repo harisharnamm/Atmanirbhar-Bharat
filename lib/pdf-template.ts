@@ -195,73 +195,87 @@ async function fixImageOrientation(dataUrl: string): Promise<string> {
   const isJpeg = /^data:image\/jpeg/i.test(dataUrl) || /\.jpe?g($|\?)/i.test(dataUrl)
   if (!isJpeg) return dataUrl
 
+  // Try native EXIF-aware decode first
   try {
-    const buf = await fetch(dataUrl).then((r) => r.arrayBuffer())
-    const orientation = getExifOrientation(new DataView(buf))
-    if (!orientation || orientation === 1) return dataUrl
-
-    const img = await loadImage(dataUrl)
+    const resp = await fetch(dataUrl)
+    const blob = await resp.blob()
+    // Some browsers support EXIF-aware decode
+    const bitmap = await (self as any).createImageBitmap(blob, { imageOrientation: 'from-image' })
     const canvas = document.createElement('canvas')
+    canvas.width = bitmap.width
+    canvas.height = bitmap.height
     const ctx = canvas.getContext('2d')!
-
-    const width = img.naturalWidth
-    const height = img.naturalHeight
-
-    // Set canvas size and transform based on EXIF orientation
-    switch (orientation) {
-      case 2: // horizontal flip
-        canvas.width = width
-        canvas.height = height
-        ctx.translate(width, 0)
-        ctx.scale(-1, 1)
-        break
-      case 3: // 180°
-        canvas.width = width
-        canvas.height = height
-        ctx.translate(width, height)
-        ctx.rotate(Math.PI)
-        break
-      case 4: // vertical flip
-        canvas.width = width
-        canvas.height = height
-        ctx.translate(0, height)
-        ctx.scale(1, -1)
-        break
-      case 5: // transpose
-        canvas.width = height
-        canvas.height = width
-        ctx.rotate(0.5 * Math.PI)
-        ctx.scale(1, -1)
-        break
-      case 6: // rotate 90° CW
-        canvas.width = height
-        canvas.height = width
-        ctx.rotate(0.5 * Math.PI)
-        ctx.translate(0, -height)
-        break
-      case 7: // transverse
-        canvas.width = height
-        canvas.height = width
-        ctx.rotate(0.5 * Math.PI)
-        ctx.translate(width, -height)
-        ctx.scale(-1, 1)
-        break
-      case 8: // rotate 270°
-        canvas.width = height
-        canvas.height = width
-        ctx.rotate(-0.5 * Math.PI)
-        ctx.translate(-width, 0)
-        break
-      default:
-        canvas.width = width
-        canvas.height = height
-    }
-
-    ctx.drawImage(img, 0, 0)
-    // Export as PNG to avoid additional JPEG EXIF/quality issues
+    ctx.drawImage(bitmap, 0, 0)
     return canvas.toDataURL('image/png')
   } catch {
-    return dataUrl
+    // Fallback to manual EXIF parse/transform
+    try {
+      const buf = await fetch(dataUrl).then((r) => r.arrayBuffer())
+      const orientation = getExifOrientation(new DataView(buf))
+      if (!orientation || orientation === 1) return dataUrl
+
+      const img = await loadImage(dataUrl)
+      const canvas = document.createElement('canvas')
+      const ctx = canvas.getContext('2d')!
+
+      const width = img.naturalWidth
+      const height = img.naturalHeight
+
+      // Set canvas size and transform based on EXIF orientation
+      switch (orientation) {
+        case 2: // horizontal flip
+          canvas.width = width
+          canvas.height = height
+          ctx.translate(width, 0)
+          ctx.scale(-1, 1)
+          break
+        case 3: // 180°
+          canvas.width = width
+          canvas.height = height
+          ctx.translate(width, height)
+          ctx.rotate(Math.PI)
+          break
+        case 4: // vertical flip
+          canvas.width = width
+          canvas.height = height
+          ctx.translate(0, height)
+          ctx.scale(1, -1)
+          break
+        case 5: // transpose
+          canvas.width = height
+          canvas.height = width
+          ctx.rotate(0.5 * Math.PI)
+          ctx.scale(1, -1)
+          break
+        case 6: // rotate 90° CW
+          canvas.width = height
+          canvas.height = width
+          ctx.rotate(0.5 * Math.PI)
+          ctx.translate(0, -height)
+          break
+        case 7: // transverse
+          canvas.width = height
+          canvas.height = width
+          ctx.rotate(0.5 * Math.PI)
+          ctx.translate(width, -height)
+          ctx.scale(-1, 1)
+          break
+        case 8: // rotate 270°
+          canvas.width = height
+          canvas.height = width
+          ctx.rotate(-0.5 * Math.PI)
+          ctx.translate(-width, 0)
+          break
+        default:
+          canvas.width = width
+          canvas.height = height
+      }
+
+      ctx.drawImage(img, 0, 0)
+      return canvas.toDataURL('image/png')
+    } catch {
+      return dataUrl
+    }
   }
 }
 
