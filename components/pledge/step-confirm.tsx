@@ -2,7 +2,6 @@
 
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
-import { generateCertificate } from "@/lib/pdf"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
 import ShareButtons from "@/components/pledge/share-buttons"
@@ -20,38 +19,29 @@ export default function StepConfirm({
   const [downloading, setDownloading] = useState(false)
 
   useEffect(() => {
+    if ((window as any).__certificateGenerating) return
+    ;(window as any).__certificateGenerating = true
     setDownloading(true)
     const safeLang = (strings as any).__lang === "hi" ? "hi" : "en"
-    try {
-      const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
-      ;(async () => {
-        try {
-          await generateCertificateFromTemplate({
-            id: formattedId,
-            name: values.name,
-            district: values.district,
-            constituency: values.constituency,
-            village: values.village,
-            lang: safeLang,
-            selfieDataUrl: (typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined,
-          })
-        } catch (e) {
-          // Fallback to legacy generator if template fails
-          generateCertificate({
-            id: formattedId,
-            name: values.name,
-            district: values.district,
-            constituency: values.constituency,
-            village: values.village,
-            lang: safeLang,
-          })
-        }
-      })()
-    } catch (error: any) {
-      console.log("[v0] Certificate generation error:", error?.message || error)
-    } finally {
-      setDownloading(false)
-    }
+    const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
+    ;(async () => {
+      try {
+        await generateCertificateFromTemplate({
+          id: formattedId,
+          name: values.name,
+          district: values.district,
+          constituency: values.constituency,
+          village: values.village,
+          lang: safeLang,
+          selfieDataUrl: (typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined,
+        })
+      } catch (error: any) {
+        console.log("[v0] Certificate generation error:", error?.message || error)
+      } finally {
+        setDownloading(false)
+        ;(window as any).__certificateGenerating = false
+      }
+    })()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -73,34 +63,29 @@ export default function StepConfirm({
       <div className="mt-4 flex flex-col items-center gap-3">
         <Button
           onClick={() => {
+            if (downloading || (window as any).__certificateGenerating) return
+            ;(window as any).__certificateGenerating = true
+            setDownloading(true)
             const safeLang = (strings as any).__lang === "hi" ? "hi" : "en"
-            try {
-              ;(async () => {
-                try {
-                  const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
-                  await generateCertificateFromTemplate({
-                    id: formattedId,
-                    name: values.name,
-                    district: values.district,
-                    constituency: values.constituency,
-                    village: values.village,
-                    lang: safeLang,
-                    selfieDataUrl: (window as any).__pledgeSelfie ?? undefined,
-                  })
-                } catch (e) {
-                  generateCertificate({
-                    id: isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId(),
-                    name: values.name,
-                    district: values.district,
-                    constituency: values.constituency,
-                    village: values.village,
-                    lang: safeLang,
-                  })
-                }
-              })()
-            } catch (error: any) {
-              console.log("[v0] Certificate generation error (manual):", error?.message || error)
-            }
+            const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
+            ;(async () => {
+              try {
+                await generateCertificateFromTemplate({
+                  id: formattedId,
+                  name: values.name,
+                  district: values.district,
+                  constituency: values.constituency,
+                  village: values.village,
+                  lang: safeLang,
+                  selfieDataUrl: (window as any).__pledgeSelfie ?? undefined,
+                })
+              } catch (error: any) {
+                console.log("[v0] Certificate generation error (manual):", error?.message || error)
+              } finally {
+                setDownloading(false)
+                ;(window as any).__certificateGenerating = false
+              }
+            })()
           }}
           disabled={downloading}
         >
