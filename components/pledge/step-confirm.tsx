@@ -6,6 +6,7 @@ import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
 import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
+import { Loader2 } from "lucide-react"
 import ShareButtons from "@/components/pledge/share-buttons"
 import type { PledgeFormValues } from "./step-form"
 
@@ -223,8 +224,21 @@ export default function StepConfirm({
           }}
           disabled={downloading}
         >
-          {strings.confirm.cert}
+          {downloading ? (
+            <span className="inline-flex items-center gap-2">
+              <Loader2 className="h-4 w-4 animate-spin" />
+              Preparing certificate...
+            </span>
+          ) : (
+            strings.confirm.cert
+          )}
         </Button>
+
+        {downloading && (
+          <p className="text-xs text-muted-foreground">
+            This may take 5–10 seconds. Please don’t close or switch apps.
+          </p>
+        )}
 
         <ShareButtons
           label={strings.confirm.share}
