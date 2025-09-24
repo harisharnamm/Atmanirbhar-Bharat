@@ -132,7 +132,7 @@ export async function generateCertificateFromTemplate({
     name: { x: 238, y: 428, size: 24 },
     // meta removed per request
     // DATE must start right after text "ने आज दिनांक" at this exact point
-    date: { x: 255, y: 461, size: 16 },
+    date: { x: 255, y: 461, size: 18 },
     pledgeId: { x: 194, y: 905, size: 16 },
     // Selfie: X:78 Y:69 (top-left origin). Slightly larger frame.
     selfie: { x: 257, y: 241, w: 120, h: 120 },
