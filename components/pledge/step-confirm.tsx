@@ -22,6 +22,29 @@ export default function StepConfirm({
 }) {
   const [downloading, setDownloading] = useState(false)
 
+  async function upsertPledge(payload: any) {
+    try {
+      const res = await fetch('/api/pledges', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+        // Keep the request alive during page/tab lifecycle changes (mobile)
+        keepalive: true as any,
+      })
+      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      return true
+    } catch (e) {
+      try {
+        if (typeof navigator !== 'undefined' && 'sendBeacon' in navigator) {
+          const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' })
+          const ok = (navigator as any).sendBeacon('/api/pledges', blob)
+          return !!ok
+        }
+      } catch (_) {}
+      return false
+    }
+  }
+
   useEffect(() => {
     if ((window as any).__certificateGenerating) return
     ;(window as any).__certificateGenerating = true
@@ -61,27 +84,19 @@ export default function StepConfirm({
           console.log("[v0] PDF upload failed:", e)
         }
 
-        // 4) Upsert pledge row via server API (avoids client RLS/401)
-        try {
-          await fetch('/api/pledges', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({
-              pledge_id: formattedId,
-              name: values.name,
-              mobile: (values as any).mobile ?? null,
-              district: values.district,
-              constituency: values.constituency,
-              village: (values as any).village ?? null,
-              gender: (values as any).gender ?? null,
-              lang: safeLang,
-              selfie_url: selfiePublicUrl ?? null,
-              certificate_pdf_url: pdfPublicUrl ?? null,
-            }),
-          })
-        } catch (e) {
-          console.log('[v0] DB insert failed:', e)
-        }
+        // 4) Upsert pledge row via server API (keepalive + beacon fallback)
+        await upsertPledge({
+          pledge_id: formattedId,
+          name: values.name,
+          mobile: (values as any).mobile ?? null,
+          district: values.district,
+          constituency: values.constituency,
+          village: (values as any).village ?? null,
+          gender: (values as any).gender ?? null,
+          lang: safeLang,
+          selfie_url: selfiePublicUrl ?? null,
+          certificate_pdf_url: pdfPublicUrl ?? null,
+        })
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
       } finally {
@@ -148,27 +163,19 @@ export default function StepConfirm({
                   console.log("[v0] PDF upload failed:", e)
                 }
 
-                // 4) Upsert pledge row via server API
-                try {
-                  await fetch('/api/pledges', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
-                      pledge_id: formattedId,
-                      name: values.name,
-                      mobile: (values as any).mobile ?? null,
-                      district: values.district,
-                      constituency: values.constituency,
-                      village: (values as any).village ?? null,
-                      gender: (values as any).gender ?? null,
-                      lang: safeLang,
-                      selfie_url: selfiePublicUrl ?? null,
-                      certificate_pdf_url: pdfPublicUrl ?? null,
-                    }),
-                  })
-                } catch (e) {
-                  console.log('[v0] DB upsert failed:', e)
-                }
+                // 4) Upsert pledge row via server API (keepalive + beacon fallback)
+                await upsertPledge({
+                  pledge_id: formattedId,
+                  name: values.name,
+                  mobile: (values as any).mobile ?? null,
+                  district: values.district,
+                  constituency: values.constituency,
+                  village: (values as any).village ?? null,
+                  gender: (values as any).gender ?? null,
+                  lang: safeLang,
+                  selfie_url: selfiePublicUrl ?? null,
+                  certificate_pdf_url: pdfPublicUrl ?? null,
+                })
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)
               } finally {
