@@ -32,8 +32,10 @@ export default function ShareButtons({
     }
   }
 
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}&url=${encodeURIComponent(url)}`
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(text)}`
+  const hashtags = '#Sankalp4atamanirbharBhart #PMO #Vocal4Local #SikarBJP'
+  const finalText = `${text} ${hashtags}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}&url=${encodeURIComponent(url)}`
+  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}&quote=${encodeURIComponent(finalText)}`
 
   return (
     <div className="flex flex-col items-center gap-2">
