@@ -60,9 +60,9 @@ export default function StepConfirm({
           console.log("[v0] PDF upload failed:", e)
         }
 
-        // Insert pledge row
+        // Upsert pledge row
         try {
-          await supabase.from('pledges').insert({
+          await supabase.from('pledges').upsert({
             pledge_id: formattedId,
             name: values.name,
             mobile: (values as any).mobile ?? null,
@@ -73,7 +73,7 @@ export default function StepConfirm({
             lang: safeLang,
             selfie_url: selfiePublicUrl ?? null,
             certificate_pdf_url: pdfPublicUrl ?? null,
-          })
+          }, { onConflict: 'pledge_id' })
         } catch (e) {
           console.log('[v0] DB insert failed:', e)
         }
