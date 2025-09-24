@@ -99,7 +99,14 @@ export default function HomePage() {
                   }}
                 />
               )}
-              {step === 2 && formValues && <StepConfirm strings={strings} pledgeId={pledgeId} values={formValues} />}
+              {step === 2 && formValues && (
+                <StepConfirm
+                  strings={strings}
+                  pledgeId={pledgeId}
+                  values={formValues}
+                  selfieDataUrl={selfieDataUrl}
+                />
+              )}
             </div>
 
             <nav className={cn("mt-6 flex items-center justify-between")} aria-label={strings.nav}>

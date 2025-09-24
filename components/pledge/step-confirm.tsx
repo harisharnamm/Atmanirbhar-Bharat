@@ -11,10 +11,12 @@ export default function StepConfirm({
   strings,
   pledgeId,
   values,
+  selfieDataUrl,
 }: {
   strings: ReturnType<typeof getStringsMock>
   pledgeId: string
   values: PledgeFormValues
+  selfieDataUrl?: string | null
 }) {
   const [downloading, setDownloading] = useState(false)
 
@@ -33,7 +35,7 @@ export default function StepConfirm({
           constituency: values.constituency,
           village: values.village,
           lang: safeLang,
-          selfieDataUrl: (typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined,
+          selfieDataUrl: selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
         })
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
@@ -77,7 +79,7 @@ export default function StepConfirm({
                   constituency: values.constituency,
                   village: values.village,
                   lang: safeLang,
-                  selfieDataUrl: (window as any).__pledgeSelfie ?? undefined,
+                  selfieDataUrl: selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
                 })
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)

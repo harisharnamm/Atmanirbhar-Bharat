@@ -171,9 +171,22 @@ export async function generateCertificateFromTemplate({
     try {
       // Fix orientation by reading EXIF and redrawing via canvas
       const correctedDataUrl = await fixImageOrientation(selfieDataUrl)
+      // Try PNG first; fall back to JPEG; and clamp image size to avoid memory issues
       const imgBytes = await fetch(correctedDataUrl).then((r) => r.arrayBuffer())
-      // Prefer PNG after canvas export
-      const img = await pdfDoc.embedPng(imgBytes).catch(async () => pdfDoc.embedJpg(imgBytes))
+      const source = await loadImage(correctedDataUrl)
+      const maxSide = 1024
+      const needResize = Math.max(source.naturalWidth, source.naturalHeight) > maxSide
+      let finalBytes = imgBytes
+      if (needResize) {
+        const scale = maxSide / Math.max(source.naturalWidth, source.naturalHeight)
+        const canvas = document.createElement('canvas')
+        canvas.width = Math.round(source.naturalWidth * scale)
+        canvas.height = Math.round(source.naturalHeight * scale)
+        const ctx = canvas.getContext('2d')!
+        ctx.drawImage(source, 0, 0, canvas.width, canvas.height)
+        finalBytes = await (await fetch(canvas.toDataURL('image/png'))).arrayBuffer()
+      }
+      const img = await pdfDoc.embedPng(finalBytes).catch(async () => pdfDoc.embedJpg(finalBytes))
       page.drawImage(img, {
         x: coordsTL.selfie.x,
         y: pageH - coordsTL.selfie.y - coordsTL.selfie.h,
