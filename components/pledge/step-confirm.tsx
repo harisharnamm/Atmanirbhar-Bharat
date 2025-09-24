@@ -89,6 +89,8 @@ export default function StepConfirm({
             selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
           } catch (e) {
             console.log("[v0] Selfie upload failed:", e)
+            // Fallback: use the local data URL if storage fails
+            selfiePublicUrl = selfieDataUrl
           }
         }
 
@@ -105,7 +107,11 @@ export default function StepConfirm({
               await new Promise((r) => setTimeout(r, 300))
             }
           }
-          if (!pdfPublicUrl && lastErr) console.log("[v0] PDF upload failed:", lastErr)
+          if (!pdfPublicUrl && lastErr) {
+            console.log("[v0] PDF upload failed:", lastErr)
+            // Fallback: create a local blob URL for the PDF
+            pdfPublicUrl = URL.createObjectURL(blob)
+          }
         }
 
         // 4) Upsert pledge row via server API (keepalive + beacon fallback)
@@ -179,6 +185,8 @@ export default function StepConfirm({
                     selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
                   } catch (e) {
                     console.log("[v0] Selfie upload failed:", e)
+                    // Fallback: use the local data URL if storage fails
+                    selfiePublicUrl = selfieDataUrl
                   }
                 }
 
@@ -195,7 +203,11 @@ export default function StepConfirm({
                       await new Promise((r) => setTimeout(r, 300))
                     }
                   }
-                  if (!pdfPublicUrl && lastErr) console.log("[v0] PDF upload failed:", lastErr)
+                  if (!pdfPublicUrl && lastErr) {
+                    console.log("[v0] PDF upload failed:", lastErr)
+                    // Fallback: create a local blob URL for the PDF
+                    pdfPublicUrl = URL.createObjectURL(blob)
+                  }
                 }
 
                 // 4) Upsert pledge row via server API (keepalive + beacon fallback)
