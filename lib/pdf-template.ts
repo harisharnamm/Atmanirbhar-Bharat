@@ -23,7 +23,7 @@ export async function generateCertificateFromTemplate({
   lang: "en" | "hi"
   selfieDataUrl?: string | null
 }) {
-  const [{ PDFDocument, rgb }, fontkit] = await Promise.all([
+  const [{ PDFDocument, rgb, degrees }, fontkit] = await Promise.all([
     import("pdf-lib"),
     import("@pdf-lib/fontkit").catch(() => ({ default: undefined })),
   ])
@@ -163,9 +163,17 @@ export async function generateCertificateFromTemplate({
   // Add selfie if provided
   if (selfieDataUrl) {
     try {
-      const imgBytes = await fetch(selfieDataUrl).then((r) => r.arrayBuffer())
+      // Fix orientation by reading EXIF and redrawing via canvas
+      const correctedDataUrl = await fixImageOrientation(selfieDataUrl)
+      const imgBytes = await fetch(correctedDataUrl).then((r) => r.arrayBuffer())
+      // Prefer PNG after canvas export
       const img = await pdfDoc.embedPng(imgBytes).catch(async () => pdfDoc.embedJpg(imgBytes))
-      page.drawImage(img, { x: coordsTL.selfie.x, y: pageH - coordsTL.selfie.y - coordsTL.selfie.h, width: coordsTL.selfie.w, height: coordsTL.selfie.h })
+      page.drawImage(img, {
+        x: coordsTL.selfie.x,
+        y: pageH - coordsTL.selfie.y - coordsTL.selfie.h,
+        width: coordsTL.selfie.w,
+        height: coordsTL.selfie.h,
+      })
     } catch (_) {
       // ignore selfie errors
     }
@@ -179,6 +187,138 @@ export async function generateCertificateFromTemplate({
   link.href = URL.createObjectURL(blob)
   link.download = fileName
   link.click()
+}
+
+
+// ---- Helpers for EXIF orientation handling ----
+async function fixImageOrientation(dataUrl: string): Promise<string> {
+  // Only JPEGs typically carry EXIF orientation; for others, return as-is
+  const isJpeg = /^data:image\/jpeg/i.test(dataUrl) || /\.jpe?g($|\?)/i.test(dataUrl)
+  if (!isJpeg) return dataUrl
+
+  try {
+    const buf = await fetch(dataUrl).then((r) => r.arrayBuffer())
+    const orientation = getExifOrientation(new DataView(buf))
+    if (!orientation || orientation === 1) return dataUrl
+
+    const img = await loadImage(dataUrl)
+    const canvas = document.createElement('canvas')
+    const ctx = canvas.getContext('2d')!
+
+    const width = img.naturalWidth
+    const height = img.naturalHeight
+
+    // Set canvas size and transform based on EXIF orientation
+    switch (orientation) {
+      case 2: // horizontal flip
+        canvas.width = width
+        canvas.height = height
+        ctx.translate(width, 0)
+        ctx.scale(-1, 1)
+        break
+      case 3: // 180°
+        canvas.width = width
+        canvas.height = height
+        ctx.translate(width, height)
+        ctx.rotate(Math.PI)
+        break
+      case 4: // vertical flip
+        canvas.width = width
+        canvas.height = height
+        ctx.translate(0, height)
+        ctx.scale(1, -1)
+        break
+      case 5: // transpose
+        canvas.width = height
+        canvas.height = width
+        ctx.rotate(0.5 * Math.PI)
+        ctx.scale(1, -1)
+        break
+      case 6: // rotate 90° CW
+        canvas.width = height
+        canvas.height = width
+        ctx.rotate(0.5 * Math.PI)
+        ctx.translate(0, -height)
+        break
+      case 7: // transverse
+        canvas.width = height
+        canvas.height = width
+        ctx.rotate(0.5 * Math.PI)
+        ctx.translate(width, -height)
+        ctx.scale(-1, 1)
+        break
+      case 8: // rotate 270°
+        canvas.width = height
+        canvas.height = width
+        ctx.rotate(-0.5 * Math.PI)
+        ctx.translate(-width, 0)
+        break
+      default:
+        canvas.width = width
+        canvas.height = height
+    }
+
+    ctx.drawImage(img, 0, 0)
+    // Export as PNG to avoid additional JPEG EXIF/quality issues
+    return canvas.toDataURL('image/png')
+  } catch {
+    return dataUrl
+  }
+}
+
+function loadImage(src: string): Promise<HTMLImageElement> {
+  return new Promise((resolve, reject) => {
+    const img = new Image()
+    img.onload = () => resolve(img)
+    img.onerror = reject
+    img.src = src
+  })
+}
+
+// Minimal EXIF parser to obtain Orientation (0x0112)
+function getExifOrientation(view: DataView): number | null {
+  // Validate JPEG
+  if (view.getUint16(0) !== 0xffd8) return null
+  let offset = 2
+  const length = view.byteLength
+  while (offset < length) {
+    const marker = view.getUint16(offset)
+    offset += 2
+    // APP1 (EXIF)
+    if (marker === 0xffe1) {
+      const app1Length = view.getUint16(offset)
+      offset += 2
+      // Check for Exif header (ASCII: 'Exif\0\0')
+      if (
+        view.getUint32(offset) === 0x45786966 && // 'Exif'
+        view.getUint16(offset + 4) === 0x0000
+      ) {
+        const tiffOffset = offset + 6
+        const endianness = view.getUint16(tiffOffset)
+        const little = endianness === 0x4949
+        const get16 = (p: number) => (little ? view.getUint16(p, true) : view.getUint16(p, false))
+        const get32 = (p: number) => (little ? view.getUint32(p, true) : view.getUint32(p, false))
+        const firstIFD = tiffOffset + get32(tiffOffset + 4)
+        const entries = get16(firstIFD)
+        for (let i = 0; i < entries; i++) {
+          const entryOffset = firstIFD + 2 + i * 12
+          const tag = get16(entryOffset)
+          if (tag === 0x0112) {
+            const value = get16(entryOffset + 8)
+            return value
+          }
+        }
+      }
+      offset += app1Length - 2
+    } else if ((marker & 0xff00) !== 0xff00) {
+      break
+    } else {
+      // Skip other segments
+      const size = view.getUint16(offset)
+      offset += size
+    }
+  }
+  return null
 }
 
 
