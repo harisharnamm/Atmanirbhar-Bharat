@@ -28,9 +28,16 @@ export async function generateCertificateFromTemplate({
     import("@pdf-lib/fontkit").catch(() => ({ default: undefined })),
   ])
 
-  // Fetch the template PDF from public
-  const templateUrl = "/default-format.pdf"
-  const templateBytes = await fetch(templateUrl).then((r) => r.arrayBuffer())
+  // Fetch the template PDF from public with cache-busting version
+  const ASSET_VERSION = process.env.NEXT_PUBLIC_ASSET_VERSION || 'v1'
+  const templateUrl = `/default-format.pdf?v=${encodeURIComponent(ASSET_VERSION)}`
+  let templateBytes: ArrayBuffer
+  try {
+    templateBytes = await fetch(templateUrl, { cache: 'no-store' }).then((r) => r.arrayBuffer())
+  } catch (e) {
+    // Retry once without no-store as a fallback
+    templateBytes = await fetch(templateUrl).then((r) => r.arrayBuffer())
+  }
   const pdfDoc = await PDFDocument.create()
   const template = await PDFDocument.load(templateBytes)
   const [templatePage] = await pdfDoc.copyPages(template, [0])
