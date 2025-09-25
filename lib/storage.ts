@@ -1,6 +1,5 @@
 import { supabase } from './supabase'
 import { compressImageForStorage, getFileSizeKB } from './image-compression'
-import { simplePdfCompression } from './pdf-compression-client'
 
 export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string> {
   try {
@@ -44,70 +43,17 @@ export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string
 }
 
 export async function uploadCertificatePdf(pledgeId: string, file: Blob): Promise<string> {
-  try {
-    // Convert blob to ArrayBuffer for compression
-    const arrayBuffer = await file.arrayBuffer()
-    const originalSize = Math.round(arrayBuffer.byteLength / 1024)
-    
-    // Compress PDF using API endpoint
-    const formData = new FormData()
-    formData.append('file', file)
-    
-    const response = await fetch('/api/compress-pdf', {
-      method: 'POST',
-      body: formData,
-    })
-    
-    if (!response.ok) {
-      throw new Error('Compression failed')
-    }
-    
-    const compressedBuffer = await response.arrayBuffer()
-    const compressedSize = Math.round(compressedBuffer.byteLength / 1024)
-    
-    console.log(`PDF compression: ${originalSize}KB -> ${compressedSize}KB (${Math.round((1 - compressedSize/originalSize) * 100)}% reduction)`)
-    
-    // Upload compressed version
-    const compressedBlob = new Blob([compressedBuffer], { type: 'application/pdf' })
-    const path = `${pledgeId}.pdf`
-    
-    const { error } = await supabase.storage.from('certificates').upload(path, compressedBlob, {
-      upsert: true,
-      contentType: 'application/pdf',
-    })
-    
-    if (error) throw error
-    const { data } = supabase.storage.from('certificates').getPublicUrl(path)
-    return data.publicUrl
-  } catch (error) {
-    console.error('Server-side PDF compression failed, trying client-side compression:', error)
-    
-    try {
-      // Try client-side compression as fallback
-      const compressedFile = await simplePdfCompression(file)
-      const path = `${pledgeId}.pdf`
-      
-      const { error: uploadError } = await supabase.storage.from('certificates').upload(path, compressedFile, {
-        upsert: true,
-        contentType: 'application/pdf',
-      })
-      
-      if (uploadError) throw uploadError
-      const { data } = supabase.storage.from('certificates').getPublicUrl(path)
-      return data.publicUrl
-    } catch (clientError) {
-      console.error('Client-side PDF compression also failed, uploading original:', clientError)
-      // Final fallback to original file
-      const path = `${pledgeId}.pdf`
-      const { error: uploadError } = await supabase.storage.from('certificates').upload(path, file, {
-        upsert: true,
-        contentType: 'application/pdf',
-      })
-      if (uploadError) throw uploadError
-      const { data } = supabase.storage.from('certificates').getPublicUrl(path)
-      return data.publicUrl
-    }
-  }
+  // Direct upload without compression - template is already optimized
+  const path = `${pledgeId}.pdf`
+  
+  const { error } = await supabase.storage.from('certificates').upload(path, file, {
+    upsert: true,
+    contentType: 'application/pdf',
+  })
+  
+  if (error) throw error
+  const { data } = supabase.storage.from('certificates').getPublicUrl(path)
+  return data.publicUrl
 }
 
 

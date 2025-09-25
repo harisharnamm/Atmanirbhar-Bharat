@@ -116,9 +116,6 @@ importers:
       cmdk:
         specifier: 1.0.4
         version: 1.0.4(@types/react-dom@18.3.7(@types/react@18.3.24))(@types/react@18.3.24)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
-      compress-pdf:
-        specifier: ^0.5.5
-        version: 0.5.5
       date-fns:
         specifier: 4.1.0
         version: 4.1.0
@@ -1242,11 +1239,6 @@ packages:
       react: ^18 || ^19 || ^19.0.0-rc
       react-dom: ^18 || ^19 || ^19.0.0-rc
 
-  compress-pdf@0.5.5:
-    resolution: {integrity: sha512-f/m+hWv00EWJSjzNYE6wPEppUiKNwxr36EYce+7J7V4TqDEgsNRQGF6ZZjSOFyMF9GnTdrWF23uswgi/cQUjJw==}
-    engines: {node: '>=20.0.0', yarn: '>= 1.22.0'}
-    hasBin: true
-
   core-js@3.45.1:
     resolution: {integrity: sha512-L4NPsJlCfZsPeXukyzHFlg/i7IIVwHSItR0wg0FLNqYClJ4MQYTYLbC7EkjKYRLZF2iof2MUgN0EGy7MdQFChg==}
 
@@ -1321,10 +1313,6 @@ packages:
 
   dompurify@3.2.7:
     resolution: {integrity: sha512-WhL/YuveyGXJaerVlMYGWhvQswa7myDG17P7Vu65EWC05o8vfeNbvNf4d/BOvH99+ZW+LlQsc1GDKMa1vNK6dw==}
-
-  dotenv@17.2.1:
-    resolution: {integrity: sha512-kQhDYKZecqnM0fCnzI5eIv5L4cAe/iRI+HqMbO/hbRdTAeXDG+M9FjipUxNfbARuEg4iHIbhnhs78BCHNbSxEQ==}
-    engines: {node: '>=12'}
 
   electron-to-chromium@1.5.223:
     resolution: {integrity: sha512-qKm55ic6nbEmagFlTFczML33rF90aU+WtrJ9MdTCThrcvDNdUHN4p6QfVN78U06ZmguqXIyMPyYhw2TrbDUwPQ==}
@@ -2847,11 +2835,6 @@ snapshots:
       - '@types/react'
       - '@types/react-dom'
 
-  compress-pdf@0.5.5:
-    dependencies:
-      dotenv: 17.2.1
-      lodash: 4.17.21
-
   core-js@3.45.1:
     optional: true
 
@@ -2918,8 +2901,6 @@ snapshots:
     optionalDependencies:
       '@types/trusted-types': 2.0.7
     optional: true
-
-  dotenv@17.2.1: {}
 
   electron-to-chromium@1.5.223: {}
 
