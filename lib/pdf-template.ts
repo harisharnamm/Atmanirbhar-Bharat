@@ -81,14 +81,38 @@ export async function generateCertificateFromTemplate({
     // ignore; we'll fall back to the template's default font
   }
 
+  // Ensure we always have a fallback font - use PDF's built-in fonts
+  if (!font) {
+    try {
+      font = await pdfDoc.embedFont('Helvetica')
+      console.log("[pdf-template] Using Helvetica as fallback font")
+    } catch (fallbackError) {
+      console.warn("[pdf-template] Failed to load Helvetica fallback:", fallbackError)
+      // Last resort: let pdf-lib use its default font
+    }
+  }
+  if (!fontBold) {
+    try {
+      fontBold = await pdfDoc.embedFont('Helvetica-Bold')
+      console.log("[pdf-template] Using Helvetica-Bold as fallback font")
+    } catch (fallbackError) {
+      console.warn("[pdf-template] Failed to load Helvetica-Bold fallback:", fallbackError)
+      // Use regular font for bold text if bold font fails
+      fontBold = font
+    }
+  }
+
   // Helpers: incoming coords are specified with origin at top-left (0,0),
   // y increasing downward. pdf-lib uses bottom-left origin. Convert y.
   const drawTextTopLeft = (text: string, xTL: number, yTL: number, size = 12, customFont?: any) => {
+    const fontToUse = customFont ?? font
+    console.log("[pdf-template] Drawing text:", { text, fontAvailable: !!fontToUse, customFont: !!customFont })
+    
     page.drawText(text, {
       x: xTL,
       y: pageH - yTL,
       size,
-      font: customFont ?? font ?? undefined,
+      font: fontToUse, // Remove undefined fallback - let pdf-lib handle it
       color: rgb(0, 0, 0),
     })
   }
@@ -99,11 +123,14 @@ export async function generateCertificateFromTemplate({
       const metricsFont = customFont ?? font
       if (metricsFont) {
         textWidth = metricsFont.widthOfTextAtSize(text, size)
+        console.log("[pdf-template] Text width calculated:", { text, textWidth, fontAvailable: !!metricsFont })
       } else {
         // heuristic fallback when no font metrics available
         textWidth = text.length * size * 0.55
+        console.log("[pdf-template] Using heuristic text width:", { text, textWidth })
       }
-    } catch {
+    } catch (error) {
+      console.warn("[pdf-template] Font metrics failed, using heuristic:", error)
       textWidth = text.length * size * 0.55
     }
     const boxCenter = (xStart + xEnd) / 2
