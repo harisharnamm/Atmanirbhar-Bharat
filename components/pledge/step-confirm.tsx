@@ -386,41 +386,43 @@ export default function StepConfirm({
           </p>
         )}
 
-        {/* Copyable Share Text Area */}
-        <Card className="mt-6">
-          <CardContent className="p-4">
-            <div className="space-y-3">
+        {/* Copyable Share Text Area - Mobile Optimized */}
+        <Card className="mt-4 mx-2 sm:mx-0">
+          <CardContent className="p-3 sm:p-4">
+            <div className="space-y-2 sm:space-y-3">
               <div className="flex items-center justify-between">
-                <h3 className="text-sm font-medium text-gray-700">Share Text</h3>
+                <h3 className="text-xs sm:text-sm font-medium text-gray-700">Share Text</h3>
                 <Button
                   variant="outline"
                   size="sm"
                   onClick={handleCopyText}
-                  className="flex items-center gap-2"
+                  className="flex items-center gap-1 sm:gap-2 text-xs px-2 py-1 h-7"
                 >
                   {textCopied ? (
                     <>
-                      <Check className="h-4 w-4" />
-                      Copied!
+                      <Check className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span className="hidden sm:inline">Copied!</span>
+                      <span className="sm:hidden">✓</span>
                     </>
                   ) : (
                     <>
-                      <Copy className="h-4 w-4" />
-                      Copy
+                      <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+                      <span className="hidden sm:inline">Copy</span>
+                      <span className="sm:hidden">Copy</span>
                     </>
                   )}
                 </Button>
               </div>
               <div 
-                className="text-left p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors"
+                className="text-left p-2 sm:p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors"
                 onClick={handleCopyText}
               >
-                <pre className="whitespace-pre-wrap text-sm text-gray-700 font-mono">
+                <pre className="whitespace-pre-wrap text-xs sm:text-sm text-gray-700 font-mono leading-relaxed">
                   {shareText}
                 </pre>
               </div>
               <p className="text-xs text-gray-500 text-center">
-                Tap to copy the text for sharing
+                Tap to copy
               </p>
             </div>
           </CardContent>
