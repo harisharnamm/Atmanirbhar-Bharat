@@ -90,24 +90,9 @@ export async function generateCertificateImage(
     ctx.textAlign = "left"
     ctx.textBaseline = "top"
 
-    // Load Hindi font for proper Devanagari support
-    let hindiFontLoaded = false
-    try {
-      const hindiFont = new FontFace('NotoSansDevanagari', 'url(/fonts/NotoSansDevanagari-Regular.ttf)')
-      const hindiFontBold = new FontFace('NotoSansDevanagariBold', 'url(/fonts/NotoSansDevanagari-Bold.ttf)')
-      
-      await Promise.all([hindiFont.load(), hindiFontBold.load()])
-      document.fonts.add(hindiFont)
-      document.fonts.add(hindiFontBold)
-      hindiFontLoaded = true
-      console.log("[certificate-image] Hindi fonts loaded successfully")
-    } catch (error) {
-      console.warn("[certificate-image] Failed to load Hindi fonts:", error)
-    }
-
-    // Draw name (centered)
+    // Draw name (centered) - English only
     const nameText = templateData.name
-    ctx.font = `bold ${coords.name.size}px ${hindiFontLoaded ? 'NotoSansDevanagariBold' : 'Arial'}, sans-serif`
+    ctx.font = `bold ${coords.name.size}px Arial, sans-serif`
     
     // Center the name at the specified position
     const nameWidth = ctx.measureText(nameText).width
@@ -129,11 +114,11 @@ export async function generateCertificateImage(
     const mm = String(today.getMonth() + 1).padStart(2, '0')
     const yyyy = today.getFullYear()
     const dateStr = `${dd}/${mm}/${yyyy}`
-    ctx.font = `${coords.date.size}px ${hindiFontLoaded ? 'NotoSansDevanagari' : 'Arial'}, sans-serif`
+    ctx.font = `${coords.date.size}px Arial, sans-serif`
     ctx.fillText(dateStr, coords.date.x, coords.date.y)
 
     // Draw pledge ID
-    ctx.font = `${coords.pledgeId.size}px ${hindiFontLoaded ? 'NotoSansDevanagari' : 'Arial'}, sans-serif`
+    ctx.font = `${coords.pledgeId.size}px Arial, sans-serif`
     ctx.fillText(templateData.id, coords.pledgeId.x, coords.pledgeId.y)
 
     // Draw selfie if provided

@@ -53,53 +53,18 @@ export async function generateCertificateFromTemplate({
     ;(pdfDoc as any).registerFontkit((fontkit as any).default)
   }
 
-  // Try to load Devanagari fonts from public if available (always load for Hindi name support)
+  // Load standard fonts for English text only
   let font = null as any
   let fontBold = null as any
-  // Always try to load Hindi fonts since users can enter Hindi names regardless of language setting
+  
   try {
-    const [regularResp, boldResp] = await Promise.all([
-      fetch("/fonts/NotoSansDevanagari-Regular.ttf"),
-      fetch("/fonts/NotoSansDevanagari-Bold.ttf").catch(() => ({ ok: false } as Response)),
-    ])
-    if (regularResp.ok) {
-      const fontBytes = await regularResp.arrayBuffer()
-      font = await pdfDoc.embedFont(fontBytes, { subset: true })
-      console.log("[pdf-template] Hindi regular font loaded successfully")
-    } else {
-      console.warn("[pdf-template] Hindi regular font not found, using default font")
-    }
-    if (boldResp && boldResp.ok) {
-      const boldBytes = await boldResp.arrayBuffer()
-      fontBold = await pdfDoc.embedFont(boldBytes, { subset: true })
-      console.log("[pdf-template] Hindi bold font loaded successfully")
-    } else {
-      console.warn("[pdf-template] Hindi bold font not found, using regular font for bold text")
-    }
+    // Load Helvetica fonts for reliable English text rendering
+    font = await pdfDoc.embedFont('Helvetica')
+    fontBold = await pdfDoc.embedFont('Helvetica-Bold')
+    console.log("[pdf-template] Helvetica fonts loaded successfully")
   } catch (error) {
-    console.warn("[pdf-template] Font loading failed, using default font:", error)
-    // ignore; we'll fall back to the template's default font
-  }
-
-  // Ensure we always have a fallback font - use PDF's built-in fonts
-  if (!font) {
-    try {
-      font = await pdfDoc.embedFont('Helvetica')
-      console.log("[pdf-template] Using Helvetica as fallback font")
-    } catch (fallbackError) {
-      console.warn("[pdf-template] Failed to load Helvetica fallback:", fallbackError)
-      // Last resort: let pdf-lib use its default font
-    }
-  }
-  if (!fontBold) {
-    try {
-      fontBold = await pdfDoc.embedFont('Helvetica-Bold')
-      console.log("[pdf-template] Using Helvetica-Bold as fallback font")
-    } catch (fallbackError) {
-      console.warn("[pdf-template] Failed to load Helvetica-Bold fallback:", fallbackError)
-      // Use regular font for bold text if bold font fails
-      fontBold = font
-    }
+    console.warn("[pdf-template] Failed to load Helvetica fonts:", error)
+    // Last resort: let pdf-lib use its default font
   }
 
   // Helpers: incoming coords are specified with origin at top-left (0,0),
