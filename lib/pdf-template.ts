@@ -3,6 +3,7 @@
 // Template-based certificate generator using pdf-lib
 // Dynamically fills public/default-format.pdf with user data.
 
+import "regenerator-runtime/runtime"
 import type { PledgeFormValues } from "@/components/pledge/step-form"
 
 // We'll dynamic import to avoid bundling pdf-lib in non-certificate paths
