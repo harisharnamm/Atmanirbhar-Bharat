@@ -24,37 +24,13 @@ export default function ShareButtons({
   }
 }) {
   const [copied, setCopied] = useState(false)
-  const [generatingImage, setGeneratingImage] = useState(false)
   const [savingToGallery, setSavingToGallery] = useState(false)
 
   async function onShare() {
     if (navigator.share) {
       try {
-        // If we have certificate data, try to share with both text and image
-        if (certificateData && typeof window !== "undefined") {
-          setGeneratingImage(true)
-          try {
-            const imageDataUrl = await generateHighQualityCertificateImage(certificateData)
-            // Convert data URL to blob for sharing
-            const response = await fetch(imageDataUrl)
-            const imageBlob = await response.blob()
-            const imageFile = new File([imageBlob], "aatmanirbhar-certificate.jpg", { type: "image/jpeg" })
-            
-            // Share both text and image together
-            await navigator.share({ 
-              text: finalText,
-              files: [imageFile]
-            })
-          } catch (imageError) {
-            console.warn("Image generation failed, sharing text only:", imageError)
-            await navigator.share({ text: finalText })
-          } finally {
-            setGeneratingImage(false)
-          }
-        } else {
-          // Share text only if no certificate data
-          await navigator.share({ text: finalText })
-        }
+        // Share text only - user can manually add image
+        await navigator.share({ text: finalText })
       } catch (error) {
         console.warn("Native share failed, falling back to clipboard:", error)
         // Fallback to clipboard
@@ -116,8 +92,8 @@ export default function ShareButtons({
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="flex flex-wrap items-center justify-center gap-2">
-        <Button onClick={onShare} disabled={generatingImage}>
-          {generatingImage ? "Generating..." : label}
+        <Button onClick={onShare}>
+          {label}
         </Button>
         <Button 
           variant="outline" 
@@ -131,11 +107,6 @@ export default function ShareButtons({
       {!navigator.share && (
         <p className="text-xs text-muted-foreground">
           {copied ? "Text copied to clipboard." : "No native share available. Text will be copied to clipboard."}
-        </p>
-      )}
-      {generatingImage && (
-        <p className="text-xs text-muted-foreground">
-          Generating certificate image for sharing...
         </p>
       )}
       {savingToGallery && (
