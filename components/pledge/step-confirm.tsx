@@ -4,7 +4,6 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
-import { generateCompressedSelfieDataUrl } from "@/lib/image-compression"
 import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
 import { Loader2 } from "lucide-react"
@@ -100,8 +99,8 @@ export default function StepConfirm({
       try {
         const originalSelfieDataUrl = selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined)
         
-        // 1) Generate high-quality certificate for user (with original selfie)
-        const { blob: highQualityBlob, fileName } = await generateCertificateFromTemplate({
+        // 1) Generate certificate (single high-quality version)
+        const { blob: pdfBlob, fileName } = await generateCertificateFromTemplate({
           id: formattedId,
           name: values.name,
           district: values.district,
@@ -112,10 +111,10 @@ export default function StepConfirm({
           download: false,
         })
         
-        // Store the high-quality PDF blob for sharing/download
-        setPdfBlob(highQualityBlob)
+        // Store the PDF blob for sharing/download
+        setPdfBlob(pdfBlob)
         
-        // Store certificate data for image generation (with original selfie)
+        // Store certificate data for image generation
         setCertificateData({
           id: formattedId,
           name: values.name,
@@ -124,30 +123,6 @@ export default function StepConfirm({
           village: values.village,
           lang: safeLang,
           selfieDataUrl: originalSelfieDataUrl,
-        })
-
-        // 2) Generate compressed certificate for storage (with compressed selfie)
-        let compressedSelfieDataUrl: string | undefined
-        if (originalSelfieDataUrl) {
-          try {
-            compressedSelfieDataUrl = await generateCompressedSelfieDataUrl(originalSelfieDataUrl)
-            console.log('Generated compressed selfie for storage')
-          } catch (error) {
-            console.warn('Failed to generate compressed selfie, using original:', error)
-            compressedSelfieDataUrl = originalSelfieDataUrl
-          }
-        }
-
-        const { blob: compressedBlob } = await generateCertificateFromTemplate({
-          id: formattedId,
-          name: values.name,
-          district: values.district,
-          constituency: values.constituency,
-          village: values.village,
-          lang: safeLang,
-          selfieDataUrl: originalSelfieDataUrl, // Keep original for fallback
-          compressedSelfieDataUrl: compressedSelfieDataUrl, // Use compressed for storage
-          download: false,
         })
 
         // 2) Upload selfie (best-effort)
@@ -163,14 +138,13 @@ export default function StepConfirm({
           }
         }
 
-        // 3) Upload compressed PDF to storage (best-effort)
+        // 3) Upload PDF to storage (best-effort)
         let pdfPublicUrl: string | undefined
         {
           let lastErr: any
           for (let i = 0; i < 2; i++) {
             try {
-              // Use compressed blob for storage to save space
-              pdfPublicUrl = await uploadCertificatePdf(formattedId, compressedBlob)
+              pdfPublicUrl = await uploadCertificatePdf(formattedId, pdfBlob)
               break
             } catch (e) {
               lastErr = e
@@ -179,8 +153,8 @@ export default function StepConfirm({
           }
           if (!pdfPublicUrl && lastErr) {
             console.log("[v0] PDF upload failed:", lastErr)
-            // Fallback: create a local blob URL for the high-quality PDF
-            pdfPublicUrl = URL.createObjectURL(highQualityBlob)
+            // Fallback: create a local blob URL
+            pdfPublicUrl = URL.createObjectURL(pdfBlob)
           }
         }
 
@@ -208,7 +182,7 @@ export default function StepConfirm({
         await createTrackingLinkAfterPledgeSaved()
 
         // Finally trigger download
-        triggerDownload(blob, fileName)
+        triggerDownload(pdfBlob, fileName)
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
       } finally {
@@ -283,8 +257,8 @@ export default function StepConfirm({
               try {
                 const originalSelfieDataUrl = selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined)
                 
-                // 1) Generate high-quality certificate for user (with original selfie)
-                const { blob: highQualityBlob, fileName } = await generateCertificateFromTemplate({
+                // 1) Generate certificate (single high-quality version)
+                const { blob: pdfBlob, fileName } = await generateCertificateFromTemplate({
                   id: formattedId,
                   name: values.name,
                   district: values.district,
@@ -295,8 +269,8 @@ export default function StepConfirm({
                   download: false,
                 })
                 
-                // Store the high-quality PDF blob for sharing
-                setPdfBlob(highQualityBlob)
+                // Store the PDF blob for sharing
+                setPdfBlob(pdfBlob)
                 
                 // Store certificate data for image generation (with original selfie)
                 setCertificateData({
@@ -309,29 +283,6 @@ export default function StepConfirm({
                   selfieDataUrl: originalSelfieDataUrl,
                 })
 
-                // 2) Generate compressed certificate for storage (with compressed selfie)
-                let compressedSelfieDataUrl: string | undefined
-                if (originalSelfieDataUrl) {
-                  try {
-                    compressedSelfieDataUrl = await generateCompressedSelfieDataUrl(originalSelfieDataUrl)
-                    console.log('Generated compressed selfie for storage')
-                  } catch (error) {
-                    console.warn('Failed to generate compressed selfie, using original:', error)
-                    compressedSelfieDataUrl = originalSelfieDataUrl
-                  }
-                }
-
-                const { blob: compressedBlob } = await generateCertificateFromTemplate({
-                  id: formattedId,
-                  name: values.name,
-                  district: values.district,
-                  constituency: values.constituency,
-                  village: values.village,
-                  lang: safeLang,
-                  selfieDataUrl: originalSelfieDataUrl, // Keep original for fallback
-                  compressedSelfieDataUrl: compressedSelfieDataUrl, // Use compressed for storage
-                  download: false,
-                })
 
                 // 2) Upload selfie
                 let selfiePublicUrl: string | undefined
@@ -346,14 +297,14 @@ export default function StepConfirm({
                   }
                 }
 
-                // 3) Upload compressed PDF to storage (best-effort)
+                // 3) Upload PDF to storage (best-effort)
                 let pdfPublicUrl: string | undefined
-                {
+                if (pdfBlob) {
                   let lastErr: any
                   for (let i = 0; i < 2; i++) {
                     try {
-                      // Use compressed blob for storage to save space
-                      pdfPublicUrl = await uploadCertificatePdf(formattedId, compressedBlob)
+                      // Upload PDF to storage
+                      pdfPublicUrl = await uploadCertificatePdf(formattedId, pdfBlob)
                       break
                     } catch (e) {
                       lastErr = e
@@ -362,8 +313,8 @@ export default function StepConfirm({
                   }
                   if (!pdfPublicUrl && lastErr) {
                     console.log("[v0] PDF upload failed:", lastErr)
-                    // Fallback: create a local blob URL for the high-quality PDF
-                    pdfPublicUrl = URL.createObjectURL(highQualityBlob)
+                    // Fallback: create a local blob URL
+                    pdfPublicUrl = URL.createObjectURL(pdfBlob)
                   }
                 }
 
@@ -390,8 +341,8 @@ export default function StepConfirm({
                 // 5) Create tracking link after pledge is saved
                 await createTrackingLinkAfterPledgeSaved()
 
-                // Trigger download at the very end (use high-quality version)
-                triggerDownload(highQualityBlob, fileName)
+                // Trigger download at the very end
+                triggerDownload(pdfBlob, fileName)
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)
               } finally {
