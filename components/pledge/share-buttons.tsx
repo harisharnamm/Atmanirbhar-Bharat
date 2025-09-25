@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
-import { generateSocialMediaCertificateImage, generateHighQualityCertificateImage } from "@/lib/certificate-image"
+import { generateHighQualityCertificateImage } from "@/lib/certificate-image"
 
 export default function ShareButtons({
   label,
@@ -34,7 +34,7 @@ export default function ShareButtons({
         if (certificateData && typeof window !== "undefined") {
           setGeneratingImage(true)
           try {
-            const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
+            const imageDataUrl = await generateHighQualityCertificateImage(certificateData)
             // Convert data URL to blob for sharing
             const response = await fetch(imageDataUrl)
             const imageBlob = await response.blob()
@@ -72,70 +72,12 @@ export default function ShareButtons({
   const hashtags = '#Sankalp4AtmanirbhrBharat #PMO #SikarBJP #CMORajasthan #BJPSikar #aatamnirbharbharat'
   const finalText = `${text} ${hashtags}`
   const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}`
-  const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
-
-  async function onFacebookShare() {
-    if (certificateData && typeof window !== "undefined") {
-      setGeneratingImage(true)
-      try {
-        const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
-        // Convert data URL to blob for sharing
-        const response = await fetch(imageDataUrl)
-        const imageBlob = await response.blob()
-        const imageFile = new File([imageBlob], "certificate.jpg", { type: "image/jpeg" })
-        
-        // Try to share with image using native share API
-        if (navigator.share) {
-          try {
-            await navigator.share({ 
-              url, 
-              text: finalText, 
-              title: "Aatmanirbhar Bharat Pledge Certificate",
-              files: [imageFile]
-            })
-            return
-          } catch (shareError) {
-            console.warn("Native share with image failed, falling back to URL:", shareError)
-          }
-        }
-        
-        // Fallback: copy text and open Facebook
-        await navigator.clipboard.writeText(`${finalText} ${url}`)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-        window.open(facebookUrl, '_blank', 'noopener,noreferrer')
-      } catch (imageError) {
-        console.warn("Image generation failed for Facebook, sharing without image:", imageError)
-        // Fallback to text-only sharing
-        try {
-          await navigator.clipboard.writeText(`${finalText} ${url}`)
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        } catch {
-          // ignore copy failure
-        }
-        window.open(facebookUrl, '_blank', 'noopener,noreferrer')
-      } finally {
-        setGeneratingImage(false)
-      }
-    } else {
-      // No certificate data, share text only
-      try {
-        await navigator.clipboard.writeText(`${finalText} ${url}`)
-        setCopied(true)
-        setTimeout(() => setCopied(false), 2000)
-      } catch {
-        // ignore copy failure
-      }
-      window.open(facebookUrl, '_blank', 'noopener,noreferrer')
-    }
-  }
 
   async function onTwitterShare() {
     if (certificateData && typeof window !== "undefined") {
       setGeneratingImage(true)
       try {
-        const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
+        const imageDataUrl = await generateHighQualityCertificateImage(certificateData)
         // Convert data URL to blob for sharing
         const response = await fetch(imageDataUrl)
         const imageBlob = await response.blob()
@@ -206,9 +148,6 @@ export default function ShareButtons({
         <Button variant="secondary" onClick={onTwitterShare} disabled={generatingImage} aria-label="Share on X (Twitter)">
           {generatingImage ? "..." : "X"}
         </Button>
-        <Button variant="secondary" onClick={onFacebookShare} disabled={generatingImage} aria-label="Share on Facebook">
-          {generatingImage ? "..." : "Facebook"}
-        </Button>
         <Button onClick={onShare} disabled={generatingImage}>
           {generatingImage ? "Generating..." : label}
         </Button>
@@ -223,7 +162,7 @@ export default function ShareButtons({
       </div>
       {!navigator.share && (
         <p className="text-xs text-muted-foreground">
-          {copied ? "Text copied. Paste it in Facebook dialog." : "No native share. We'll copy text for you before opening Facebook."}
+          {copied ? "Text copied to clipboard." : "No native share available. Text will be copied to clipboard."}
         </p>
       )}
       {generatingImage && (

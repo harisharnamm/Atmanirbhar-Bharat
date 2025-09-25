@@ -70,7 +70,7 @@ export async function generateCertificateImage(
       // Name position (centered between x:190-440 in PDF)
       name: { x: 800, y: 1115, size: 72 },
       // Date position (after "ने आज दिनांक" text)
-      date: { x: 625, y: 1215, size: 50 },
+      date: { x: 620, y: 1215, size: 48 },
       // Pledge ID position (bottom of certificate)
       pledgeId: { x: 520, y: 2400, size: 48 },
       // Selfie position and size
