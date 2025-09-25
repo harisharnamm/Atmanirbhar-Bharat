@@ -387,9 +387,9 @@ export default function StepConfirm({
         )}
 
         {/* Copyable Share Text Area - Mobile Optimized */}
-        <Card className="mt-4 mx-2 sm:mx-0">
-          <CardContent className="p-3 sm:p-4">
-            <div className="space-y-2 sm:space-y-3">
+        <Card className="mt-4 mx-2 sm:mx-0 w-full max-w-full overflow-hidden">
+          <CardContent className="p-3 sm:p-4 w-full max-w-full">
+            <div className="space-y-2 sm:space-y-3 w-full max-w-full">
               <div className="flex items-center justify-between">
                 <h3 className="text-xs sm:text-sm font-medium text-gray-700">Share Text</h3>
                 <Button
@@ -414,10 +414,10 @@ export default function StepConfirm({
                 </Button>
               </div>
               <div 
-                className="text-left p-2 sm:p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors"
+                className="text-left p-2 sm:p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors overflow-hidden"
                 onClick={handleCopyText}
               >
-                <pre className="whitespace-pre-wrap text-xs sm:text-sm text-gray-700 font-mono leading-relaxed">
+                <pre className="whitespace-pre-wrap text-xs sm:text-sm text-gray-700 font-mono leading-relaxed break-words break-all max-w-full">
                   {shareText}
                 </pre>
               </div>
