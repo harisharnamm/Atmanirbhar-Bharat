@@ -53,33 +53,32 @@ export async function generateCertificateFromTemplate({
     ;(pdfDoc as any).registerFontkit((fontkit as any).default)
   }
 
-  // Try to load Devanagari fonts from public if available (only for Hindi)
+  // Try to load Devanagari fonts from public if available (always load for Hindi name support)
   let font = null as any
   let fontBold = null as any
-  if (lang === "hi") {
-    try {
-      const [regularResp, boldResp] = await Promise.all([
-        fetch("/fonts/NotoSansDevanagari-Regular.ttf"),
-        fetch("/fonts/NotoSansDevanagari-Bold.ttf").catch(() => ({ ok: false } as Response)),
-      ])
-      if (regularResp.ok) {
-        const fontBytes = await regularResp.arrayBuffer()
-        font = await pdfDoc.embedFont(fontBytes, { subset: true })
-        console.log("[pdf-template] Hindi regular font loaded successfully")
-      } else {
-        console.warn("[pdf-template] Hindi regular font not found, using default font")
-      }
-      if (boldResp && boldResp.ok) {
-        const boldBytes = await boldResp.arrayBuffer()
-        fontBold = await pdfDoc.embedFont(boldBytes, { subset: true })
-        console.log("[pdf-template] Hindi bold font loaded successfully")
-      } else {
-        console.warn("[pdf-template] Hindi bold font not found, using regular font for bold text")
-      }
-    } catch (error) {
-      console.warn("[pdf-template] Font loading failed, using default font:", error)
-      // ignore; we'll fall back to the template's default font
+  // Always try to load Hindi fonts since users can enter Hindi names regardless of language setting
+  try {
+    const [regularResp, boldResp] = await Promise.all([
+      fetch("/fonts/NotoSansDevanagari-Regular.ttf"),
+      fetch("/fonts/NotoSansDevanagari-Bold.ttf").catch(() => ({ ok: false } as Response)),
+    ])
+    if (regularResp.ok) {
+      const fontBytes = await regularResp.arrayBuffer()
+      font = await pdfDoc.embedFont(fontBytes, { subset: true })
+      console.log("[pdf-template] Hindi regular font loaded successfully")
+    } else {
+      console.warn("[pdf-template] Hindi regular font not found, using default font")
     }
+    if (boldResp && boldResp.ok) {
+      const boldBytes = await boldResp.arrayBuffer()
+      fontBold = await pdfDoc.embedFont(boldBytes, { subset: true })
+      console.log("[pdf-template] Hindi bold font loaded successfully")
+    } else {
+      console.warn("[pdf-template] Hindi bold font not found, using regular font for bold text")
+    }
+  } catch (error) {
+    console.warn("[pdf-template] Font loading failed, using default font:", error)
+    // ignore; we'll fall back to the template's default font
   }
 
   // Helpers: incoming coords are specified with origin at top-left (0,0),
