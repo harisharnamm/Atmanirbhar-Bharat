@@ -30,7 +30,7 @@ export default function ShareButtons({
   async function onShare() {
     if (navigator.share) {
       try {
-        // If we have certificate data, try to share with image
+        // If we have certificate data, try to share with both text and image
         if (certificateData && typeof window !== "undefined") {
           setGeneratingImage(true)
           try {
@@ -38,23 +38,33 @@ export default function ShareButtons({
             // Convert data URL to blob for sharing
             const response = await fetch(imageDataUrl)
             const imageBlob = await response.blob()
-            const imageFile = new File([imageBlob], "certificate.jpg", { type: "image/jpeg" })
+            const imageFile = new File([imageBlob], "aatmanirbhar-certificate.jpg", { type: "image/jpeg" })
             
+            // Share both text and image together
             await navigator.share({ 
-              text: finalText, 
+              text: finalText,
               files: [imageFile]
             })
           } catch (imageError) {
-            console.warn("Image generation failed, sharing without image:", imageError)
+            console.warn("Image generation failed, sharing text only:", imageError)
             await navigator.share({ text: finalText })
           } finally {
             setGeneratingImage(false)
           }
         } else {
+          // Share text only if no certificate data
           await navigator.share({ text: finalText })
         }
-      } catch {
-        // silently ignore
+      } catch (error) {
+        console.warn("Native share failed, falling back to clipboard:", error)
+        // Fallback to clipboard
+        try {
+          await navigator.clipboard.writeText(clipboardText)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
+        } catch {
+          // ignore
+        }
       }
       return
     }
@@ -125,7 +135,7 @@ export default function ShareButtons({
       )}
       {generatingImage && (
         <p className="text-xs text-muted-foreground">
-          Converting certificate to image for sharing...
+          Generating certificate image for sharing...
         </p>
       )}
       {savingToGallery && (
