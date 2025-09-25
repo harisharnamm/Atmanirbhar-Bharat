@@ -2,22 +2,59 @@
 
 import { Button } from "@/components/ui/button"
 import { useState } from "react"
+import { generateSocialMediaCertificateImage, generateHighQualityCertificateImage } from "@/lib/certificate-image"
 
 export default function ShareButtons({
   label,
   url,
   text,
+  certificateData,
 }: {
   label: string
   url: string
   text: string
+  certificateData?: {
+    id: string
+    name: string
+    district: string
+    constituency: string
+    village: string
+    lang: "en" | "hi"
+    selfieDataUrl?: string | null
+  }
 }) {
   const [copied, setCopied] = useState(false)
+  const [generatingImage, setGeneratingImage] = useState(false)
+  const [savingToGallery, setSavingToGallery] = useState(false)
 
   async function onShare() {
     if (navigator.share) {
       try {
-        await navigator.share({ url, text, title: "People's Pledge" })
+        // If we have certificate data, try to share with image
+        if (certificateData && typeof window !== "undefined") {
+          setGeneratingImage(true)
+          try {
+            const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
+            // Convert data URL to blob for sharing
+            const response = await fetch(imageDataUrl)
+            const imageBlob = await response.blob()
+            const imageFile = new File([imageBlob], "certificate.jpg", { type: "image/jpeg" })
+            
+            await navigator.share({ 
+              url, 
+              text, 
+              title: "Aatmanirbhar Bharat Pledge Certificate",
+              files: [imageFile]
+            })
+          } catch (imageError) {
+            console.warn("Image generation failed, sharing without image:", imageError)
+            await navigator.share({ url, text, title: "Aatmanirbhar Bharat Pledge" })
+          } finally {
+            setGeneratingImage(false)
+          }
+        } else {
+          await navigator.share({ url, text, title: "Aatmanirbhar Bharat Pledge" })
+        }
       } catch {
         // silently ignore
       }
@@ -34,39 +71,169 @@ export default function ShareButtons({
 
   const hashtags = '#Sankalp4AtmanirbhrBharat #PMO #SikarBJP #CMORajasthan #BJPSikar #aatamnirbharbharat'
   const finalText = `${text} ${hashtags}`
-  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}&url=${encodeURIComponent(url)}`
+  const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(finalText)}`
   const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url)}`
 
   async function onFacebookShare() {
-    try {
-      // Facebook often ignores prefilled text; copy it so users can paste after the dialog
-      await navigator.clipboard.writeText(`${finalText} ${url}`)
-      setCopied(true)
-      setTimeout(() => setCopied(false), 2000)
-    } catch {
-      // ignore copy failure
+    if (certificateData && typeof window !== "undefined") {
+      setGeneratingImage(true)
+      try {
+        const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
+        // Convert data URL to blob for sharing
+        const response = await fetch(imageDataUrl)
+        const imageBlob = await response.blob()
+        const imageFile = new File([imageBlob], "certificate.jpg", { type: "image/jpeg" })
+        
+        // Try to share with image using native share API
+        if (navigator.share) {
+          try {
+            await navigator.share({ 
+              url, 
+              text: finalText, 
+              title: "Aatmanirbhar Bharat Pledge Certificate",
+              files: [imageFile]
+            })
+            return
+          } catch (shareError) {
+            console.warn("Native share with image failed, falling back to URL:", shareError)
+          }
+        }
+        
+        // Fallback: copy text and open Facebook
+        await navigator.clipboard.writeText(`${finalText} ${url}`)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+        window.open(facebookUrl, '_blank', 'noopener,noreferrer')
+      } catch (imageError) {
+        console.warn("Image generation failed for Facebook, sharing without image:", imageError)
+        // Fallback to text-only sharing
+        try {
+          await navigator.clipboard.writeText(`${finalText} ${url}`)
+          setCopied(true)
+          setTimeout(() => setCopied(false), 2000)
+        } catch {
+          // ignore copy failure
+        }
+        window.open(facebookUrl, '_blank', 'noopener,noreferrer')
+      } finally {
+        setGeneratingImage(false)
+      }
+    } else {
+      // No certificate data, share text only
+      try {
+        await navigator.clipboard.writeText(`${finalText} ${url}`)
+        setCopied(true)
+        setTimeout(() => setCopied(false), 2000)
+      } catch {
+        // ignore copy failure
+      }
+      window.open(facebookUrl, '_blank', 'noopener,noreferrer')
     }
-    window.open(facebookUrl, '_blank', 'noopener,noreferrer')
+  }
+
+  async function onTwitterShare() {
+    if (certificateData && typeof window !== "undefined") {
+      setGeneratingImage(true)
+      try {
+        const imageDataUrl = await generateSocialMediaCertificateImage(certificateData)
+        // Convert data URL to blob for sharing
+        const response = await fetch(imageDataUrl)
+        const imageBlob = await response.blob()
+        const imageFile = new File([imageBlob], "certificate.jpg", { type: "image/jpeg" })
+        
+        // Try to share with image using native share API
+        if (navigator.share) {
+          try {
+            await navigator.share({ 
+              url, 
+              text: finalText, 
+              title: "Aatmanirbhar Bharat Pledge Certificate",
+              files: [imageFile]
+            })
+            return
+          } catch (shareError) {
+            console.warn("Native share with image failed, falling back to URL:", shareError)
+          }
+        }
+        
+        // Fallback: open Twitter with text (can't attach image via URL)
+        window.open(twitterUrl, '_blank', 'noopener,noreferrer')
+      } catch (imageError) {
+        console.warn("Image generation failed for Twitter, sharing without image:", imageError)
+        // Fallback to text-only sharing
+        window.open(twitterUrl, '_blank', 'noopener,noreferrer')
+      } finally {
+        setGeneratingImage(false)
+      }
+    } else {
+      // No certificate data, share text only
+      window.open(twitterUrl, '_blank', 'noopener,noreferrer')
+    }
+  }
+
+  async function onSaveToGallery() {
+    if (!certificateData) {
+      console.warn("No certificate data available for saving")
+      return
+    }
+
+    setSavingToGallery(true)
+    try {
+      // Generate high-quality image for saving
+      const imageDataUrl = await generateHighQualityCertificateImage(certificateData)
+      
+      // Create download link
+      const link = document.createElement('a')
+      link.href = imageDataUrl
+      link.download = `aatmanirbhar-certificate-${certificateData.id}.png`
+      
+      // Trigger download
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      
+      console.log("Certificate saved to gallery/downloads")
+    } catch (error) {
+      console.error("Failed to save certificate to gallery:", error)
+    } finally {
+      setSavingToGallery(false)
+    }
   }
 
   return (
     <div className="flex flex-col items-center gap-2">
-      <div className="flex items-center gap-2">
-        <a
-          className="inline-flex"
-          href={twitterUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Share on Twitter"
+      <div className="flex flex-wrap items-center justify-center gap-2">
+        <Button variant="secondary" onClick={onTwitterShare} disabled={generatingImage} aria-label="Share on X (Twitter)">
+          {generatingImage ? "..." : "X"}
+        </Button>
+        <Button variant="secondary" onClick={onFacebookShare} disabled={generatingImage} aria-label="Share on Facebook">
+          {generatingImage ? "..." : "Facebook"}
+        </Button>
+        <Button onClick={onShare} disabled={generatingImage}>
+          {generatingImage ? "Generating..." : label}
+        </Button>
+        <Button 
+          variant="outline" 
+          onClick={onSaveToGallery} 
+          disabled={savingToGallery || !certificateData}
+          aria-label="Save certificate to gallery"
         >
-          <Button variant="secondary">X</Button>
-        </a>
-        <Button variant="secondary" onClick={onFacebookShare} aria-label="Share on Facebook">Facebook</Button>
-        <Button onClick={onShare}>{label}</Button>
+          {savingToGallery ? "Saving..." : "Save to Gallery"}
+        </Button>
       </div>
       {!navigator.share && (
         <p className="text-xs text-muted-foreground">
-          {copied ? "Text copied. Paste it in Facebook dialog." : "No native share. We’ll copy text for you before opening Facebook."}
+          {copied ? "Text copied. Paste it in Facebook dialog." : "No native share. We'll copy text for you before opening Facebook."}
+        </p>
+      )}
+      {generatingImage && (
+        <p className="text-xs text-muted-foreground">
+          Converting certificate to image for sharing...
+        </p>
+      )}
+      {savingToGallery && (
+        <p className="text-xs text-muted-foreground">
+          Generating certificate image for download...
         </p>
       )}
     </div>

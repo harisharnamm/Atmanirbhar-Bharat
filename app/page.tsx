@@ -12,7 +12,7 @@ import Progress from "@/components/pledge/progress"
 type Lang = "en" | "hi"
 
 export default function HomePage() {
-  const [lang, setLang] = useState<Lang>("en")
+  const [lang] = useState<Lang>("en") // Fixed to English only
   const [step, setStep] = useState(0)
   const [pledgeId, setPledgeId] = useState<string>("")
   const [formValues, setFormValues] = useState<PledgeFormValues | null>(null)
@@ -55,7 +55,6 @@ export default function HomePage() {
               className="h-16 w-auto"
             />
           </div>
-          <LangToggle lang={lang} setLang={setLang} />
         </header>
 
         <div className="mb-6 text-center">
@@ -126,32 +125,6 @@ export default function HomePage() {
   )
 }
 
-function LangToggle({ lang, setLang }: { lang: "en" | "hi"; setLang: (l: "en" | "hi") => void }) {
-  return (
-    <div className="inline-flex rounded-md border border-border p-1" role="group" aria-label="Language toggle">
-      <button
-        type="button"
-        className={cn(
-          "px-3 py-1 rounded-sm text-sm",
-          lang === "en" ? "bg-primary text-primary-foreground" : "hover:bg-accent",
-        )}
-        onClick={() => setLang("en")}
-      >
-        English
-      </button>
-      <button
-        type="button"
-        className={cn(
-          "px-3 py-1 rounded-sm text-sm",
-          lang === "hi" ? "bg-primary text-primary-foreground" : "hover:bg-accent",
-        )}
-        onClick={() => setLang("hi")}
-      >
-        हिन्दी
-      </button>
-    </div>
-  )
-}
 
 function getStrings(lang: "en" | "hi") {
   if (lang === "hi") {

@@ -22,6 +22,16 @@ export default function StepConfirm({
   selfieDataUrl?: string | null
 }) {
   const [downloading, setDownloading] = useState(false)
+  const [pdfBlob, setPdfBlob] = useState<Blob | undefined>(undefined)
+  const [certificateData, setCertificateData] = useState<{
+    id: string
+    name: string
+    district: string
+    constituency: string
+    village: string
+    lang: "en" | "hi"
+    selfieDataUrl?: string | null
+  } | undefined>(undefined)
 
   async function upsertPledge(payload: any) {
     try {
@@ -32,16 +42,32 @@ export default function StepConfirm({
         // Keep the request alive during page/tab lifecycle changes (mobile)
         keepalive: true as any,
       })
-      if (!res.ok) throw new Error(`HTTP ${res.status}`)
+      
+      if (!res.ok) {
+        const errorData = await res.json().catch(() => ({}))
+        console.error('[v0] API error:', res.status, errorData)
+        throw new Error(`HTTP ${res.status}: ${errorData.error || 'Unknown error'}`)
+      }
+      
+      const result = await res.json()
+      console.log('[v0] Pledge upserted successfully:', result)
       return true
     } catch (e) {
+      console.error('[v0] Primary upsert failed:', e)
+      
+      // Try fallback with sendBeacon
       try {
         if (typeof navigator !== 'undefined' && 'sendBeacon' in navigator) {
           const blob = new Blob([JSON.stringify(payload)], { type: 'application/json' })
           const ok = (navigator as any).sendBeacon('/api/pledges', blob)
+          console.log('[v0] Beacon fallback result:', ok)
           return !!ok
         }
-      } catch (_) {}
+      } catch (beaconError) {
+        console.error('[v0] Beacon fallback also failed:', beaconError)
+      }
+      
+      console.log('[v0] All pledge DB upsert methods failed')
       return false
     }
   }
@@ -79,6 +105,20 @@ export default function StepConfirm({
           lang: safeLang,
           selfieDataUrl: selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
           download: false,
+        })
+        
+        // Store the PDF blob for sharing
+        setPdfBlob(blob)
+        
+        // Store certificate data for image generation
+        setCertificateData({
+          id: formattedId,
+          name: values.name,
+          district: values.district,
+          constituency: values.constituency,
+          village: values.village,
+          lang: safeLang,
+          selfieDataUrl: selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined),
         })
 
         // 2) Upload selfie (best-effort)
@@ -176,6 +216,20 @@ export default function StepConfirm({
                   selfieDataUrl: selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
                   download: false,
                 })
+                
+                // Store the PDF blob for sharing
+                setPdfBlob(blob)
+                
+                // Store certificate data for image generation
+                setCertificateData({
+                  id: formattedId,
+                  name: values.name,
+                  district: values.district,
+                  constituency: values.constituency,
+                  village: values.village,
+                  lang: safeLang,
+                  selfieDataUrl: selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined),
+                })
 
                 // 2) Upload selfie
                 let selfiePublicUrl: string | undefined
@@ -256,6 +310,7 @@ export default function StepConfirm({
           label={strings.confirm.share}
           url={shareUrl}
           text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है। ${shareUrl}`}
+          certificateData={certificateData}
         />
       </div>
     </section>
