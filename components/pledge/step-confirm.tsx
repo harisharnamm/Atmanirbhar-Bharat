@@ -8,6 +8,7 @@ import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
 import { Loader2 } from "lucide-react"
 import ShareButtons from "@/components/pledge/share-buttons"
+import { createTrackingLink } from "@/lib/tracking"
 import type { PledgeFormValues } from "./step-form"
 
 export default function StepConfirm({
@@ -23,6 +24,8 @@ export default function StepConfirm({
 }) {
   const [downloading, setDownloading] = useState(false)
   const [pdfBlob, setPdfBlob] = useState<Blob | undefined>(undefined)
+  const [trackingLink, setTrackingLink] = useState<string>("")
+  const [trackingLinkCreated, setTrackingLinkCreated] = useState(false)
   const [certificateData, setCertificateData] = useState<{
     id: string
     name: string
@@ -168,6 +171,15 @@ export default function StepConfirm({
           certificate_pdf_url: pdfPublicUrl ?? null,
         })
 
+        // Mark conversion for attribution (best-effort)
+        try {
+          const { markConversion } = await import("@/lib/tracking")
+          await markConversion(formattedId)
+        } catch (_) {}
+
+        // 5) Create tracking link after pledge is saved
+        await createTrackingLinkAfterPledgeSaved()
+
         // Finally trigger download
         triggerDownload(blob, fileName)
       } catch (error: any) {
@@ -180,10 +192,47 @@ export default function StepConfirm({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
-  const shareUrl =
-    typeof window !== "undefined"
-      ? `${window.location.origin}${window.location.pathname}?pledge=${encodeURIComponent(pledgeId)}`
-      : ""
+  // Create tracking link after pledge is saved
+  const createTrackingLinkAfterPledgeSaved = async () => {
+    if (trackingLinkCreated || !pledgeId) return
+    
+    try {
+      const { trackingLink } = await createTrackingLink(
+        pledgeId,
+        pledgeId,
+        {
+          name: values.name,
+          district: values.district,
+          constituency: values.constituency,
+          village: values.village,
+          created_at: new Date().toISOString()
+        },
+        values.name
+      )
+      
+      console.log('[step-confirm] Created tracking link:', trackingLink)
+      setTrackingLink(trackingLink)
+      setTrackingLinkCreated(true)
+    } catch (error) {
+      console.error('Failed to create tracking link:', error)
+      // Fallback to regular URL
+      setTrackingLink(
+        typeof window !== "undefined"
+          ? `${window.location.origin}${window.location.pathname}?pledge=${encodeURIComponent(pledgeId)}`
+          : ""
+      )
+      setTrackingLinkCreated(true)
+    }
+  }
+
+  // Force full URL construction for share - always use tracking link if available
+  const shareUrl = trackingLink 
+    ? (trackingLink.startsWith('http') 
+        ? trackingLink 
+        : `${window.location.origin}${trackingLink}`)
+    : (typeof window !== "undefined"
+        ? `${window.location.origin}${window.location.pathname}?pledge=${encodeURIComponent(pledgeId)}`
+        : "")
 
   return (
     <section aria-labelledby="confirm-heading" className="text-center">
@@ -278,6 +327,15 @@ export default function StepConfirm({
                   certificate_pdf_url: pdfPublicUrl ?? null,
                 })
 
+                // Mark conversion for attribution (best-effort)
+                try {
+                  const { markConversion } = await import("@/lib/tracking")
+                  await markConversion(formattedId)
+                } catch (_) {}
+
+                // 5) Create tracking link after pledge is saved
+                await createTrackingLinkAfterPledgeSaved()
+
                 // Trigger download at the very end
                 triggerDownload(blob, fileName)
               } catch (error: any) {
@@ -309,7 +367,7 @@ export default function StepConfirm({
         <ShareButtons
           label={strings.confirm.share}
           url={shareUrl}
-          text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है। ${shareUrl}`}
+          text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है।`}
           certificateData={certificateData}
         />
       </div>

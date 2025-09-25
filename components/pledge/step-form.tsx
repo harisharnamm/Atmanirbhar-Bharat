@@ -472,7 +472,7 @@ export default function StepForm({
             aria-invalid={!!errors.name && (touched.name || isSubmittedOnce)}
             aria-describedby={errors.name && (touched.name || isSubmittedOnce) ? "name-error" : undefined}
             autoComplete="name"
-            placeholder="Enter name in English only"
+            placeholder="Enter name in English"
           />
           {(touched.name || isSubmittedOnce) && errors.name && (
             <p id="name-error" className="text-xs text-destructive">

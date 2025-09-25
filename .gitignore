@@ -33,3 +33,30 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# temporary files and test files
+test-*.js
+test-*.html
+*.tmp
+*.temp
+
+# compression test files
+test-compression.*
+test-image-compression.*
+
+# backup files
+*.backup
+*.bak
+
+# logs
+*.log
+logs/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS files
+Thumbs.db
