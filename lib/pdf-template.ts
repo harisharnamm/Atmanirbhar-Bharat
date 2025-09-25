@@ -64,12 +64,19 @@ export async function generateCertificateFromTemplate({
       if (regularResp.ok) {
         const fontBytes = await regularResp.arrayBuffer()
         font = await pdfDoc.embedFont(fontBytes, { subset: true })
+        console.log("[pdf-template] Hindi regular font loaded successfully")
+      } else {
+        console.warn("[pdf-template] Hindi regular font not found, using default font")
       }
       if (boldResp && boldResp.ok) {
         const boldBytes = await boldResp.arrayBuffer()
         fontBold = await pdfDoc.embedFont(boldBytes, { subset: true })
+        console.log("[pdf-template] Hindi bold font loaded successfully")
+      } else {
+        console.warn("[pdf-template] Hindi bold font not found, using regular font for bold text")
       }
-    } catch (_) {
+    } catch (error) {
+      console.warn("[pdf-template] Font loading failed, using default font:", error)
       // ignore; we'll fall back to the template's default font
     }
   }
