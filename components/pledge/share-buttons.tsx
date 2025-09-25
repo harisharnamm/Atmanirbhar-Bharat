@@ -61,10 +61,10 @@ export default function ShareButtons({
   const hashtags = '#Sankalp4AtmanirbhrBharat #Vocal4Local #aatamnirbharbharat #BJPSikar #CMORajasthan #PMO'
   
   // Text as description for URL-based sharing (Facebook will show link preview)
-  const finalText = `${text} - Aatmanirbhar Bharat Pledge Certificate\n\n${hashtags}`
+  const finalText = `${text}\n\nAatmanirbhar Bharat Pledge Certificate\n\n${hashtags}`
   
-  // For clipboard fallback, include URL in text
-  const clipboardText = `${text} - Aatmanirbhar Bharat Pledge Certificate\n\n${url}\n\n${hashtags}`
+  // For clipboard fallback, include URL in text after declaration line
+  const clipboardText = `${text}\n\nAatmanirbhar Bharat Pledge Certificate\n\n${url}\n\n${hashtags}`
 
 
   async function onSaveToGallery() {

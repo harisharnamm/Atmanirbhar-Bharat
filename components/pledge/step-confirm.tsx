@@ -2,11 +2,12 @@
 
 import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
+import { Card, CardContent } from "@/components/ui/card"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
 import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
-import { Loader2 } from "lucide-react"
+import { Loader2, Copy, Check } from "lucide-react"
 import ShareButtons from "@/components/pledge/share-buttons"
 import { createTrackingLink } from "@/lib/tracking"
 import type { PledgeFormValues } from "./step-form"
@@ -35,6 +36,7 @@ export default function StepConfirm({
     lang: "en" | "hi"
     selfieDataUrl?: string | null
   } | undefined>(undefined)
+  const [textCopied, setTextCopied] = useState(false)
 
   async function upsertPledge(payload: any) {
     try {
@@ -235,6 +237,21 @@ export default function StepConfirm({
         ? `${window.location.origin}${window.location.pathname}?pledge=${encodeURIComponent(pledgeId)}`
         : "")
 
+  // Generate share text for copyable area
+  const hashtags = '#Sankalp4AtmanirbhrBharat #Vocal4Local #aatamnirbharbharat #BJPSikar #CMORajasthan #PMO'
+  const shareText = `${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है।\n\nAatmanirbhar Bharat Pledge Certificate\n\n${shareUrl}\n\n${hashtags}`
+
+  // Copy text to clipboard
+  const handleCopyText = async () => {
+    try {
+      await navigator.clipboard.writeText(shareText)
+      setTextCopied(true)
+      setTimeout(() => setTextCopied(false), 2000)
+    } catch (error) {
+      console.error('Failed to copy text:', error)
+    }
+  }
+
   return (
     <section aria-labelledby="confirm-heading" className="text-center">
       <h2 id="confirm-heading" className="text-lg font-semibold">
@@ -368,6 +385,46 @@ export default function StepConfirm({
             This may take 5–10 seconds. Please don’t close or switch apps.
           </p>
         )}
+
+        {/* Copyable Share Text Area */}
+        <Card className="mt-6">
+          <CardContent className="p-4">
+            <div className="space-y-3">
+              <div className="flex items-center justify-between">
+                <h3 className="text-sm font-medium text-gray-700">Share Text</h3>
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={handleCopyText}
+                  className="flex items-center gap-2"
+                >
+                  {textCopied ? (
+                    <>
+                      <Check className="h-4 w-4" />
+                      Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Copy className="h-4 w-4" />
+                      Copy
+                    </>
+                  )}
+                </Button>
+              </div>
+              <div 
+                className="text-left p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors"
+                onClick={handleCopyText}
+              >
+                <pre className="whitespace-pre-wrap text-sm text-gray-700 font-mono">
+                  {shareText}
+                </pre>
+              </div>
+              <p className="text-xs text-gray-500 text-center">
+                Tap to copy the text for sharing
+              </p>
+            </div>
+          </CardContent>
+        </Card>
 
         <ShareButtons
           label={strings.confirm.share}
