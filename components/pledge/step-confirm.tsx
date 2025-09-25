@@ -4,6 +4,7 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
 import { generateCertificateFromTemplate } from "@/lib/pdf-template"
+import { generateCompressedSelfieDataUrl } from "@/lib/image-compression"
 import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
 import { Loader2 } from "lucide-react"
@@ -97,42 +98,24 @@ export default function StepConfirm({
     const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
     ;(async () => {
       try {
-        // 1) Upload selfie first to get compressed version
-        let selfiePublicUrl: string | undefined
-        let compressedSelfieDataUrl: string | undefined
-        if (selfieDataUrl) {
-          try {
-            const selfieBlob = await (await fetch(selfieDataUrl)).blob()
-            selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
-            // Use the compressed selfie URL for certificate generation
-            compressedSelfieDataUrl = selfiePublicUrl
-          } catch (e) {
-            console.log("[v0] Selfie upload failed:", e)
-            // Fallback: use the original data URL if storage fails
-            selfiePublicUrl = selfieDataUrl
-            compressedSelfieDataUrl = selfieDataUrl
-          }
-        } else {
-          // Use the window selfie if available
-          compressedSelfieDataUrl = (typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined
-        }
-
-        // 2) Generate certificate with compressed selfie
-        const { blob, fileName } = await generateCertificateFromTemplate({
+        const originalSelfieDataUrl = selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined)
+        
+        // 1) Generate high-quality certificate for user (with original selfie)
+        const { blob: highQualityBlob, fileName } = await generateCertificateFromTemplate({
           id: formattedId,
           name: values.name,
           district: values.district,
           constituency: values.constituency,
           village: values.village,
           lang: safeLang,
-          selfieDataUrl: compressedSelfieDataUrl,
+          selfieDataUrl: originalSelfieDataUrl,
           download: false,
         })
         
-        // Store the PDF blob for sharing
-        setPdfBlob(blob)
+        // Store the high-quality PDF blob for sharing/download
+        setPdfBlob(highQualityBlob)
         
-        // Store certificate data for image generation with compressed selfie
+        // Store certificate data for image generation (with original selfie)
         setCertificateData({
           id: formattedId,
           name: values.name,
@@ -140,16 +123,54 @@ export default function StepConfirm({
           constituency: values.constituency,
           village: values.village,
           lang: safeLang,
-          selfieDataUrl: compressedSelfieDataUrl,
+          selfieDataUrl: originalSelfieDataUrl,
         })
 
-        // 3) Upload PDF to storage (best-effort)
+        // 2) Generate compressed certificate for storage (with compressed selfie)
+        let compressedSelfieDataUrl: string | undefined
+        if (originalSelfieDataUrl) {
+          try {
+            compressedSelfieDataUrl = await generateCompressedSelfieDataUrl(originalSelfieDataUrl)
+            console.log('Generated compressed selfie for storage')
+          } catch (error) {
+            console.warn('Failed to generate compressed selfie, using original:', error)
+            compressedSelfieDataUrl = originalSelfieDataUrl
+          }
+        }
+
+        const { blob: compressedBlob } = await generateCertificateFromTemplate({
+          id: formattedId,
+          name: values.name,
+          district: values.district,
+          constituency: values.constituency,
+          village: values.village,
+          lang: safeLang,
+          selfieDataUrl: originalSelfieDataUrl, // Keep original for fallback
+          compressedSelfieDataUrl: compressedSelfieDataUrl, // Use compressed for storage
+          download: false,
+        })
+
+        // 2) Upload selfie (best-effort)
+        let selfiePublicUrl: string | undefined
+        if (selfieDataUrl) {
+          try {
+            const selfieBlob = await (await fetch(selfieDataUrl)).blob()
+            selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
+          } catch (e) {
+            console.log("[v0] Selfie upload failed:", e)
+            // Fallback: use the local data URL if storage fails
+            selfiePublicUrl = selfieDataUrl
+          }
+        }
+
+        // 3) Upload compressed PDF to storage (best-effort)
         let pdfPublicUrl: string | undefined
         {
           let lastErr: any
           for (let i = 0; i < 2; i++) {
             try {
-              pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
+              // Use compressed blob for storage to save space
+              pdfPublicUrl = await uploadCertificatePdf(formattedId, compressedBlob)
               break
             } catch (e) {
               lastErr = e
@@ -158,8 +179,8 @@ export default function StepConfirm({
           }
           if (!pdfPublicUrl && lastErr) {
             console.log("[v0] PDF upload failed:", lastErr)
-            // Fallback: create a local blob URL for the PDF
-            pdfPublicUrl = URL.createObjectURL(blob)
+            // Fallback: create a local blob URL for the high-quality PDF
+            pdfPublicUrl = URL.createObjectURL(highQualityBlob)
           }
         }
 
@@ -260,42 +281,24 @@ export default function StepConfirm({
             const formattedId = isNewPledgeIdFormat(pledgeId) ? pledgeId : generatePledgeId()
             ;(async () => {
               try {
-                // 1) Upload selfie first to get compressed version
-                let selfiePublicUrl: string | undefined
-                let compressedSelfieDataUrl: string | undefined
-                if (selfieDataUrl) {
-                  try {
-                    const selfieBlob = await (await fetch(selfieDataUrl)).blob()
-                    selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
-                    // Use the compressed selfie URL for certificate generation
-                    compressedSelfieDataUrl = selfiePublicUrl
-                  } catch (e) {
-                    console.log("[v0] Selfie upload failed:", e)
-                    // Fallback: use the original data URL if storage fails
-                    selfiePublicUrl = selfieDataUrl
-                    compressedSelfieDataUrl = selfieDataUrl
-                  }
-                } else {
-                  // Use the window selfie if available
-                  compressedSelfieDataUrl = (window as any).__pledgeSelfie ?? undefined
-                }
-
-                // 2) Generate certificate with compressed selfie
-                const { blob, fileName } = await generateCertificateFromTemplate({
+                const originalSelfieDataUrl = selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined)
+                
+                // 1) Generate high-quality certificate for user (with original selfie)
+                const { blob: highQualityBlob, fileName } = await generateCertificateFromTemplate({
                   id: formattedId,
                   name: values.name,
                   district: values.district,
                   constituency: values.constituency,
                   village: values.village,
                   lang: safeLang,
-                  selfieDataUrl: compressedSelfieDataUrl,
+                  selfieDataUrl: originalSelfieDataUrl,
                   download: false,
                 })
                 
-                // Store the PDF blob for sharing
-                setPdfBlob(blob)
+                // Store the high-quality PDF blob for sharing
+                setPdfBlob(highQualityBlob)
                 
-                // Store certificate data for image generation with compressed selfie
+                // Store certificate data for image generation (with original selfie)
                 setCertificateData({
                   id: formattedId,
                   name: values.name,
@@ -303,16 +306,54 @@ export default function StepConfirm({
                   constituency: values.constituency,
                   village: values.village,
                   lang: safeLang,
-                  selfieDataUrl: compressedSelfieDataUrl,
+                  selfieDataUrl: originalSelfieDataUrl,
                 })
 
-                // 3) Upload PDF
+                // 2) Generate compressed certificate for storage (with compressed selfie)
+                let compressedSelfieDataUrl: string | undefined
+                if (originalSelfieDataUrl) {
+                  try {
+                    compressedSelfieDataUrl = await generateCompressedSelfieDataUrl(originalSelfieDataUrl)
+                    console.log('Generated compressed selfie for storage')
+                  } catch (error) {
+                    console.warn('Failed to generate compressed selfie, using original:', error)
+                    compressedSelfieDataUrl = originalSelfieDataUrl
+                  }
+                }
+
+                const { blob: compressedBlob } = await generateCertificateFromTemplate({
+                  id: formattedId,
+                  name: values.name,
+                  district: values.district,
+                  constituency: values.constituency,
+                  village: values.village,
+                  lang: safeLang,
+                  selfieDataUrl: originalSelfieDataUrl, // Keep original for fallback
+                  compressedSelfieDataUrl: compressedSelfieDataUrl, // Use compressed for storage
+                  download: false,
+                })
+
+                // 2) Upload selfie
+                let selfiePublicUrl: string | undefined
+                if (selfieDataUrl) {
+                  try {
+                    const selfieBlob = await (await fetch(selfieDataUrl)).blob()
+                    selfiePublicUrl = await uploadSelfie(formattedId, selfieBlob)
+                  } catch (e) {
+                    console.log("[v0] Selfie upload failed:", e)
+                    // Fallback: use the local data URL if storage fails
+                    selfiePublicUrl = selfieDataUrl
+                  }
+                }
+
+                // 3) Upload compressed PDF to storage (best-effort)
                 let pdfPublicUrl: string | undefined
                 {
                   let lastErr: any
                   for (let i = 0; i < 2; i++) {
                     try {
-                      pdfPublicUrl = await uploadCertificatePdf(formattedId, blob)
+                      // Use compressed blob for storage to save space
+                      pdfPublicUrl = await uploadCertificatePdf(formattedId, compressedBlob)
                       break
                     } catch (e) {
                       lastErr = e
@@ -321,8 +362,8 @@ export default function StepConfirm({
                   }
                   if (!pdfPublicUrl && lastErr) {
                     console.log("[v0] PDF upload failed:", lastErr)
-                    // Fallback: create a local blob URL for the PDF
-                    pdfPublicUrl = URL.createObjectURL(blob)
+                    // Fallback: create a local blob URL for the high-quality PDF
+                    pdfPublicUrl = URL.createObjectURL(highQualityBlob)
                   }
                 }
 
@@ -349,8 +390,8 @@ export default function StepConfirm({
                 // 5) Create tracking link after pledge is saved
                 await createTrackingLinkAfterPledgeSaved()
 
-                // Trigger download at the very end
-                triggerDownload(blob, fileName)
+                // Trigger download at the very end (use high-quality version)
+                triggerDownload(highQualityBlob, fileName)
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)
               } finally {
