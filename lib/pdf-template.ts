@@ -15,6 +15,7 @@ export async function generateCertificateFromTemplate({
   village,
   lang,
   selfieDataUrl,
+  compressedSelfieDataUrl,
   download = true,
 }: {
   id: string
@@ -24,6 +25,7 @@ export async function generateCertificateFromTemplate({
   village: string
   lang: "en" | "hi"
   selfieDataUrl?: string | null
+  compressedSelfieDataUrl?: string | null
   download?: boolean
 }) {
   const [{ PDFDocument, rgb, degrees }, fontkit] = await Promise.all([
@@ -166,11 +168,12 @@ export async function generateCertificateFromTemplate({
   // Draw only the ID value (no label)
   drawTextTopLeft(id, coordsTL.pledgeId.x, coordsTL.pledgeId.y, coordsTL.pledgeId.size)
 
-  // Add selfie if provided
-  if (selfieDataUrl) {
+  // Add selfie if provided - use compressed version if available, otherwise original
+  const selfieToUse = compressedSelfieDataUrl || selfieDataUrl
+  if (selfieToUse) {
     try {
       // Fix orientation by reading EXIF and redrawing via canvas
-      const correctedDataUrl = await fixImageOrientation(selfieDataUrl)
+      const correctedDataUrl = await fixImageOrientation(selfieToUse)
       // Try PNG first; fall back to JPEG; and clamp image size to avoid memory issues
       const imgBytes = await fetch(correctedDataUrl).then((r) => r.arrayBuffer())
       const source = await loadImage(correctedDataUrl)
