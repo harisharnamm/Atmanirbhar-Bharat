@@ -1,5 +1,6 @@
 import { supabase } from './supabase'
 import { compressImageForStorage, getFileSizeKB } from './image-compression'
+import { simplePdfCompression } from './pdf-compression-client'
 
 export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string> {
   try {
@@ -79,16 +80,33 @@ export async function uploadCertificatePdf(pledgeId: string, file: Blob): Promis
     const { data } = supabase.storage.from('certificates').getPublicUrl(path)
     return data.publicUrl
   } catch (error) {
-    console.error('PDF compression failed, uploading original:', error)
-    // Fallback to original if compression fails
-    const path = `${pledgeId}.pdf`
-    const { error: uploadError } = await supabase.storage.from('certificates').upload(path, file, {
-      upsert: true,
-      contentType: 'application/pdf',
-    })
-    if (uploadError) throw uploadError
-    const { data } = supabase.storage.from('certificates').getPublicUrl(path)
-    return data.publicUrl
+    console.error('Server-side PDF compression failed, trying client-side compression:', error)
+    
+    try {
+      // Try client-side compression as fallback
+      const compressedFile = await simplePdfCompression(file)
+      const path = `${pledgeId}.pdf`
+      
+      const { error: uploadError } = await supabase.storage.from('certificates').upload(path, compressedFile, {
+        upsert: true,
+        contentType: 'application/pdf',
+      })
+      
+      if (uploadError) throw uploadError
+      const { data } = supabase.storage.from('certificates').getPublicUrl(path)
+      return data.publicUrl
+    } catch (clientError) {
+      console.error('Client-side PDF compression also failed, uploading original:', clientError)
+      // Final fallback to original file
+      const path = `${pledgeId}.pdf`
+      const { error: uploadError } = await supabase.storage.from('certificates').upload(path, file, {
+        upsert: true,
+        contentType: 'application/pdf',
+      })
+      if (uploadError) throw uploadError
+      const { data } = supabase.storage.from('certificates').getPublicUrl(path)
+      return data.publicUrl
+    }
   }
 }
 
