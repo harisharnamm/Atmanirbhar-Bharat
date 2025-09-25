@@ -43,37 +43,6 @@ export async function compressImageForStorage(
   }
 }
 
-/**
- * Generate a compressed selfie data URL for certificate embedding
- */
-export async function generateCompressedSelfieDataUrl(selfieDataUrl: string): Promise<string> {
-  try {
-    // Convert data URL to File
-    const response = await fetch(selfieDataUrl)
-    const blob = await response.blob()
-    const file = new File([blob], 'selfie.png', { type: 'image/png' })
-    
-    // Compress the image
-    const compressedFile = await compressImageForStorage(file, {
-      maxSizeMB: 0.25, // ~250KB
-      maxWidthOrHeight: 700,
-      quality: 0.6,
-      fileType: 'image/webp'
-    })
-    
-    // Convert back to data URL
-    return new Promise((resolve, reject) => {
-      const reader = new FileReader()
-      reader.onload = () => resolve(reader.result as string)
-      reader.onerror = reject
-      reader.readAsDataURL(compressedFile)
-    })
-  } catch (error) {
-    console.error('Failed to generate compressed selfie data URL:', error)
-    // Return original if compression fails
-    return selfieDataUrl
-  }
-}
 
 /**
  * Get file size in KB
