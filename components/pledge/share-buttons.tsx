@@ -29,11 +29,11 @@ export default function ShareButtons({
   async function onShare() {
     if (navigator.share) {
       try {
-        // Share with both text and URL for better Facebook compatibility
-        // Facebook often ignores text but uses URL for Open Graph preview
+        // Prioritize text over URL for better Facebook compatibility
+        // Facebook will focus on the text content rather than the link
         await navigator.share({ 
-          text: finalText,
-          url: url  // Include URL parameter for better Facebook support
+          text: finalText
+          // Removed URL parameter to emphasize text over link
         })
       } catch (error) {
         console.warn("Native share failed, falling back to clipboard:", error)
@@ -60,11 +60,12 @@ export default function ShareButtons({
   // Updated share text with hashtags - optimized for Facebook
   const hashtags = '#Sankalp4AtmanirbhrBharat #Vocal4Local #aatamnirbharbharat #BJPSikar #CMORajasthan #PMO'
   
-  // Facebook-optimized text: concise, key info first, hashtags at end
-  const finalText = `${text} - Aatmanirbhar Bharat Pledge Certificate\n\n${hashtags}`
+  // Text-first approach: include URL within text content for better Facebook sharing
+  const finalText = `${text} - Aatmanirbhar Bharat Pledge Certificate\n\n${url}\n\n${hashtags}`
   
-  // For clipboard fallback, include URL for completeness
-  const clipboardText = `${text}\n\nAatmanirbhar Bharat Pledge Certificate\n\n${url}\n\n${hashtags}`
+  // For clipboard fallback, same format
+  const clipboardText = finalText
+
 
   async function onSaveToGallery() {
     if (!certificateData) {
