@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Aatmanirbhar Bharat',
     images: [
       {
-        url: '/atmanirbharBharat.png',
+        url: 'https://res.cloudinary.com/dxtmchwif/image/upload/v1758876331/Add_a_subheading_s8oxhd.jpg',
         width: 1200,
         height: 630,
         alt: 'Aatmanirbhar Bharat',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
       'Take the Sankalp for Aatmanirbhar Bharat and receive your personalized certificate.',
-    images: ['/atmanirbharBharat.png'],
+    images: ['https://res.cloudinary.com/dxtmchwif/image/upload/v1758876331/Add_a_subheading_s8oxhd.jpg'],
     creator: '@aatmanirbhar',
   },
   robots: {
