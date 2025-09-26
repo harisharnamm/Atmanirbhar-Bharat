@@ -27,27 +27,36 @@ export default function ShareButtons({
   const [savingToGallery, setSavingToGallery] = useState(false)
 
   async function onShare() {
+    // Updated share text with hashtags - optimized for platforms
+    const hashtags = '#Sankalp4AtmanirbhrBharat #Vocal4Local #aatamnirbharbharat #BJPSikar #CMORajasthan #PMO'
+    // Put URL inside text so it persists even when sharing with files
+    const finalText = `${text}\n\nAatmanirbhar Bharat Pledge Certificate\n\n${url}\n\n${hashtags}`
+    const clipboardText = finalText
+
+    // Prefer sharing with image file when possible
     if (navigator.share) {
       try {
-        // Share with URL as primary content for Facebook link preview
-        // Facebook will use the URL for Open Graph preview and the text as description
-        await navigator.share({ 
-          text: finalText,
-          url: url  // Include URL parameter so Facebook shows link preview
-        })
-      } catch (error) {
-        console.warn("Native share failed, falling back to clipboard:", error)
-        // Fallback to clipboard
-        try {
-          await navigator.clipboard.writeText(clipboardText)
-          setCopied(true)
-          setTimeout(() => setCopied(false), 2000)
-        } catch {
-          // ignore
+        if (certificateData) {
+          // Generate image and share as a file for better previews
+          const imageDataUrl = await generateHighQualityCertificateImage(certificateData)
+          const res = await fetch(imageDataUrl)
+          const blob = await res.blob()
+          const file = new File([blob], `aatmanirbhar-certificate-${certificateData.id}.jpg`, { type: "image/jpeg" })
+
+          if ((navigator as any).canShare?.({ files: [file] })) {
+            await navigator.share({ text: finalText, files: [file] })
+            return
+          }
         }
+        // Fallback: share text + url only
+        await navigator.share({ text: finalText })
+        return
+      } catch (error) {
+        // ignore and fallback to clipboard
       }
-      return
     }
+
+    // Clipboard fallback
     try {
       await navigator.clipboard.writeText(clipboardText)
       setCopied(true)
