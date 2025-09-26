@@ -386,47 +386,49 @@ export default function StepConfirm({
           </p>
         )}
 
-        {/* Copyable Share Text Area - Mobile Optimized */}
-        <Card className="mt-4 mx-2 sm:mx-0 w-full max-w-full overflow-hidden">
-          <CardContent className="p-3 sm:p-4 w-full max-w-full">
-            <div className="space-y-2 sm:space-y-3 w-full max-w-full">
-              <div className="flex items-center justify-between">
-                <h3 className="text-xs sm:text-sm font-medium text-gray-700">Share Text</h3>
-                <Button
-                  variant="outline"
-                  size="sm"
+        {/* Copyable Share Text Area - show only after tracking link is ready */}
+        {trackingLinkCreated && trackingLink ? (
+          <Card className="mt-4 mx-2 sm:mx-0 w-full max-w-full overflow-hidden">
+            <CardContent className="p-3 sm:p-4 w-full max-w-full">
+              <div className="space-y-2 sm:space-y-3 w-full max-w-full">
+                <div className="flex items-center justify-between">
+                  <h3 className="text-xs sm:text-sm font-medium text-gray-700">Share Text</h3>
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    onClick={handleCopyText}
+                    className="flex items-center gap-1 sm:gap-2 text-xs px-2 py-1 h-7"
+                  >
+                    {textCopied ? (
+                      <>
+                        <Check className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="hidden sm:inline">Copied!</span>
+                        <span className="sm:hidden">✓</span>
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
+                        <span className="hidden sm:inline">Copy</span>
+                        <span className="sm:hidden">Copy</span>
+                      </>
+                    )}
+                  </Button>
+                </div>
+                <div 
+                  className="text-left p-2 sm:p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors overflow-hidden"
                   onClick={handleCopyText}
-                  className="flex items-center gap-1 sm:gap-2 text-xs px-2 py-1 h-7"
                 >
-                  {textCopied ? (
-                    <>
-                      <Check className="h-3 w-3 sm:h-4 sm:w-4" />
-                      <span className="hidden sm:inline">Copied!</span>
-                      <span className="sm:hidden">✓</span>
-                    </>
-                  ) : (
-                    <>
-                      <Copy className="h-3 w-3 sm:h-4 sm:w-4" />
-                      <span className="hidden sm:inline">Copy</span>
-                      <span className="sm:hidden">Copy</span>
-                    </>
-                  )}
-                </Button>
+                  <pre className="whitespace-pre-wrap text-xs sm:text-sm text-gray-700 font-mono leading-relaxed break-words break-all max-w-full">
+                    {shareText}
+                  </pre>
+                </div>
+                <p className="text-xs text-gray-500 text-center">
+                  Tap to copy
+                </p>
               </div>
-              <div 
-                className="text-left p-2 sm:p-3 bg-gray-50 rounded-md border cursor-pointer hover:bg-gray-100 transition-colors overflow-hidden"
-                onClick={handleCopyText}
-              >
-                <pre className="whitespace-pre-wrap text-xs sm:text-sm text-gray-700 font-mono leading-relaxed break-words break-all max-w-full">
-                  {shareText}
-                </pre>
-              </div>
-              <p className="text-xs text-gray-500 text-center">
-                Tap to copy
-              </p>
-            </div>
-          </CardContent>
-        </Card>
+            </CardContent>
+          </Card>
+        ) : null}
 
         <ShareButtons
           label={strings.confirm.share}
