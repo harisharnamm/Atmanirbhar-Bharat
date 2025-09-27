@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase-server'
+import { createFirebaseServerClient } from '@/lib/firebase-server'
+import { collection, addDoc, doc, setDoc, Timestamp } from 'firebase/firestore'
 
 // POST /api/track-link - Create a new tracking link
 export async function POST(req: NextRequest) {
@@ -14,6 +16,7 @@ export async function POST(req: NextRequest) {
     }
 
     const supabase = createServerClient()
+    const { db: firebaseDb } = createFirebaseServerClient()
 
     // First, check if a tracking link already exists for this pledge
     const { data: existingLink, error: checkError } = await supabase
@@ -46,7 +49,7 @@ export async function POST(req: NextRequest) {
 
     const trackingId = trackingIdResult
 
-    // Insert tracking link
+    // Insert tracking link in Supabase (existing)
     const { data, error } = await supabase
       .from('tracking_links')
       .insert({
@@ -65,6 +68,52 @@ export async function POST(req: NextRequest) {
         error: 'Failed to create tracking link',
         details: error.message 
       }, { status: 500 })
+    }
+
+    // NEW: Also create tracking link in Firebase
+    try {
+      const firebaseData = {
+        tracking_id: trackingId,
+        pledge_id: pledgeId,
+        original_pledge_id: originalPledgeId || pledgeId,
+        metadata,
+        created_by: createdBy,
+        is_active: true,
+        expires_at: null,
+        created_at: Timestamp.now(),
+        updated_at: Timestamp.now()
+      }
+      
+      const docRef = await addDoc(collection(firebaseDb, 'tracking_links'), firebaseData)
+      console.log(`[api/track-link] Successfully wrote to Firebase: ${trackingId} -> ${docRef.id}`)
+
+      // NEW: Also create automatic tracking_analytics entry in Firebase
+      const analyticsData = {
+        tracking_id: trackingId,
+        pledge_id: pledgeId,
+        original_pledge_id: originalPledgeId || pledgeId,
+        link_created_at: Timestamp.now(),
+        total_clicks: 0,
+        unique_visitors: 0,
+        conversions: 0,
+        conversion_rate: 0,
+        clicks_from_india: 0,
+        clicks_from_other: 0,
+        mobile_clicks: 0,
+        desktop_clicks: 0,
+        tablet_clicks: 0,
+        first_click: null,
+        last_click: null,
+        metadata: metadata || {},
+        updated_at: Timestamp.now()
+      }
+      
+      const analyticsRef = doc(firebaseDb, 'tracking_analytics', trackingId)
+      await setDoc(analyticsRef, analyticsData, { merge: true })
+      console.log(`[api/track-link] Successfully created analytics entry in Firebase: ${trackingId}`)
+    } catch (firebaseError) {
+      console.error('[api/track-link] Firebase insert error:', firebaseError)
+      // Don't fail the request if Firebase fails, just log it
     }
 
     // Get the full URL with domain
@@ -92,7 +141,8 @@ export async function POST(req: NextRequest) {
       success: true,
       trackingId,
       trackingLink: `${fullUrl}/track/${trackingId}`,
-      data 
+      data,
+      dualWrite: true
     })
 
   } catch (e: any) {

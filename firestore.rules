@@ -1,0 +1,17 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /pledges/{pledgeId} {
+      allow read, write: if true;
+    }
+    match /tracking_links/{linkId} {
+      allow read, write: if true;
+    }
+    match /link_clicks/{clickId} {
+      allow read, write: if true;
+    }
+    match /tracking_analytics/{analyticsId} {
+      allow read, write: if true;
+    }
+  }
+}

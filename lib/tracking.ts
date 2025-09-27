@@ -209,18 +209,42 @@ export async function trackAndRedirect(trackingId: string, baseUrl: string = '/'
 // Mark latest click for this session/tracking as converted
 export async function markConversion(pledgeId: string) {
   try {
-    if (typeof window === 'undefined') return
+    if (typeof window === 'undefined') {
+      console.log('[markConversion] Running on server side, skipping')
+      return
+    }
+    
     const sessionId = localStorage.getItem('tracking_session_id') || undefined
     const trackingId = localStorage.getItem('last_tracking_id') || undefined
-    if (!sessionId && !trackingId) return
+    
+    console.log('[markConversion] Attempting to mark conversion:', {
+      pledgeId,
+      sessionId,
+      trackingId,
+      hasSessionId: !!sessionId,
+      hasTrackingId: !!trackingId
+    })
+    
+    if (!sessionId && !trackingId) {
+      console.log('[markConversion] No session ID or tracking ID found, skipping conversion tracking')
+      return
+    }
 
-    await fetch('/api/track-conversion', {
+    const response = await fetch('/api/track-conversion', {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ sessionId, trackingId, pledgeId })
     })
+
+    if (response.ok) {
+      const result = await response.json()
+      console.log('[markConversion] Conversion marked successfully:', result)
+    } else {
+      const errorData = await response.json().catch(() => ({}))
+      console.error('[markConversion] API error:', response.status, errorData)
+    }
   } catch (e) {
-    // non-fatal
+    console.error('[markConversion] Failed to mark conversion:', e)
   }
 }
 

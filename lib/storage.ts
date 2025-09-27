@@ -1,12 +1,14 @@
 import { supabase } from './supabase'
 import { compressImageForStorage, getFileSizeKB } from './image-compression'
+import { createFirebaseServerClient } from './firebase-server'
+import { ref, uploadBytes, getDownloadURL } from 'firebase/storage'
 
 export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string> {
   try {
     // Convert Blob to File for compression
     const originalFile = new File([file], 'selfie.png', { type: 'image/png' })
     const originalSize = getFileSizeKB(originalFile)
-    
+
     // Compress image for storage (more aggressive)
     const compressedFile = await compressImageForStorage(originalFile, {
       maxSizeMB: 0.25, // ~250KB
@@ -14,46 +16,96 @@ export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string
       quality: 0.6,
       fileType: 'image/webp'
     })
-    
+
     const compressedSize = getFileSizeKB(compressedFile)
     console.log(`Selfie compression: ${originalSize}KB -> ${compressedSize}KB (${Math.round((1 - compressedSize/originalSize) * 100)}% reduction)`)
-    
-    // Upload compressed version
-    const path = `${pledgeId}.webp` // Store as WebP
-    const { error } = await supabase.storage.from('selfies').upload(path, compressedFile, {
-      upsert: true,
-      contentType: 'image/webp',
-    })
-    
-    if (error) throw error
-    const { data } = supabase.storage.from('selfies').getPublicUrl(path)
-    return data.publicUrl
+
+    // Upload to Firebase Storage only
+    const { storage } = createFirebaseServerClient()
+    const firebaseRef = ref(storage, `selfies/${pledgeId}.webp`)
+    await uploadBytes(firebaseRef, compressedFile, { contentType: 'image/webp' })
+    const firebaseUrl = await getDownloadURL(firebaseRef)
+    console.log(`[uploadSelfie] Successfully uploaded to Firebase: ${pledgeId}`)
+
+    // Update both Supabase and Firebase databases with Firebase URL
+    await supabase
+      .from('pledges')
+      .update({
+        selfie_status: 'available',
+        selfie_url: firebaseUrl
+      })
+      .eq('pledge_id', pledgeId)
+
+    // Update Firebase pledge document
+    const { db } = createFirebaseServerClient()
+    const { doc, setDoc } = await import('firebase/firestore')
+    const pledgeRef = doc(db, 'pledges', pledgeId)
+    await setDoc(pledgeRef, {
+      selfie_status: 'available',
+      selfie_url: firebaseUrl
+    }, { merge: true })
+
+    return firebaseUrl
   } catch (error) {
     console.error('Selfie compression failed, uploading original:', error)
     // Fallback to original if compression fails
-    const path = `${pledgeId}.png`
-    const { error: uploadError } = await supabase.storage.from('selfies').upload(path, file, {
-      upsert: true,
-      contentType: 'image/png',
-    })
-    if (uploadError) throw uploadError
-    const { data } = supabase.storage.from('selfies').getPublicUrl(path)
-    return data.publicUrl
+    const { storage } = createFirebaseServerClient()
+    const firebaseRef = ref(storage, `selfies/${pledgeId}.png`)
+    await uploadBytes(firebaseRef, file, { contentType: 'image/png' })
+    const firebaseUrl = await getDownloadURL(firebaseRef)
+    console.log(`[uploadSelfie] Successfully uploaded original to Firebase: ${pledgeId}`)
+
+    // Update both databases with Firebase URL
+    await supabase
+      .from('pledges')
+      .update({
+        selfie_status: 'available',
+        selfie_url: firebaseUrl
+      })
+      .eq('pledge_id', pledgeId)
+
+    // Update Firebase pledge document
+    const { db } = createFirebaseServerClient()
+    const { doc, setDoc } = await import('firebase/firestore')
+    const pledgeRef = doc(db, 'pledges', pledgeId)
+    await setDoc(pledgeRef, {
+      selfie_status: 'available',
+      selfie_url: firebaseUrl
+    }, { merge: true })
+
+    return firebaseUrl
   }
 }
 
 export async function uploadCertificatePdf(pledgeId: string, file: Blob): Promise<string> {
   // Direct upload without compression - template is already optimized
-  const path = `${pledgeId}.pdf`
-  
-  const { error } = await supabase.storage.from('certificates').upload(path, file, {
-    upsert: true,
-    contentType: 'application/pdf',
-  })
-  
-  if (error) throw error
-  const { data } = supabase.storage.from('certificates').getPublicUrl(path)
-  return data.publicUrl
+
+  // Upload to Firebase Storage only
+  const { storage } = createFirebaseServerClient()
+  const firebaseRef = ref(storage, `certificates/${pledgeId}.pdf`)
+  await uploadBytes(firebaseRef, file, { contentType: 'application/pdf' })
+  const firebaseUrl = await getDownloadURL(firebaseRef)
+  console.log(`[uploadCertificatePdf] Successfully uploaded to Firebase: ${pledgeId}`)
+
+  // Update both Supabase and Firebase databases with Firebase URL
+  await supabase
+    .from('pledges')
+    .update({
+      certificate_status: 'available',
+      certificate_pdf_url: firebaseUrl
+    })
+    .eq('pledge_id', pledgeId)
+
+  // Update Firebase pledge document
+  const { db } = createFirebaseServerClient()
+  const { doc, setDoc } = await import('firebase/firestore')
+  const pledgeRef = doc(db, 'pledges', pledgeId)
+  await setDoc(pledgeRef, {
+    certificate_status: 'available',
+    certificate_pdf_url: firebaseUrl
+  }, { merge: true })
+
+  return firebaseUrl
 }
 
 

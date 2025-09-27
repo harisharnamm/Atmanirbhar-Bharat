@@ -178,7 +178,10 @@ export default function StepConfirm({
         try {
           const { markConversion } = await import("@/lib/tracking")
           await markConversion(formattedId)
-        } catch (_) {}
+          console.log('[step-confirm] Conversion marked successfully for pledge:', formattedId)
+        } catch (error) {
+          console.error('[step-confirm] Failed to mark conversion:', error)
+        }
 
         // 5) Create tracking link after pledge is saved
         await createTrackingLinkAfterPledgeSaved()

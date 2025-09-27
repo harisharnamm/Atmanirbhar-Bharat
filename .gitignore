@@ -60,3 +60,6 @@ logs/
 
 # OS files
 Thumbs.db
+
+# User data downloads (certificates and selfies)
+downloads/
