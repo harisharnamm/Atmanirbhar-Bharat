@@ -118,14 +118,6 @@ export default function StepConfirm({
         // Store the certificate image blob for sharing/download
         setPdfBlob(certificateBlob)
 
-        // Automatically download the certificate image
-        const downloadLink = document.createElement('a')
-        downloadLink.href = certificateImageDataUrl
-        downloadLink.download = `certificate-${formattedId}.png`
-        document.body.appendChild(downloadLink)
-        downloadLink.click()
-        document.body.removeChild(downloadLink)
-
         // Store certificate data for image generation
         setCertificateData({
           id: formattedId,
@@ -196,7 +188,13 @@ export default function StepConfirm({
         // 5) Create tracking link after pledge is saved
         await createTrackingLinkAfterPledgeSaved()
 
-        // Certificate automatically downloaded above
+        // 6) Finally download the certificate image after all operations complete
+        const downloadLink = document.createElement('a')
+        downloadLink.href = certificateImageDataUrl
+        downloadLink.download = `certificate-${formattedId}.png`
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
       } finally {
