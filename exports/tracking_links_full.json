@@ -1,0 +1,4116 @@
+[
+  {
+    "id": "e2d59b83-bda3-492a-97ee-766fbb7624cb",
+    "tracking_id": "TRK-F80304",
+    "pledge_id": "AANIRBHA-2025-3US2ZH-8",
+    "original_pledge_id": "AANIRBHA-2025-3US2ZH-8",
+    "created_at": "2025-09-26T14:48:45.863523+00:00",
+    "created_by": "Sarita Sidh",
+    "metadata": {
+      "name": "Sarita Sidh",
+      "village": "Sri Dungargarh",
+      "district": "Bikaner",
+      "created_at": "2025-09-26T09:18:42.695Z",
+      "constituency": "17 Dungargarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0e970adf-777c-40f1-b0db-8cf75eb62da5",
+    "tracking_id": "TRK-2D618C",
+    "pledge_id": "AANIRBHA-2025-YBJJVF-6",
+    "original_pledge_id": "AANIRBHA-2025-YBJJVF-6",
+    "created_at": "2025-09-26T15:58:48.599193+00:00",
+    "created_by": "Surendar Dagar",
+    "metadata": {
+      "name": "Surendar Dagar",
+      "village": "Devrala ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T10:28:46.109Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8d5241d5-8c5c-4b37-90f5-00b1ccf17fbb",
+    "tracking_id": "TRK-06E614",
+    "pledge_id": "AANIRBHA-2025-KMPVDJ-7",
+    "original_pledge_id": "AANIRBHA-2025-KMPVDJ-7",
+    "created_at": "2025-09-26T16:06:49.775751+00:00",
+    "created_by": "Rajesh Jangir",
+    "metadata": {
+      "name": "Rajesh Jangir",
+      "village": "Jhanjhani ",
+      "district": "Churu",
+      "created_at": "2025-09-26T10:36:47.474Z",
+      "constituency": "20 Taranagar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f4d1b538-272a-4670-a847-957d24a08859",
+    "tracking_id": "TRK-CAC649",
+    "pledge_id": "AANIRBHA-2025-QUN3Z7-7",
+    "original_pledge_id": "AANIRBHA-2025-QUN3Z7-7",
+    "created_at": "2025-09-26T16:30:50.11487+00:00",
+    "created_by": "Rajesh",
+    "metadata": {
+      "name": "Rajesh",
+      "village": "Fatehpur",
+      "district": "Sikar",
+      "created_at": "2025-09-26T11:00:47.927Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "6070ec92-0f73-448a-a163-6528274f7e13",
+    "tracking_id": "TRK-A7A9A2",
+    "pledge_id": "AANIRBHA-2025-JX67YK-2",
+    "original_pledge_id": "AANIRBHA-2025-JX67YK-2",
+    "created_at": "2025-09-26T16:53:39.030741+00:00",
+    "created_by": "SUNIL KUMAR",
+    "metadata": {
+      "name": "SUNIL KUMAR",
+      "village": "NAPAWALI",
+      "district": "Sikar",
+      "created_at": "2025-09-26T11:23:35.660Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5dbcdfbe-40e8-49c5-8d18-2b4140dee482",
+    "tracking_id": "TRK-3968A6",
+    "pledge_id": "AANIRBHA-2025-Y4A9G6-5",
+    "original_pledge_id": "AANIRBHA-2025-Y4A9G6-5",
+    "created_at": "2025-09-26T17:15:51.792616+00:00",
+    "created_by": "Arjun singh solanki",
+    "metadata": {
+      "name": "Arjun singh solanki",
+      "village": "Sojat",
+      "district": "Pali",
+      "created_at": "2025-09-26T11:45:49.215Z",
+      "constituency": "117 Sojat (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "96efea16-3fee-4394-b787-60def71c3169",
+    "tracking_id": "TRK-61F6A2",
+    "pledge_id": "AANIRBHA-2025-E5FU3D-3",
+    "original_pledge_id": "AANIRBHA-2025-E5FU3D-3",
+    "created_at": "2025-09-26T17:41:30.897922+00:00",
+    "created_by": "Nand Lal Kumawat ",
+    "metadata": {
+      "name": "Nand Lal Kumawat ",
+      "village": "Losal",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:11:27.808Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "066614ca-161e-4b98-a45f-f978076d8c93",
+    "tracking_id": "TRK-23352D",
+    "pledge_id": "AANIRBHA-2025-4W4M73-1",
+    "original_pledge_id": "AANIRBHA-2025-4W4M73-1",
+    "created_at": "2025-09-26T17:58:00.072343+00:00",
+    "created_by": "Mool chand kumawat",
+    "metadata": {
+      "name": "Mool chand kumawat",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:27:57.521Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f160d960-58db-4877-90e2-3f265150c9d5",
+    "tracking_id": "TRK-7AA758",
+    "pledge_id": "AANIRBHA-2025-NKCWRW-3",
+    "original_pledge_id": "AANIRBHA-2025-NKCWRW-3",
+    "created_at": "2025-09-26T18:03:09.989934+00:00",
+    "created_by": "MOHIT  SHARMA",
+    "metadata": {
+      "name": "MOHIT  SHARMA",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:33:07.891Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0d0de491-98fc-4b2a-944a-62cd7874b6bf",
+    "tracking_id": "TRK-F4CA0F",
+    "pledge_id": "AANIRBHA-2025-SJXRBH-2",
+    "original_pledge_id": "AANIRBHA-2025-SJXRBH-2",
+    "created_at": "2025-09-26T18:38:50.221149+00:00",
+    "created_by": "Pramod saini",
+    "metadata": {
+      "name": "Pramod saini",
+      "village": "Laxmangsrh",
+      "district": "Sikar",
+      "created_at": "2025-09-26T13:08:47.422Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "dc1f2102-9244-4471-a518-afb6c88e3913",
+    "tracking_id": "TRK-02E359",
+    "pledge_id": "AANIRBHA-2025-42VWFA-7",
+    "original_pledge_id": "AANIRBHA-2025-42VWFA-7",
+    "created_at": "2025-09-26T19:20:28.120292+00:00",
+    "created_by": "Rahul Meena",
+    "metadata": {
+      "name": "Rahul Meena",
+      "village": "Vijayapura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T13:50:25.085Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "eae18063-2c43-416a-ac85-845095cc15b5",
+    "tracking_id": "TRK-B22A3D",
+    "pledge_id": "AANIRBHA-2025-VNP2MR-0",
+    "original_pledge_id": "AANIRBHA-2025-VNP2MR-0",
+    "created_at": "2025-09-26T20:08:29.573182+00:00",
+    "created_by": "Dinesh Kumawat ",
+    "metadata": {
+      "name": "Dinesh Kumawat ",
+      "village": "Dansroli ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:38:27.791Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d6938a9d-ad03-4e2e-b317-8ffb4f3f2a74",
+    "tracking_id": "TRK-3C3C6A",
+    "pledge_id": "AANIRBHA-2025-5BMST9-7",
+    "original_pledge_id": "AANIRBHA-2025-5BMST9-7",
+    "created_at": "2025-09-26T20:11:46.104628+00:00",
+    "created_by": "Shiv prasad tawaniya ",
+    "metadata": {
+      "name": "Shiv prasad tawaniya ",
+      "village": "Momasar bass ward no 07",
+      "district": "Bikaner",
+      "created_at": "2025-09-26T14:41:44.577Z",
+      "constituency": "17 Dungargarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "876733cf-dc37-44d5-856d-f049e8810de7",
+    "tracking_id": "TRK-AD8034",
+    "pledge_id": "AANIRBHA-2025-GMTQWT-1",
+    "original_pledge_id": "AANIRBHA-2025-GMTQWT-1",
+    "created_at": "2025-09-26T20:12:08.412812+00:00",
+    "created_by": "Uttam chand garg",
+    "metadata": {
+      "name": "Uttam chand garg",
+      "village": "Mandwala ",
+      "district": "Jalore",
+      "created_at": "2025-09-26T14:42:06.651Z",
+      "constituency": "142 Jalore (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "97d6015c-034a-4dba-9831-bae69323c470",
+    "tracking_id": "TRK-75111C",
+    "pledge_id": "AANIRBHA-2025-UCYZJJ-6",
+    "original_pledge_id": "AANIRBHA-2025-UCYZJJ-6",
+    "created_at": "2025-09-26T20:15:54.084243+00:00",
+    "created_by": "Sunil Kumar",
+    "metadata": {
+      "name": "Sunil Kumar",
+      "village": "Ajabpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:45:52.669Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e475f9e1-e7aa-4869-a29a-5828c4468212",
+    "tracking_id": "TRK-C7C23D",
+    "pledge_id": "AANIRBHA-2025-J376S3-5",
+    "original_pledge_id": "AANIRBHA-2025-J376S3-5",
+    "created_at": "2025-09-26T20:16:07.166372+00:00",
+    "created_by": "Moti singh ",
+    "metadata": {
+      "name": "Moti singh ",
+      "village": "Heerwas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:46:05.980Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "2e1d4a3a-8b4d-4ac8-a8f6-8fb532d73b7d",
+    "tracking_id": "TRK-4EF9D4",
+    "pledge_id": "AANIRBHA-2025-2V35W6-8",
+    "original_pledge_id": "AANIRBHA-2025-2V35W6-8",
+    "created_at": "2025-09-26T20:19:01.790713+00:00",
+    "created_by": "Navaratn Purohit",
+    "metadata": {
+      "name": "Navaratn Purohit",
+      "village": "Rajasthan",
+      "district": "Churu",
+      "created_at": "2025-09-26T14:48:59.955Z",
+      "constituency": "24 Sujangarh (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ed918684-7e46-434c-9a8f-c7ffb51afae4",
+    "tracking_id": "TRK-C87985",
+    "pledge_id": "AANIRBHA-2025-3WACVD-1",
+    "original_pledge_id": "AANIRBHA-2025-3WACVD-1",
+    "created_at": "2025-09-26T20:20:43.914007+00:00",
+    "created_by": "Hemraj jat",
+    "metadata": {
+      "name": "Hemraj jat",
+      "village": "Karad ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:50:42.128Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "23c26416-dcbb-44c2-8e19-d72fc5ab8c02",
+    "tracking_id": "TRK-B7DA2C",
+    "pledge_id": "AANIRBHA-2025-XJ8RSW-7",
+    "original_pledge_id": "AANIRBHA-2025-XJ8RSW-7",
+    "created_at": "2025-09-26T20:20:59.777116+00:00",
+    "created_by": "BHAGWAN SAHAY SONI",
+    "metadata": {
+      "name": "BHAGWAN SAHAY SONI",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:50:58.814Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8210bba8-cd31-4cbc-ad9d-14cbd0db91a5",
+    "tracking_id": "TRK-35693A",
+    "pledge_id": "AANIRBHA-2025-98SDTH-7",
+    "original_pledge_id": "AANIRBHA-2025-98SDTH-7",
+    "created_at": "2025-09-26T20:21:26.287336+00:00",
+    "created_by": "Ramchandar Singh ",
+    "metadata": {
+      "name": "Ramchandar Singh ",
+      "village": "Raghunathpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:51:25.349Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e1acdc38-f9da-4df6-97cc-77b9b4cffe5e",
+    "tracking_id": "TRK-6C9CE7",
+    "pledge_id": "AANIRBHA-2025-4BSXUR-3",
+    "original_pledge_id": "AANIRBHA-2025-4BSXUR-3",
+    "created_at": "2025-09-26T20:21:31.07174+00:00",
+    "created_by": "Manish sharma",
+    "metadata": {
+      "name": "Manish sharma",
+      "village": "Dansroli ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:51:29.458Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a4c31a5f-9004-41d3-b4cb-3d0b54109d83",
+    "tracking_id": "TRK-81E52B",
+    "pledge_id": "AANIRBHA-2025-YRVQQG-7",
+    "original_pledge_id": "AANIRBHA-2025-YRVQQG-7",
+    "created_at": "2025-09-26T20:28:40.379647+00:00",
+    "created_by": "MAHENDRA SINGH SHEKHAWAT ",
+    "metadata": {
+      "name": "MAHENDRA SINGH SHEKHAWAT ",
+      "village": "K.RENWAL",
+      "district": "Jaipur",
+      "created_at": "2025-09-26T14:58:38.972Z",
+      "constituency": "44 Phulera"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a2f7ece2-c171-41b3-b910-51ac9c36a5e5",
+    "tracking_id": "TRK-CC8519",
+    "pledge_id": "AANIRBHA-2025-3MHZVF-3",
+    "original_pledge_id": "AANIRBHA-2025-3MHZVF-3",
+    "created_at": "2025-09-26T20:28:42.820126+00:00",
+    "created_by": "Jeetu jangir ",
+    "metadata": {
+      "name": "Jeetu jangir ",
+      "village": "Karad ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:58:41.032Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "fac78403-5ef6-40d2-ba91-75f4e90c4a20",
+    "tracking_id": "TRK-D9BB03",
+    "pledge_id": "AANIRBHA-2025-4G62Y9-0",
+    "original_pledge_id": "AANIRBHA-2025-4G62Y9-0",
+    "created_at": "2025-09-26T20:29:26.618408+00:00",
+    "created_by": "BAJRANG LAL SHARMA ",
+    "metadata": {
+      "name": "BAJRANG LAL SHARMA ",
+      "village": "BALYA WAS ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:59:25.104Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ee226e95-9e77-44f9-a4e1-4e3a954e3996",
+    "tracking_id": "TRK-FA0060",
+    "pledge_id": "AANIRBHA-2025-U7NP8M-8",
+    "original_pledge_id": "AANIRBHA-2025-U7NP8M-8",
+    "created_at": "2025-09-26T20:30:47.267833+00:00",
+    "created_by": "Shiv prasad tawaniya ",
+    "metadata": {
+      "name": "Shiv prasad tawaniya ",
+      "village": "Momasar bass ward no 07",
+      "district": "Bikaner",
+      "created_at": "2025-09-26T15:00:45.969Z",
+      "constituency": "17 Dungargarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ecc7f9f6-af6c-4a83-8ebd-ea46e21cea9c",
+    "tracking_id": "TRK-4BCD9A",
+    "pledge_id": "AANIRBHA-2025-ZZDYE7-8",
+    "original_pledge_id": "AANIRBHA-2025-ZZDYE7-8",
+    "created_at": "2025-09-26T20:33:36.862226+00:00",
+    "created_by": " Mahipal Sisodiya",
+    "metadata": {
+      "name": " Mahipal Sisodiya",
+      "village": "Chhawani ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:03:35.703Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0a54bc31-0896-49a6-97d8-d6b67c006ce2",
+    "tracking_id": "TRK-69DD42",
+    "pledge_id": "AANIRBHA-2025-UNVXMD-9",
+    "original_pledge_id": "AANIRBHA-2025-UNVXMD-9",
+    "created_at": "2025-09-26T20:33:59.736162+00:00",
+    "created_by": "Jeetu jangir ",
+    "metadata": {
+      "name": "Jeetu jangir ",
+      "village": "Karad ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:03:57.913Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ac6e5a3f-b7e5-4dec-8339-5e158a2bbd2d",
+    "tracking_id": "TRK-B5CC5E",
+    "pledge_id": "AANIRBHA-2025-LAFDSB-5",
+    "original_pledge_id": "AANIRBHA-2025-LAFDSB-5",
+    "created_at": "2025-09-26T14:53:42.520136+00:00",
+    "created_by": "Abhishek pareek",
+    "metadata": {
+      "name": "Abhishek pareek",
+      "village": "Niwaru",
+      "district": "Jaipur",
+      "created_at": "2025-09-26T09:23:44.093Z",
+      "constituency": "46 Jhotwara"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e365e503-08f0-4799-8eee-de7d71292242",
+    "tracking_id": "TRK-228E2E",
+    "pledge_id": "AANIRBHA-2025-R9JZYD-7",
+    "original_pledge_id": "AANIRBHA-2025-R9JZYD-7",
+    "created_at": "2025-09-26T05:21:18.919811+00:00",
+    "created_by": "KESHAR RAM",
+    "metadata": {
+      "name": "KESHAR RAM",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-25T23:51:16.150Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0ccf87e8-7720-4926-b29f-193fce4323cc",
+    "tracking_id": "TRK-32FF85",
+    "pledge_id": "AANIRBHA-2025-GSB5PA-5",
+    "original_pledge_id": "AANIRBHA-2025-GSB5PA-5",
+    "created_at": "2025-09-26T06:47:58.401081+00:00",
+    "created_by": "RAMLAL SIHAG ",
+    "metadata": {
+      "name": "RAMLAL SIHAG ",
+      "village": "Udansar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T01:17:56.393Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f4145d46-d951-449f-a972-a0b20655890d",
+    "tracking_id": "TRK-ADF05B",
+    "pledge_id": "AANIRBHA-2025-693A5L-3",
+    "original_pledge_id": "AANIRBHA-2025-693A5L-3",
+    "created_at": "2025-09-26T07:06:33.671391+00:00",
+    "created_by": "Rohit saini ",
+    "metadata": {
+      "name": "Rohit saini ",
+      "village": "Fatehpur ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T01:36:32.098Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a0eb627a-fe19-46d4-a587-515ae063271f",
+    "tracking_id": "TRK-D7B0C7",
+    "pledge_id": "AANIRBHA-2025-MNGD66-9",
+    "original_pledge_id": "AANIRBHA-2025-MNGD66-9",
+    "created_at": "2025-09-26T07:13:18.836081+00:00",
+    "created_by": "Rajendra Dhukiya",
+    "metadata": {
+      "name": "Rajendra Dhukiya",
+      "village": "RJ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T01:43:16.877Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7d932f96-f244-4626-bbe8-ddbb889e78b7",
+    "tracking_id": "TRK-E35850",
+    "pledge_id": "AANIRBHA-2025-ZSQKWH-5",
+    "original_pledge_id": "AANIRBHA-2025-ZSQKWH-5",
+    "created_at": "2025-09-26T07:13:59.742869+00:00",
+    "created_by": "surendra jangir pabusar",
+    "metadata": {
+      "name": "surendra jangir pabusar",
+      "village": "Pabusar",
+      "district": "Churu",
+      "created_at": "2025-09-26T01:43:57.570Z",
+      "constituency": "21 Sardarshahar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cb2551d9-8338-411e-9c33-386fda48ffe3",
+    "tracking_id": "TRK-06CC56",
+    "pledge_id": "AANIRBHA-2025-72PTCU-8",
+    "original_pledge_id": "AANIRBHA-2025-72PTCU-8",
+    "created_at": "2025-09-26T07:17:46.956319+00:00",
+    "created_by": "Poonam rohila",
+    "metadata": {
+      "name": "Poonam rohila",
+      "village": "Shahar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T01:47:44.423Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a2c17997-c60c-4bce-841e-c136203bcb35",
+    "tracking_id": "TRK-094D15",
+    "pledge_id": "AANIRBHA-2025-VU8UQP-0",
+    "original_pledge_id": "AANIRBHA-2025-VU8UQP-0",
+    "created_at": "2025-09-26T07:44:10.045532+00:00",
+    "created_by": "Virendra singh khuddi ",
+    "metadata": {
+      "name": "Virendra singh khuddi ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T02:14:06.827Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "420255e7-70c1-418b-ba79-559bf776b397",
+    "tracking_id": "TRK-7A1ADE",
+    "pledge_id": "AANIRBHA-2025-7Y7KJN-3",
+    "original_pledge_id": "AANIRBHA-2025-7Y7KJN-3",
+    "created_at": "2025-09-26T07:54:08.559464+00:00",
+    "created_by": "mahesh pradhan ",
+    "metadata": {
+      "name": "mahesh pradhan ",
+      "village": "sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T02:24:05.785Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d68eab8e-1be4-45a9-a767-84381418e670",
+    "tracking_id": "TRK-3F7A0C",
+    "pledge_id": "AANIRBHA-2025-46NA25-9",
+    "original_pledge_id": "AANIRBHA-2025-46NA25-9",
+    "created_at": "2025-09-26T08:20:22.265339+00:00",
+    "created_by": "Sumit Joshi",
+    "metadata": {
+      "name": "Sumit Joshi",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T02:50:20.589Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "795994ed-9d0f-4c66-80f3-a358d856fe06",
+    "tracking_id": "TRK-EBC618",
+    "pledge_id": "AANIRBHA-2025-BJ6Y6J-8",
+    "original_pledge_id": "AANIRBHA-2025-BJ6Y6J-8",
+    "created_at": "2025-09-26T08:23:12.53282+00:00",
+    "created_by": "Dileep Kumar",
+    "metadata": {
+      "name": "Dileep Kumar",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T02:53:08.939Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "88fca9b7-84e4-44bc-8e03-a10215d53678",
+    "tracking_id": "TRK-860ECC",
+    "pledge_id": "AANIRBHA-2025-WRMJKU-7",
+    "original_pledge_id": "AANIRBHA-2025-WRMJKU-7",
+    "created_at": "2025-09-26T08:29:02.642228+00:00",
+    "created_by": "Dileep Kumar ",
+    "metadata": {
+      "name": "Dileep Kumar ",
+      "village": "Ramgarh ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T02:58:59.501Z",
+      "constituency": "32 Fatehpur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "aec43c3c-9fe4-429d-8aad-c4055a930471",
+    "tracking_id": "TRK-ECF31A",
+    "pledge_id": "AANIRBHA-2025-L26UPS-5",
+    "original_pledge_id": "AANIRBHA-2025-L26UPS-5",
+    "created_at": "2025-09-26T08:37:24.421384+00:00",
+    "created_by": "Hemant saini",
+    "metadata": {
+      "name": "Hemant saini",
+      "village": "Hanumangarh junction ",
+      "district": "Hanumangarh",
+      "created_at": "2025-09-26T03:07:20.872Z",
+      "constituency": "8 Hanumangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bc97b803-ed52-4a3c-a1e1-27653f164616",
+    "tracking_id": "TRK-177401",
+    "pledge_id": "AANIRBHA-2025-JQKKLN-6",
+    "original_pledge_id": "AANIRBHA-2025-JQKKLN-6",
+    "created_at": "2025-09-26T08:55:11.317474+00:00",
+    "created_by": "Manoj Kumar Sharma ",
+    "metadata": {
+      "name": "Manoj Kumar Sharma ",
+      "village": "Mirjwas",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:25:10.101Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "aa56746b-fe02-41e1-a428-21c3ba746a0e",
+    "tracking_id": "TRK-3D38C2",
+    "pledge_id": "AANIRBHA-2025-VLV3ZE-5",
+    "original_pledge_id": "AANIRBHA-2025-VLV3ZE-5",
+    "created_at": "2025-09-26T09:13:35.303573+00:00",
+    "created_by": "        Pushkar Datt Jangid",
+    "metadata": {
+      "name": "        Pushkar Datt Jangid",
+      "village": "Harjanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:43:32.007Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c0dcf1eb-d827-4e4f-af89-11f1f5afc901",
+    "tracking_id": "TRK-2088A5",
+    "pledge_id": "AANIRBHA-2025-GQTFHQ-6",
+    "original_pledge_id": "AANIRBHA-2025-GQTFHQ-6",
+    "created_at": "2025-09-26T09:21:30.63048+00:00",
+    "created_by": "TARA CHAND VERMA ",
+    "metadata": {
+      "name": "TARA CHAND VERMA ",
+      "village": "VPO. JALOOND ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:51:28.451Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5820f08b-ad63-44ae-85bf-14c6d7a77e4f",
+    "tracking_id": "TRK-36F2B5",
+    "pledge_id": "AANIRBHA-2025-JCUFJU-2",
+    "original_pledge_id": "AANIRBHA-2025-JCUFJU-2",
+    "created_at": "2025-09-26T09:23:10.379217+00:00",
+    "created_by": "SURENDRA SINGH SHEKHAWAT",
+    "metadata": {
+      "name": "SURENDRA SINGH SHEKHAWAT",
+      "village": "RJ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:53:09.134Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1b333bfb-8d2d-4c09-bfbe-0b53197598f4",
+    "tracking_id": "TRK-677C9F",
+    "pledge_id": "AANIRBHA-2025-VQ9M4R-2",
+    "original_pledge_id": "AANIRBHA-2025-VQ9M4R-2",
+    "created_at": "2025-09-26T09:28:19.073699+00:00",
+    "created_by": "Sajan singh",
+    "metadata": {
+      "name": "Sajan singh",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:58:16.304Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b547c89d-f228-4b89-a88b-fac990e91e90",
+    "tracking_id": "TRK-BB8FED",
+    "pledge_id": "AANIRBHA-2025-M62Z3Z-9",
+    "original_pledge_id": "AANIRBHA-2025-M62Z3Z-9",
+    "created_at": "2025-09-26T09:28:35.367537+00:00",
+    "created_by": "jai prakash",
+    "metadata": {
+      "name": "jai prakash",
+      "village": "Sola",
+      "district": "Sikar",
+      "created_at": "2025-09-26T03:58:33.182Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ea9aaa4d-7bca-4ed9-85bd-5c9bafb2a3c3",
+    "tracking_id": "TRK-01C6FD",
+    "pledge_id": "AANIRBHA-2025-CR4JXE-9",
+    "original_pledge_id": "AANIRBHA-2025-CR4JXE-9",
+    "created_at": "2025-09-26T10:51:59.701622+00:00",
+    "created_by": "Ankesh ",
+    "metadata": {
+      "name": "Ankesh ",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:21:56.992Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ac1908c8-a1d4-4948-93ef-55c2665b8e57",
+    "tracking_id": "TRK-AF3B8E",
+    "pledge_id": "AANIRBHA-2025-8ZXJAC-7",
+    "original_pledge_id": "AANIRBHA-2025-8ZXJAC-7",
+    "created_at": "2025-09-26T10:58:36.737712+00:00",
+    "created_by": "Vijay gandhi",
+    "metadata": {
+      "name": "Vijay gandhi",
+      "village": "Gurara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:28:34.038Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e00027a2-da81-46fa-a506-579ecce36d2e",
+    "tracking_id": "TRK-153790",
+    "pledge_id": "AANIRBHA-2025-X9M6VH-1",
+    "original_pledge_id": "AANIRBHA-2025-X9M6VH-1",
+    "created_at": "2025-09-26T11:02:20.223447+00:00",
+    "created_by": "Suresh gurjar ",
+    "metadata": {
+      "name": "Suresh gurjar ",
+      "village": "Sukhapura. Gurara khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:32:17.587Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "066d90d4-ebd1-4c72-83ca-837a8d346945",
+    "tracking_id": "TRK-D2FC87",
+    "pledge_id": "AANIRBHA-2025-BKB82D-8",
+    "original_pledge_id": "AANIRBHA-2025-BKB82D-8",
+    "created_at": "2025-09-26T11:05:30.786553+00:00",
+    "created_by": "Ashish khandelwal",
+    "metadata": {
+      "name": "Ashish khandelwal",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:35:28.178Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "383dc27a-0a67-4b2b-821a-86973d14301b",
+    "tracking_id": "TRK-6772A0",
+    "pledge_id": "AANIRBHA-2025-Y8HJFP-8",
+    "original_pledge_id": "AANIRBHA-2025-Y8HJFP-8",
+    "created_at": "2025-09-26T11:05:52.19706+00:00",
+    "created_by": "Nemi chand kumawat",
+    "metadata": {
+      "name": "Nemi chand kumawat",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:34:30.111Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0459aadd-adf5-41f1-8c5e-9033c5e8593c",
+    "tracking_id": "TRK-1F39CE",
+    "pledge_id": "AANIRBHA-2025-W29Y8F-6",
+    "original_pledge_id": "AANIRBHA-2025-W29Y8F-6",
+    "created_at": "2025-09-26T11:11:26.52935+00:00",
+    "created_by": "  Birbal Singh nitharwal",
+    "metadata": {
+      "name": "  Birbal Singh nitharwal",
+      "village": "Rings",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:41:24.738Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bf77df1d-67b7-472d-936b-b6cf9809511e",
+    "tracking_id": "TRK-027856",
+    "pledge_id": "AANIRBHA-2025-JGB9XR-5",
+    "original_pledge_id": "AANIRBHA-2025-JGB9XR-5",
+    "created_at": "2025-09-26T11:13:21.058283+00:00",
+    "created_by": "Mukesh Kumar Sain ",
+    "metadata": {
+      "name": "Mukesh Kumar Sain ",
+      "village": "Reengus ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:43:18.305Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7452f837-a5f3-4645-8086-d67265fa1aaa",
+    "tracking_id": "TRK-0C75A4",
+    "pledge_id": "AANIRBHA-2025-JG3ZLT-3",
+    "original_pledge_id": "AANIRBHA-2025-JG3ZLT-3",
+    "created_at": "2025-09-26T11:16:42.725791+00:00",
+    "created_by": "Narasi Ram saini",
+    "metadata": {
+      "name": "Narasi Ram saini",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:46:39.542Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8ae2cfdb-2cc3-4eca-8cde-9430efea5768",
+    "tracking_id": "TRK-5B6D8A",
+    "pledge_id": "AANIRBHA-2025-BRXBU9-1",
+    "original_pledge_id": "AANIRBHA-2025-BRXBU9-1",
+    "created_at": "2025-09-26T11:17:27.225486+00:00",
+    "created_by": "Amit Kumar saini ",
+    "metadata": {
+      "name": "Amit Kumar saini ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:47:24.462Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "546f6b8c-e8b5-441f-b1a7-b5be296c076f",
+    "tracking_id": "TRK-E26196",
+    "pledge_id": "AANIRBHA-2025-P2ZZAC-9",
+    "original_pledge_id": "AANIRBHA-2025-P2ZZAC-9",
+    "created_at": "2025-09-26T11:18:42.823719+00:00",
+    "created_by": "Kalu gurjar",
+    "metadata": {
+      "name": "Kalu gurjar",
+      "village": "Paniharwas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:48:40.724Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "830c0026-6fd1-4871-97c5-1f8cec48055b",
+    "tracking_id": "TRK-5A89C0",
+    "pledge_id": "AANIRBHA-2025-EQQ83N-3",
+    "original_pledge_id": "AANIRBHA-2025-EQQ83N-3",
+    "created_at": "2025-09-26T11:19:05.287224+00:00",
+    "created_by": "Narasi Ram saini",
+    "metadata": {
+      "name": "Narasi Ram saini",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:49:02.162Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5e00fdd0-bb15-479a-b1a1-6c8af124f41b",
+    "tracking_id": "TRK-5425B8",
+    "pledge_id": "AANIRBHA-2025-R56V4U-9",
+    "original_pledge_id": "AANIRBHA-2025-R56V4U-9",
+    "created_at": "2025-09-26T11:19:32.395836+00:00",
+    "created_by": "Pawan Kumar Gurjar ",
+    "metadata": {
+      "name": "Pawan Kumar Gurjar ",
+      "village": "Mamola ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:49:29.357Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "65ee1153-b238-4552-a523-9aafe6eb3147",
+    "tracking_id": "TRK-C0FFEE",
+    "pledge_id": "AANIRBHA-2025-YKWB29-1",
+    "original_pledge_id": "AANIRBHA-2025-YKWB29-1",
+    "created_at": "2025-09-26T11:19:50.103843+00:00",
+    "created_by": "Amit Kumar Saini ",
+    "metadata": {
+      "name": "Amit Kumar Saini ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:49:47.828Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7f558461-1588-4341-bd56-07de689bb8aa",
+    "tracking_id": "TRK-EEFCAB",
+    "pledge_id": "AANIRBHA-2025-DWU8JB-3",
+    "original_pledge_id": "AANIRBHA-2025-DWU8JB-3",
+    "created_at": "2025-09-26T11:21:27.947473+00:00",
+    "created_by": "bhavesh agarwal",
+    "metadata": {
+      "name": "bhavesh agarwal",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:51:25.242Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a7763726-00b3-4246-8dde-ca98abbe6d70",
+    "tracking_id": "TRK-ED8FA7",
+    "pledge_id": "AANIRBHA-2025-LYQ3GS-8",
+    "original_pledge_id": "AANIRBHA-2025-LYQ3GS-8",
+    "created_at": "2025-09-26T11:21:35.204059+00:00",
+    "created_by": "SHiVPAL Verma ",
+    "metadata": {
+      "name": "SHiVPAL Verma ",
+      "village": "Paniharwas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:51:36.205Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a9a4f1cd-b91d-4fed-a293-a9949aa07800",
+    "tracking_id": "TRK-416492",
+    "pledge_id": "AANIRBHA-2025-97C926-7",
+    "original_pledge_id": "AANIRBHA-2025-97C926-7",
+    "created_at": "2025-09-26T11:28:39.112489+00:00",
+    "created_by": "Niraj kumar sharma ",
+    "metadata": {
+      "name": "Niraj kumar sharma ",
+      "village": "Aspura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:58:37.871Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d063c89b-8b6a-4820-ab43-5e88787d3fc1",
+    "tracking_id": "TRK-853054",
+    "pledge_id": "AANIRBHA-2025-KWZGYD-7",
+    "original_pledge_id": "AANIRBHA-2025-KWZGYD-7",
+    "created_at": "2025-09-26T11:29:49.051791+00:00",
+    "created_by": "Sunil Gurjar",
+    "metadata": {
+      "name": "Sunil Gurjar",
+      "village": "Sukhpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T05:59:46.171Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7d4c2f37-c479-4cce-9b00-fe4852cfeed5",
+    "tracking_id": "TRK-372CD7",
+    "pledge_id": "AANIRBHA-2025-C4PNWA-6",
+    "original_pledge_id": "AANIRBHA-2025-C4PNWA-6",
+    "created_at": "2025-09-26T11:38:04.850032+00:00",
+    "created_by": "Ajay chouhan khandela ",
+    "metadata": {
+      "name": "Ajay chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:08:02.445Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0df425f3-0f2e-4b79-8607-b658b3b02696",
+    "tracking_id": "TRK-C3ADE2",
+    "pledge_id": "AANIRBHA-2025-5RXVN7-9",
+    "original_pledge_id": "AANIRBHA-2025-5RXVN7-9",
+    "created_at": "2025-09-26T11:47:43.593824+00:00",
+    "created_by": "Ajay chouhan khandela ",
+    "metadata": {
+      "name": "Ajay chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:17:40.389Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "18fc7f47-81b4-40a3-b253-9311e3488ac2",
+    "tracking_id": "TRK-4147AF",
+    "pledge_id": "AANIRBHA-2025-ZFHFE8-4",
+    "original_pledge_id": "AANIRBHA-2025-ZFHFE8-4",
+    "created_at": "2025-09-26T11:50:40.166337+00:00",
+    "created_by": "ankur jain",
+    "metadata": {
+      "name": "ankur jain",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:20:38.252Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "baed30b0-137a-47cb-ab20-6e7b0cec0912",
+    "tracking_id": "TRK-02A3CF",
+    "pledge_id": "AANIRBHA-2025-C845LK-6",
+    "original_pledge_id": "AANIRBHA-2025-C845LK-6",
+    "created_at": "2025-09-26T11:52:17.246072+00:00",
+    "created_by": "Ajay chouhan khandela ",
+    "metadata": {
+      "name": "Ajay chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:22:13.979Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bc6a351d-f29c-4f37-a91c-34d2974d6cc1",
+    "tracking_id": "TRK-082A44",
+    "pledge_id": "AANIRBHA-2025-7D7KHX-0",
+    "original_pledge_id": "AANIRBHA-2025-7D7KHX-0",
+    "created_at": "2025-09-26T11:53:23.214568+00:00",
+    "created_by": "Ashok Kumar",
+    "metadata": {
+      "name": "Ashok Kumar",
+      "village": "Rajasthan ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:23:21.265Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d258fd8d-087c-46a9-ae50-1c66a1adeae3",
+    "tracking_id": "TRK-C3CA0D",
+    "pledge_id": "AANIRBHA-2025-49SU6C-5",
+    "original_pledge_id": "AANIRBHA-2025-49SU6C-5",
+    "created_at": "2025-09-26T11:55:12.149001+00:00",
+    "created_by": "Ajay chouhan khandela ",
+    "metadata": {
+      "name": "Ajay chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:25:10.305Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "eaa2737c-1868-4c6f-8ed1-c7e4b1e85c60",
+    "tracking_id": "TRK-6D6894",
+    "pledge_id": "AANIRBHA-2025-8NT2H8-3",
+    "original_pledge_id": "AANIRBHA-2025-8NT2H8-3",
+    "created_at": "2025-09-26T11:57:12.876739+00:00",
+    "created_by": "Anil Kumar Maharshi ",
+    "metadata": {
+      "name": "Anil Kumar Maharshi ",
+      "village": "Srimadhopur ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:27:11.128Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1623ad82-9388-47cb-a38e-3da5465085e7",
+    "tracking_id": "TRK-EB20EE",
+    "pledge_id": "AANIRBHA-2025-9MSSRB-5",
+    "original_pledge_id": "AANIRBHA-2025-9MSSRB-5",
+    "created_at": "2025-09-26T11:57:49.486534+00:00",
+    "created_by": "Gulab Chand Soni ",
+    "metadata": {
+      "name": "Gulab Chand Soni ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:27:47.036Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5649799e-0da0-4dad-a7ba-4595b3cc2386",
+    "tracking_id": "TRK-4B1ACD",
+    "pledge_id": "AANIRBHA-2025-YKDKH7-1",
+    "original_pledge_id": "AANIRBHA-2025-YKDKH7-1",
+    "created_at": "2025-09-26T11:59:09.5582+00:00",
+    "created_by": "Kumari pinki ",
+    "metadata": {
+      "name": "Kumari pinki ",
+      "village": "Balwar khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:29:07.302Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8871dddc-5303-4adc-8972-baeafcefaaa6",
+    "tracking_id": "TRK-FECE62",
+    "pledge_id": "AANIRBHA-2025-EMU7VY-8",
+    "original_pledge_id": "AANIRBHA-2025-EMU7VY-8",
+    "created_at": "2025-09-26T12:01:27.971245+00:00",
+    "created_by": "Mangal chand gurjar",
+    "metadata": {
+      "name": "Mangal chand gurjar",
+      "village": "Gurara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:31:26.120Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b5fc460f-b7eb-4e09-bedd-47f24d714ff3",
+    "tracking_id": "TRK-4B7F78",
+    "pledge_id": "AANIRBHA-2025-52F5N7-6",
+    "original_pledge_id": "AANIRBHA-2025-52F5N7-6",
+    "created_at": "2025-09-26T12:02:05.994123+00:00",
+    "created_by": "Gulab Chand Soni",
+    "metadata": {
+      "name": "Gulab Chand Soni",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:32:03.624Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "00a65c24-f641-4e5f-8ef2-0cffdbb9e0e7",
+    "tracking_id": "TRK-F9B7D1",
+    "pledge_id": "AANIRBHA-2025-482XFQ-4",
+    "original_pledge_id": "AANIRBHA-2025-482XFQ-4",
+    "created_at": "2025-09-26T12:06:00.109119+00:00",
+    "created_by": "Birbal Nitharwal",
+    "metadata": {
+      "name": "Birbal Nitharwal",
+      "village": "Reengus",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:35:57.166Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "915fe398-be94-45d1-9243-fc6c68628530",
+    "tracking_id": "TRK-90253D",
+    "pledge_id": "AANIRBHA-2025-XQ8DFT-4",
+    "original_pledge_id": "AANIRBHA-2025-XQ8DFT-4",
+    "created_at": "2025-09-26T12:07:00.037464+00:00",
+    "created_by": "Kiran chouhan khandela ",
+    "metadata": {
+      "name": "Kiran chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:36:56.817Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "4bb62604-e8d2-4791-87a2-ac2dbec0f28a",
+    "tracking_id": "TRK-142AEC",
+    "pledge_id": "AANIRBHA-2025-EZWAE3-8",
+    "original_pledge_id": "AANIRBHA-2025-EZWAE3-8",
+    "created_at": "2025-09-26T12:12:48.8611+00:00",
+    "created_by": "Naveen Hindka",
+    "metadata": {
+      "name": "Naveen Hindka",
+      "village": "Ringas",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:42:44.782Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "76ae9eb6-0be1-4c38-a41e-35356a129c03",
+    "tracking_id": "TRK-C0446C",
+    "pledge_id": "AANIRBHA-2025-XTJG96-5",
+    "original_pledge_id": "AANIRBHA-2025-XTJG96-5",
+    "created_at": "2025-09-26T12:13:09.688431+00:00",
+    "created_by": "Abhay chouhan khandela ",
+    "metadata": {
+      "name": "Abhay chouhan khandela ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:43:06.515Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e9806bc7-b34c-4b33-907d-7ea5b5e893a2",
+    "tracking_id": "TRK-814873",
+    "pledge_id": "AANIRBHA-2025-KMSEHM-0",
+    "original_pledge_id": "AANIRBHA-2025-KMSEHM-0",
+    "created_at": "2025-09-26T12:14:20.470533+00:00",
+    "created_by": "Shri Ram saini ",
+    "metadata": {
+      "name": "Shri Ram saini ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:44:18.102Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b9894900-e68c-40a6-a119-1f1ad720e9c9",
+    "tracking_id": "TRK-F90B2D",
+    "pledge_id": "AANIRBHA-2025-HRNMJC-7",
+    "original_pledge_id": "AANIRBHA-2025-HRNMJC-7",
+    "created_at": "2025-09-26T12:17:02.648133+00:00",
+    "created_by": "  Birbal Singh nitharwal",
+    "metadata": {
+      "name": "  Birbal Singh nitharwal",
+      "village": "Ringas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:46:59.351Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8f18a247-804f-4a63-9c18-0ff1ab05082b",
+    "tracking_id": "TRK-428343",
+    "pledge_id": "AANIRBHA-2025-4D9FU3-0",
+    "original_pledge_id": "AANIRBHA-2025-4D9FU3-0",
+    "created_at": "2025-09-26T15:40:29.002654+00:00",
+    "created_by": "Dinesh Yadav",
+    "metadata": {
+      "name": "Dinesh Yadav",
+      "village": "Divrala",
+      "district": "Sikar",
+      "created_at": "2025-09-26T10:10:27.580Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "16a7e5b7-8fe5-4828-aecb-76dc333c903a",
+    "tracking_id": "TRK-57F0C1",
+    "pledge_id": "AANIRBHA-2025-2829QQ-2",
+    "original_pledge_id": "AANIRBHA-2025-2829QQ-2",
+    "created_at": "2025-09-26T12:20:24.160464+00:00",
+    "created_by": "Shivani Tiwari sumitra sharma ",
+    "metadata": {
+      "name": "Shivani Tiwari sumitra sharma ",
+      "village": "Sikar Rajasthans",
+      "district": "Sikar",
+      "created_at": "2025-09-26T06:50:20.266Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5fe1d67e-a143-45d1-a50f-2730c6726b61",
+    "tracking_id": "TRK-41EE95",
+    "pledge_id": "AANIRBHA-2025-G82BGS-4",
+    "original_pledge_id": "AANIRBHA-2025-G82BGS-4",
+    "created_at": "2025-09-26T12:32:26.200455+00:00",
+    "created_by": "Bheema ram saini",
+    "metadata": {
+      "name": "Bheema ram saini",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:02:23.411Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9664d733-c4a8-40ca-b181-d2f96fb2080f",
+    "tracking_id": "TRK-BA1C4B",
+    "pledge_id": "AANIRBHA-2025-KNG56J-2",
+    "original_pledge_id": "AANIRBHA-2025-KNG56J-2",
+    "created_at": "2025-09-26T14:18:45.014731+00:00",
+    "created_by": "Nemichand kumawat",
+    "metadata": {
+      "name": "Nemichand kumawat",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:48:43.950Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c14def42-2c1a-4585-b9c7-8456147e975f",
+    "tracking_id": "TRK-09AFC5",
+    "pledge_id": "AANIRBHA-2025-YHKMDE-7",
+    "original_pledge_id": "AANIRBHA-2025-YHKMDE-7",
+    "created_at": "2025-09-26T12:35:51.86613+00:00",
+    "created_by": "Mohammad hussain ",
+    "metadata": {
+      "name": "Mohammad hussain ",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:05:49.009Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "59d84a17-63f2-4728-9a36-1016de6b3c32",
+    "tracking_id": "TRK-E5CD90",
+    "pledge_id": "AANIRBHA-2025-WCQ2K6-1",
+    "original_pledge_id": "AANIRBHA-2025-WCQ2K6-1",
+    "created_at": "2025-09-26T12:40:15.474428+00:00",
+    "created_by": "Ashok dudhwal ",
+    "metadata": {
+      "name": "Ashok dudhwal ",
+      "village": "Doodhwalon ka bas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:10:13.822Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0600cf50-9705-4154-81e5-1edcddd2b05f",
+    "tracking_id": "TRK-253FE7",
+    "pledge_id": "AANIRBHA-2025-B9AV6R-7",
+    "original_pledge_id": "AANIRBHA-2025-B9AV6R-7",
+    "created_at": "2025-09-26T12:41:08.504432+00:00",
+    "created_by": "Manoj Kumar",
+    "metadata": {
+      "name": "Manoj Kumar",
+      "village": "Gothara Tagelan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:11:06.233Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1f8c40c2-0e8c-49c9-bf6f-cc9c7b591a1a",
+    "tracking_id": "TRK-4152D8",
+    "pledge_id": "AANIRBHA-2025-GTWL8E-0",
+    "original_pledge_id": "AANIRBHA-2025-GTWL8E-0",
+    "created_at": "2025-09-26T12:42:24.230727+00:00",
+    "created_by": "Lalit Kumar Nayak",
+    "metadata": {
+      "name": "Lalit Kumar Nayak",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:12:22.352Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e25b4462-8dd2-4a4d-92d2-8fa0c70d5b37",
+    "tracking_id": "TRK-C21C01",
+    "pledge_id": "AANIRBHA-2025-VPLSAM-4",
+    "original_pledge_id": "AANIRBHA-2025-VPLSAM-4",
+    "created_at": "2025-09-26T12:44:24.899793+00:00",
+    "created_by": "  Dinesh Kumar Sharma ",
+    "metadata": {
+      "name": "  Dinesh Kumar Sharma ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:14:21.795Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9b470894-ec3d-4668-b4f5-605f720fe9a8",
+    "tracking_id": "TRK-0EE7A4",
+    "pledge_id": "AANIRBHA-2025-4RX5MS-2",
+    "original_pledge_id": "AANIRBHA-2025-4RX5MS-2",
+    "created_at": "2025-09-26T12:50:13.211353+00:00",
+    "created_by": "Sanwar mal Mandiya",
+    "metadata": {
+      "name": "Sanwar mal Mandiya",
+      "village": "Khatundra",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:19:47.500Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c4dd34b4-6e3b-4179-a0dd-64957af2d335",
+    "tracking_id": "TRK-AD1D51",
+    "pledge_id": "AANIRBHA-2025-TE8SBQ-6",
+    "original_pledge_id": "AANIRBHA-2025-TE8SBQ-6",
+    "created_at": "2025-09-26T12:54:22.231519+00:00",
+    "created_by": "Indu sohan lal bawaria ",
+    "metadata": {
+      "name": "Indu sohan lal bawaria ",
+      "village": "Bhojpur ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:24:20.400Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "87963c28-555d-4d3c-8e70-eec0e93fea42",
+    "tracking_id": "TRK-639D52",
+    "pledge_id": "AANIRBHA-2025-EKXS7Z-7",
+    "original_pledge_id": "AANIRBHA-2025-EKXS7Z-7",
+    "created_at": "2025-09-26T12:57:26.090324+00:00",
+    "created_by": "SUBHASH BIJARNIYA",
+    "metadata": {
+      "name": "SUBHASH BIJARNIYA",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:27:21.808Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cf2f664c-bcbe-4ab7-bc3a-4ec45e49dba0",
+    "tracking_id": "TRK-4CAF39",
+    "pledge_id": "AANIRBHA-2025-H7ZFG8-1",
+    "original_pledge_id": "AANIRBHA-2025-H7ZFG8-1",
+    "created_at": "2025-09-26T13:09:25.477667+00:00",
+    "created_by": "Anil Dhinwa",
+    "metadata": {
+      "name": "Anil Dhinwa",
+      "village": "Gungara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:39:24.051Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "032946bc-fd37-467b-adc0-28c7ae9ee5ed",
+    "tracking_id": "TRK-70208F",
+    "pledge_id": "AANIRBHA-2025-TNHDMP-6",
+    "original_pledge_id": "AANIRBHA-2025-TNHDMP-6",
+    "created_at": "2025-09-26T13:11:44.343201+00:00",
+    "created_by": "RAHUL SWAMI",
+    "metadata": {
+      "name": "RAHUL SWAMI",
+      "village": "MAU",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:41:41.330Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f2fde86b-c278-4aa6-b253-fcc4bb4cafd0",
+    "tracking_id": "TRK-1E2E1A",
+    "pledge_id": "AANIRBHA-2025-BDZ6GN-4",
+    "original_pledge_id": "AANIRBHA-2025-BDZ6GN-4",
+    "created_at": "2025-09-26T13:19:36.943418+00:00",
+    "created_by": "Anil Dhinwa",
+    "metadata": {
+      "name": "Anil Dhinwa",
+      "village": "Gungara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:49:35.537Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b823b3d1-ce9c-4833-9f03-a7ef9259802d",
+    "tracking_id": "TRK-27F0F2",
+    "pledge_id": "AANIRBHA-2025-TMLESC-3",
+    "original_pledge_id": "AANIRBHA-2025-TMLESC-3",
+    "created_at": "2025-09-26T13:23:38.233865+00:00",
+    "created_by": "Sukhveer Singh Dhaka",
+    "metadata": {
+      "name": "Sukhveer Singh Dhaka",
+      "village": "Mangloona ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:53:36.888Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "6949585c-1266-45d7-914f-8144cc033fa1",
+    "tracking_id": "TRK-D23556",
+    "pledge_id": "AANIRBHA-2025-QS8HBR-7",
+    "original_pledge_id": "AANIRBHA-2025-QS8HBR-7",
+    "created_at": "2025-09-26T13:24:17.618657+00:00",
+    "created_by": "Priyanka Swami",
+    "metadata": {
+      "name": "Priyanka Swami",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:54:15.193Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "35960d4e-fd3f-4613-8d81-d3ab6315be13",
+    "tracking_id": "TRK-91AA7D",
+    "pledge_id": "AANIRBHA-2025-SXQVKA-5",
+    "original_pledge_id": "AANIRBHA-2025-SXQVKA-5",
+    "created_at": "2025-09-26T13:25:58.092318+00:00",
+    "created_by": "Hitesh Sharma Sharma",
+    "metadata": {
+      "name": "Hitesh Sharma Sharma",
+      "village": "Kurli,sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:55:55.893Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8a788d83-517e-4e71-a7f1-c368760a32b4",
+    "tracking_id": "TRK-A9C275",
+    "pledge_id": "AANIRBHA-2025-P3WTJ4-5",
+    "original_pledge_id": "AANIRBHA-2025-P3WTJ4-5",
+    "created_at": "2025-09-26T13:29:59.615836+00:00",
+    "created_by": "Anil Dhinwa",
+    "metadata": {
+      "name": "Anil Dhinwa",
+      "village": "Gungara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T07:59:58.138Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a6a1b560-b49c-44ed-a5eb-99709b10361d",
+    "tracking_id": "TRK-E7C135",
+    "pledge_id": "AANIRBHA-2025-5HS8TL-1",
+    "original_pledge_id": "AANIRBHA-2025-5HS8TL-1",
+    "created_at": "2025-09-26T13:37:07.972546+00:00",
+    "created_by": "Mukesh Kumar Gupta ",
+    "metadata": {
+      "name": "Mukesh Kumar Gupta ",
+      "village": "Gopalpura ",
+      "district": "Dausa",
+      "created_at": "2025-09-26T08:07:07.003Z",
+      "constituency": "88 Dausa"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5a7abdc3-003e-4cb4-b923-5d64b1f77509",
+    "tracking_id": "TRK-D5089E",
+    "pledge_id": "AANIRBHA-2025-R5596R-8",
+    "original_pledge_id": "AANIRBHA-2025-R5596R-8",
+    "created_at": "2025-09-26T13:37:34.775531+00:00",
+    "created_by": "Sandeep Khinchi",
+    "metadata": {
+      "name": "Sandeep Khinchi",
+      "village": "Jasrapur ",
+      "district": "Jhunjhunu",
+      "created_at": "2025-09-26T08:07:31.334Z",
+      "constituency": "31 Khetri"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9228ce39-519d-456b-a263-c287a7f9f50b",
+    "tracking_id": "TRK-1D8A09",
+    "pledge_id": "AANIRBHA-2025-R6PBUA-9",
+    "original_pledge_id": "AANIRBHA-2025-R6PBUA-9",
+    "created_at": "2025-09-26T13:40:38.557409+00:00",
+    "created_by": "Sandeep kumar khinchi",
+    "metadata": {
+      "name": "Sandeep kumar khinchi",
+      "village": "Jasrapur ",
+      "district": "Jhunjhunu",
+      "created_at": "2025-09-26T08:10:36.162Z",
+      "constituency": "31 Khetri"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "ed304129-a198-4d77-a3e8-d48fb5aa4a9e",
+    "tracking_id": "TRK-AB1E79",
+    "pledge_id": "AANIRBHA-2025-BR93A6-2",
+    "original_pledge_id": "AANIRBHA-2025-BR93A6-2",
+    "created_at": "2025-09-26T13:42:07.166145+00:00",
+    "created_by": "DINESH YADAV",
+    "metadata": {
+      "name": "DINESH YADAV",
+      "village": "Modiyadi Ajeetgarh",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:12:04.673Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f21f94c4-7551-4e0c-9ea5-22309ab371d1",
+    "tracking_id": "TRK-2C2740",
+    "pledge_id": "AANIRBHA-2025-PH668E-2",
+    "original_pledge_id": "AANIRBHA-2025-PH668E-2",
+    "created_at": "2025-09-26T13:42:58.189068+00:00",
+    "created_by": "Buddhi prakash joshi",
+    "metadata": {
+      "name": "Buddhi prakash joshi",
+      "village": "Kanwat",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:12:55.573Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "42341d66-f8eb-4831-9f3b-8ba63540738a",
+    "tracking_id": "TRK-6588FE",
+    "pledge_id": "AANIRBHA-2025-F6GGTU-2",
+    "original_pledge_id": "AANIRBHA-2025-F6GGTU-2",
+    "created_at": "2025-09-26T13:50:09.943897+00:00",
+    "created_by": "Heera lal  Kumawat",
+    "metadata": {
+      "name": "Heera lal  Kumawat",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:20:07.561Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "890792c8-5f15-467e-a40f-803322e445c6",
+    "tracking_id": "TRK-5FDD3E",
+    "pledge_id": "AANIRBHA-2025-BLB3Y6-9",
+    "original_pledge_id": "AANIRBHA-2025-BLB3Y6-9",
+    "created_at": "2025-09-26T13:53:18.817896+00:00",
+    "created_by": "Dinesh Kumar pachar ",
+    "metadata": {
+      "name": "Dinesh Kumar pachar ",
+      "village": "Dugoli ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:23:16.831Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bf449cc7-923a-4284-849c-440b2d86dd99",
+    "tracking_id": "TRK-767C6A",
+    "pledge_id": "AANIRBHA-2025-H2UVAV-1",
+    "original_pledge_id": "AANIRBHA-2025-H2UVAV-1",
+    "created_at": "2025-09-26T13:54:26.443281+00:00",
+    "created_by": "Heera lal Kumawat",
+    "metadata": {
+      "name": "Heera lal Kumawat",
+      "village": "Ward no. 21 sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:24:24.507Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d48ed5ea-7d4e-401b-9c36-e70f9c175fbe",
+    "tracking_id": "TRK-FFF10B",
+    "pledge_id": "AANIRBHA-2025-X4RENB-2",
+    "original_pledge_id": "AANIRBHA-2025-X4RENB-2",
+    "created_at": "2025-09-26T14:04:49.3019+00:00",
+    "created_by": "Vinod Kumar Saini ",
+    "metadata": {
+      "name": "Vinod Kumar Saini ",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T08:34:47.240Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7357ccb5-503f-44fa-b639-95f64e4c6567",
+    "tracking_id": "TRK-81D23C",
+    "pledge_id": "AANIRBHA-2025-KVC89Z-8",
+    "original_pledge_id": "AANIRBHA-2025-KVC89Z-8",
+    "created_at": "2025-09-26T14:46:39.611573+00:00",
+    "created_by": "Omprakash saini ",
+    "metadata": {
+      "name": "Omprakash saini ",
+      "village": "Dayara",
+      "district": "Sikar",
+      "created_at": "2025-09-26T09:16:37.564Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b764bbd3-edc3-48c9-8c36-1eb057333c90",
+    "tracking_id": "TRK-0C8D58",
+    "pledge_id": "AANIRBHA-2025-BVMNRJ-0",
+    "original_pledge_id": "AANIRBHA-2025-BVMNRJ-0",
+    "created_at": "2025-09-26T15:05:27.510568+00:00",
+    "created_by": "MUKESH KUMAR",
+    "metadata": {
+      "name": "MUKESH KUMAR",
+      "village": "Charan ki Dhani ",
+      "district": "Jhunjhunu",
+      "created_at": "2025-09-26T09:35:22.740Z",
+      "constituency": "29 Nawalgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "68e811e8-2d91-4ca8-a91e-0d6b20a425ac",
+    "tracking_id": "TRK-DB7DF9",
+    "pledge_id": "AANIRBHA-2025-QF3WK6-5",
+    "original_pledge_id": "AANIRBHA-2025-QF3WK6-5",
+    "created_at": "2025-09-26T15:41:59.567017+00:00",
+    "created_by": "Dr neki ram arya",
+    "metadata": {
+      "name": "Dr neki ram arya",
+      "village": "Barsinghpura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T10:11:57.065Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "779a609b-ffab-423e-8e86-a692564a0f9e",
+    "tracking_id": "TRK-423E1C",
+    "pledge_id": "AANIRBHA-2025-YGXZ6G-0",
+    "original_pledge_id": "AANIRBHA-2025-YGXZ6G-0",
+    "created_at": "2025-09-26T16:02:12.446399+00:00",
+    "created_by": "Rajesh Jangir",
+    "metadata": {
+      "name": "Rajesh Jangir",
+      "village": "Jhanjhani ",
+      "district": "Churu",
+      "created_at": "2025-09-26T10:32:09.380Z",
+      "constituency": "20 Taranagar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a4aa91cd-f660-44c3-b043-28f671132f42",
+    "tracking_id": "TRK-755AE0",
+    "pledge_id": "AANIRBHA-2025-6J59NB-9",
+    "original_pledge_id": "AANIRBHA-2025-6J59NB-9",
+    "created_at": "2025-09-26T16:15:07.384025+00:00",
+    "created_by": "Ca Ankit Agrawal",
+    "metadata": {
+      "name": "Ca Ankit Agrawal",
+      "village": "Piprali ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T10:45:04.928Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "4112570d-9b19-4a1a-bd40-191e3a534a63",
+    "tracking_id": "TRK-F9CE99",
+    "pledge_id": "AANIRBHA-2025-VJV79C-2",
+    "original_pledge_id": "AANIRBHA-2025-VJV79C-2",
+    "created_at": "2025-09-26T16:44:11.614285+00:00",
+    "created_by": "Dr Ranjeet Kumar Bagariya",
+    "metadata": {
+      "name": "Dr Ranjeet Kumar Bagariya",
+      "village": "Karanpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T11:14:09.978Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f3a621e5-2cea-4cea-9245-526df2d46041",
+    "tracking_id": "TRK-C5FB67",
+    "pledge_id": "AANIRBHA-2025-XPLDAD-2",
+    "original_pledge_id": "AANIRBHA-2025-XPLDAD-2",
+    "created_at": "2025-09-26T17:14:42.850396+00:00",
+    "created_by": "Lalit Panwar",
+    "metadata": {
+      "name": "Lalit Panwar",
+      "village": "Lachhmangarh ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T11:44:40.012Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "004d0717-a673-4a25-8e1a-2d1ca5f72005",
+    "tracking_id": "TRK-DC43CD",
+    "pledge_id": "AANIRBHA-2025-GNLJR9-5",
+    "original_pledge_id": "AANIRBHA-2025-GNLJR9-5",
+    "created_at": "2025-09-26T17:39:14.605616+00:00",
+    "created_by": "Prem sotra",
+    "metadata": {
+      "name": "Prem sotra",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:09:12.927Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9473923c-feb0-42d7-a95f-ed73008712db",
+    "tracking_id": "TRK-BE63A5",
+    "pledge_id": "AANIRBHA-2025-QVSERS-1",
+    "original_pledge_id": "AANIRBHA-2025-QVSERS-1",
+    "created_at": "2025-09-26T17:43:56.105664+00:00",
+    "created_by": "Prem siehotra",
+    "metadata": {
+      "name": "Prem siehotra",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:13:54.440Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "36803f55-02c8-43f5-a7e3-a1e843f74a7d",
+    "tracking_id": "TRK-B8CA1C",
+    "pledge_id": "AANIRBHA-2025-K8TLCD-3",
+    "original_pledge_id": "AANIRBHA-2025-K8TLCD-3",
+    "created_at": "2025-09-26T18:01:07.335335+00:00",
+    "created_by": " Naveen Bagaria ",
+    "metadata": {
+      "name": " Naveen Bagaria ",
+      "village": "Fadanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:31:04.788Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "93c6b39e-43a3-4695-9ecb-0afed048d709",
+    "tracking_id": "TRK-831BC0",
+    "pledge_id": "AANIRBHA-2025-GTR9SR-6",
+    "original_pledge_id": "AANIRBHA-2025-GTR9SR-6",
+    "created_at": "2025-09-26T18:07:46.376946+00:00",
+    "created_by": "MOHIT  SHARMA ",
+    "metadata": {
+      "name": "MOHIT  SHARMA ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T12:37:44.012Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0cfc981c-139f-4aa1-aed5-628edcc00a52",
+    "tracking_id": "TRK-050443",
+    "pledge_id": "AANIRBHA-2025-BD57MB-2",
+    "original_pledge_id": "AANIRBHA-2025-BD57MB-2",
+    "created_at": "2025-09-26T19:04:07.744918+00:00",
+    "created_by": "Rajendra Dhukiya ",
+    "metadata": {
+      "name": "Rajendra Dhukiya ",
+      "village": "Pipli",
+      "district": "Sikar",
+      "created_at": "2025-09-26T13:34:06.258Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b47dd8d9-1df1-4796-9082-fd7fd4855385",
+    "tracking_id": "TRK-4975B9",
+    "pledge_id": "AANIRBHA-2025-CE32BL-6",
+    "original_pledge_id": "AANIRBHA-2025-CE32BL-6",
+    "created_at": "2025-09-26T19:32:42.131246+00:00",
+    "created_by": "  Rajesh Nayak",
+    "metadata": {
+      "name": "  Rajesh Nayak",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:02:40.553Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1cf4806c-d3c1-42ee-828e-b12379f98246",
+    "tracking_id": "TRK-1736E5",
+    "pledge_id": "AANIRBHA-2025-AJRXGQ-8",
+    "original_pledge_id": "AANIRBHA-2025-AJRXGQ-8",
+    "created_at": "2025-09-26T20:09:24.154757+00:00",
+    "created_by": "Ramkhilari Meena ",
+    "metadata": {
+      "name": "Ramkhilari Meena ",
+      "village": "Barhnondpura ",
+      "district": "Dausa",
+      "created_at": "2025-09-26T14:39:20.533Z",
+      "constituency": "89 Lalsot (ST)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cd036451-f837-44a3-9d4d-da167431d52d",
+    "tracking_id": "TRK-337A69",
+    "pledge_id": "AANIRBHA-2025-FCP9EW-7",
+    "original_pledge_id": "AANIRBHA-2025-FCP9EW-7",
+    "created_at": "2025-09-26T20:13:38.425993+00:00",
+    "created_by": "Subhash chand kumawat",
+    "metadata": {
+      "name": "Subhash chand kumawat",
+      "village": "32",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:43:35.961Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9c3b2cd9-d499-4054-ad6d-2a2364a75d2b",
+    "tracking_id": "TRK-A67245",
+    "pledge_id": "AANIRBHA-2025-MSAALQ-4",
+    "original_pledge_id": "AANIRBHA-2025-MSAALQ-4",
+    "created_at": "2025-09-26T20:17:31.36219+00:00",
+    "created_by": "Raghuveer singh",
+    "metadata": {
+      "name": "Raghuveer singh",
+      "village": "Rajeshthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:47:28.646Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "85eab522-8e49-459b-ae09-3377eb0f56d9",
+    "tracking_id": "TRK-DF0CD6",
+    "pledge_id": "AANIRBHA-2025-SAETLV-0",
+    "original_pledge_id": "AANIRBHA-2025-SAETLV-0",
+    "created_at": "2025-09-26T20:17:57.736666+00:00",
+    "created_by": "Rajkumar",
+    "metadata": {
+      "name": "Rajkumar",
+      "village": "Dansroli",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:47:56.436Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "14b8bac0-5b19-4723-a0da-da29ac4652e7",
+    "tracking_id": "TRK-1B4E9D",
+    "pledge_id": "AANIRBHA-2025-ETDB5Q-8",
+    "original_pledge_id": "AANIRBHA-2025-ETDB5Q-8",
+    "created_at": "2025-09-26T20:24:00.589719+00:00",
+    "created_by": "Vijendra Singh SHEKHAWAT ",
+    "metadata": {
+      "name": "Vijendra Singh SHEKHAWAT ",
+      "village": "Karad , Datarmgadh ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T14:53:59.143Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "271db181-15e5-4a94-b3ad-96088c583478",
+    "tracking_id": "TRK-E96390",
+    "pledge_id": "AANIRBHA-2025-L78YWD-8",
+    "original_pledge_id": "AANIRBHA-2025-L78YWD-8",
+    "created_at": "2025-09-26T20:30:15.283078+00:00",
+    "created_by": "Ramsahay Choudhary ",
+    "metadata": {
+      "name": "Ramsahay Choudhary ",
+      "village": "Khatushyamji ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:00:14.230Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b3abc4f3-34f7-4315-9ce5-e53d47caf7d1",
+    "tracking_id": "TRK-37DC31",
+    "pledge_id": "AANIRBHA-2025-YULYW9-0",
+    "original_pledge_id": "AANIRBHA-2025-YULYW9-0",
+    "created_at": "2025-09-26T20:32:41.103779+00:00",
+    "created_by": "Naman Agarwal",
+    "metadata": {
+      "name": "Naman Agarwal",
+      "village": "Khatu shyam ji",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:02:39.249Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "09f4799c-b594-4278-9c17-2b41bc1d7ed1",
+    "tracking_id": "TRK-354C74",
+    "pledge_id": "AANIRBHA-2025-QNSFM9-3",
+    "original_pledge_id": "AANIRBHA-2025-QNSFM9-3",
+    "created_at": "2025-09-26T20:34:56.870657+00:00",
+    "created_by": "Mahipal Singh Shekhawat ",
+    "metadata": {
+      "name": "Mahipal Singh Shekhawat ",
+      "village": "Kailash ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:04:54.875Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "91cafc63-657c-4079-b1e0-9be26cb26ec7",
+    "tracking_id": "TRK-9E2A5B",
+    "pledge_id": "AANIRBHA-2025-8LSQTY-6",
+    "original_pledge_id": "AANIRBHA-2025-8LSQTY-6",
+    "created_at": "2025-09-26T20:36:08.791251+00:00",
+    "created_by": "Ramesh singh inda",
+    "metadata": {
+      "name": "Ramesh singh inda",
+      "village": "Laxmi nagar barmer",
+      "district": "Barmer",
+      "created_at": "2025-09-26T15:06:06.080Z",
+      "constituency": "135 Barmer"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3002a225-4b35-41f5-8665-fbc6fb4c1cb3",
+    "tracking_id": "TRK-4A3A51",
+    "pledge_id": "AANIRBHA-2025-ZJLVBX-7",
+    "original_pledge_id": "AANIRBHA-2025-ZJLVBX-7",
+    "created_at": "2025-09-26T20:36:19.06948+00:00",
+    "created_by": "sanjay pareek ",
+    "metadata": {
+      "name": "sanjay pareek ",
+      "village": "khatu shyam",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:06:18.152Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "169aeb01-653a-4194-b8dd-f795a2c01084",
+    "tracking_id": "TRK-35B88B",
+    "pledge_id": "AANIRBHA-2025-MCTGB6-6",
+    "original_pledge_id": "AANIRBHA-2025-MCTGB6-6",
+    "created_at": "2025-09-26T20:38:38.540276+00:00",
+    "created_by": "Ashok gurjar",
+    "metadata": {
+      "name": "Ashok gurjar",
+      "village": "Sevli",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:08:38.410Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "24c54b24-0afa-4342-baa1-6f6c1e9afac3",
+    "tracking_id": "TRK-DC6ECE",
+    "pledge_id": "AANIRBHA-2025-7KCQXB-9",
+    "original_pledge_id": "AANIRBHA-2025-7KCQXB-9",
+    "created_at": "2025-09-26T20:39:14.172334+00:00",
+    "created_by": "Sonu Soni ",
+    "metadata": {
+      "name": "Sonu Soni ",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:09:12.160Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3d4ea54c-ba99-4bfd-9cec-919d2c8bb5e5",
+    "tracking_id": "TRK-820BAF",
+    "pledge_id": "AANIRBHA-2025-29ZA48-7",
+    "original_pledge_id": "AANIRBHA-2025-29ZA48-7",
+    "created_at": "2025-09-26T20:46:54.35782+00:00",
+    "created_by": "Sita Ram Paraswal",
+    "metadata": {
+      "name": "Sita Ram Paraswal",
+      "village": "Amanipura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:16:52.928Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b8b13b55-f03c-41a7-b86c-074969c80ae4",
+    "tracking_id": "TRK-F4F617",
+    "pledge_id": "AANIRBHA-2025-DHUM53-3",
+    "original_pledge_id": "AANIRBHA-2025-DHUM53-3",
+    "created_at": "2025-09-26T20:47:26.660778+00:00",
+    "created_by": "Mhavir ",
+    "metadata": {
+      "name": "Mhavir ",
+      "village": "Dhirjpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:17:24.700Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "6b2d927b-e7ff-4229-85a7-dd75cc280e5f",
+    "tracking_id": "TRK-0DD16D",
+    "pledge_id": "AANIRBHA-2025-QUUK8Y-8",
+    "original_pledge_id": "AANIRBHA-2025-QUUK8Y-8",
+    "created_at": "2025-09-26T20:53:09.224954+00:00",
+    "created_by": "Jagdish Prasad jat ",
+    "metadata": {
+      "name": "Jagdish Prasad jat ",
+      "village": "Rajpura nosal",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:23:07.211Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "6b9e64ad-f3c2-43e5-a82e-3f89fe2fbe6a",
+    "tracking_id": "TRK-4BE44B",
+    "pledge_id": "AANIRBHA-2025-B3HX49-3",
+    "original_pledge_id": "AANIRBHA-2025-B3HX49-3",
+    "created_at": "2025-09-26T20:56:37.871824+00:00",
+    "created_by": "Umesh Sharma ",
+    "metadata": {
+      "name": "Umesh Sharma ",
+      "village": "Jaipur ",
+      "district": "Jaipur",
+      "created_at": "2025-09-26T15:26:37.143Z",
+      "constituency": "46 Jhotwara"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cbfa8215-a302-4703-9459-79e324602b34",
+    "tracking_id": "TRK-E1E40D",
+    "pledge_id": "AANIRBHA-2025-P6A6LB-2",
+    "original_pledge_id": "AANIRBHA-2025-P6A6LB-2",
+    "created_at": "2025-09-26T21:02:41.741419+00:00",
+    "created_by": "Dhirendra Singh",
+    "metadata": {
+      "name": "Dhirendra Singh",
+      "village": "Tarpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:32:39.471Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3e787aa3-b52b-4055-83c5-6d0a9c84e461",
+    "tracking_id": "TRK-FF579B",
+    "pledge_id": "AANIRBHA-2025-ES2UFQ-5",
+    "original_pledge_id": "AANIRBHA-2025-ES2UFQ-5",
+    "created_at": "2025-09-26T21:07:15.722385+00:00",
+    "created_by": "Dhirendra Singh",
+    "metadata": {
+      "name": "Dhirendra Singh",
+      "village": "Tarpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:37:14.010Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "06b5646c-264d-49c3-8c62-399a2af36a28",
+    "tracking_id": "TRK-CBC513",
+    "pledge_id": "AANIRBHA-2025-YB2QB3-0",
+    "original_pledge_id": "AANIRBHA-2025-YB2QB3-0",
+    "created_at": "2025-09-26T21:14:24.290113+00:00",
+    "created_by": "Anil kumar sharma Advocate ",
+    "metadata": {
+      "name": "Anil kumar sharma Advocate ",
+      "village": "Umara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:44:23.180Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f9c39118-3ddb-4bfe-a197-7c8e8820c531",
+    "tracking_id": "TRK-A75FEC",
+    "pledge_id": "AANIRBHA-2025-F6CX4A-3",
+    "original_pledge_id": "AANIRBHA-2025-F6CX4A-3",
+    "created_at": "2025-09-26T21:18:20.113838+00:00",
+    "created_by": "BABU LAL BAJIYA",
+    "metadata": {
+      "name": "BABU LAL BAJIYA",
+      "village": "RAJASTHAN",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:48:17.826Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "743b357f-466a-46c5-a5fd-2e0dc055bc98",
+    "tracking_id": "TRK-96588B",
+    "pledge_id": "AANIRBHA-2025-MGX2CS-3",
+    "original_pledge_id": "AANIRBHA-2025-MGX2CS-3",
+    "created_at": "2025-09-26T21:23:51.078175+00:00",
+    "created_by": "Abhishek Gaur ",
+    "metadata": {
+      "name": "Abhishek Gaur ",
+      "village": "Mandha ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:53:48.878Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b65cc6c4-da15-430f-aab9-6bc57a6cd464",
+    "tracking_id": "TRK-6C6A69",
+    "pledge_id": "AANIRBHA-2025-UPAS2Y-9",
+    "original_pledge_id": "AANIRBHA-2025-UPAS2Y-9",
+    "created_at": "2025-09-26T21:25:34.750959+00:00",
+    "created_by": "Anil kumar sharma Advocate ",
+    "metadata": {
+      "name": "Anil kumar sharma Advocate ",
+      "village": "Umara ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:55:33.819Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "35c148d5-63a0-4b4c-b5bb-05ec39428fa3",
+    "tracking_id": "TRK-03A7E6",
+    "pledge_id": "AANIRBHA-2025-MKSYFR-3",
+    "original_pledge_id": "AANIRBHA-2025-MKSYFR-3",
+    "created_at": "2025-09-26T21:29:39.345906+00:00",
+    "created_by": "Sushil Kumar Sharma ",
+    "metadata": {
+      "name": "Sushil Kumar Sharma ",
+      "village": "Bhordo ka bas",
+      "district": "Sikar",
+      "created_at": "2025-09-26T15:59:38.457Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3d4044e4-5b56-4f4a-a558-52d097bb9323",
+    "tracking_id": "TRK-2A0E64",
+    "pledge_id": "AANIRBHA-2025-GP376S-1",
+    "original_pledge_id": "AANIRBHA-2025-GP376S-1",
+    "created_at": "2025-09-26T21:35:31.817071+00:00",
+    "created_by": "GAJANAND KUMAWAT",
+    "metadata": {
+      "name": "GAJANAND KUMAWAT",
+      "village": "VAID KI DHANI ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:05:30.258Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "16f411cf-ae27-4d32-a83b-e943ce3cc5b3",
+    "tracking_id": "TRK-F008DF",
+    "pledge_id": "AANIRBHA-2025-L5TQ4D-1",
+    "original_pledge_id": "AANIRBHA-2025-L5TQ4D-1",
+    "created_at": "2025-09-26T21:37:01.578227+00:00",
+    "created_by": "Hukam Singh Apawat ",
+    "metadata": {
+      "name": "Hukam Singh Apawat ",
+      "village": "Bartu karera road Bhim post-bhim",
+      "district": "Rajsamand",
+      "created_at": "2025-09-26T16:06:58.425Z",
+      "constituency": "173 Bhim"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bafbcd1e-d9a6-4cb7-be60-b7bfb8ee3efd",
+    "tracking_id": "TRK-B2E4AC",
+    "pledge_id": "AANIRBHA-2025-J4A9H4-9",
+    "original_pledge_id": "AANIRBHA-2025-J4A9H4-9",
+    "created_at": "2025-09-26T21:51:12.961654+00:00",
+    "created_by": "MADAN BENIWAL ",
+    "metadata": {
+      "name": "MADAN BENIWAL ",
+      "village": "SHARPURA",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:21:09.406Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "4f631724-f6d0-4cd9-9755-ac35cf2a2fe6",
+    "tracking_id": "TRK-E2B948",
+    "pledge_id": "AANIRBHA-2025-CY9XGM-6",
+    "original_pledge_id": "AANIRBHA-2025-CY9XGM-6",
+    "created_at": "2025-09-26T21:58:45.28459+00:00",
+    "created_by": "Jagdish prasad sesma",
+    "metadata": {
+      "name": "Jagdish prasad sesma",
+      "village": "Rajpura Nosal",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:28:43.879Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "4e6e6aa2-93db-4d76-81a8-a38f279612b9",
+    "tracking_id": "TRK-B47863",
+    "pledge_id": "AANIRBHA-2025-9BF8CC-0",
+    "original_pledge_id": "AANIRBHA-2025-9BF8CC-0",
+    "created_at": "2025-09-26T22:01:16.577187+00:00",
+    "created_by": "Manoj Kumar ",
+    "metadata": {
+      "name": "Manoj Kumar ",
+      "village": "Vaid ki Dhani ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:31:15.012Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "37a8ee00-08bb-4f05-b2ec-8d9e86a5c470",
+    "tracking_id": "TRK-A3EB90",
+    "pledge_id": "AANIRBHA-2025-59N7F9-7",
+    "original_pledge_id": "AANIRBHA-2025-59N7F9-7",
+    "created_at": "2025-09-26T22:06:12.811735+00:00",
+    "created_by": "SANWAR GURJAR ",
+    "metadata": {
+      "name": "SANWAR GURJAR ",
+      "village": "BHARIJA ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:36:10.501Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1e670c47-bcf8-43dd-9cbc-38363cc51b9d",
+    "tracking_id": "TRK-6108FB",
+    "pledge_id": "AANIRBHA-2025-XMGR7K-5",
+    "original_pledge_id": "AANIRBHA-2025-XMGR7K-5",
+    "created_at": "2025-09-26T22:07:05.058878+00:00",
+    "created_by": "AJAY KUMAR SHARMA",
+    "metadata": {
+      "name": "AJAY KUMAR SHARMA",
+      "village": "Balywash ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:37:04.070Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a4b8fd1c-b9f2-48a8-854e-4163c9b438ae",
+    "tracking_id": "TRK-29DFBA",
+    "pledge_id": "AANIRBHA-2025-9MLL4Z-5",
+    "original_pledge_id": "AANIRBHA-2025-9MLL4Z-5",
+    "created_at": "2025-09-26T22:09:45.360459+00:00",
+    "created_by": "MUKESH kumar sharma ",
+    "metadata": {
+      "name": "MUKESH kumar sharma ",
+      "village": "Khachariawas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:39:43.469Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0382ffe3-733f-478e-b830-4764efe0c617",
+    "tracking_id": "TRK-A964E1",
+    "pledge_id": "AANIRBHA-2025-JMVPPS-7",
+    "original_pledge_id": "AANIRBHA-2025-JMVPPS-7",
+    "created_at": "2025-09-26T22:09:56.597104+00:00",
+    "created_by": "Radhakishan Goyal",
+    "metadata": {
+      "name": "Radhakishan Goyal",
+      "village": "Palsana",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:39:55.619Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "179e1ffa-37e7-4365-9986-64a3515a7caf",
+    "tracking_id": "TRK-6A8843",
+    "pledge_id": "AANIRBHA-2025-AHCVKD-0",
+    "original_pledge_id": "AANIRBHA-2025-AHCVKD-0",
+    "created_at": "2025-09-26T22:10:33.825091+00:00",
+    "created_by": " sagarmal moond ",
+    "metadata": {
+      "name": " sagarmal moond ",
+      "village": "Bjp",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:40:31.417Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7c493926-e392-4cb7-8ecb-8a18992eeddb",
+    "tracking_id": "TRK-925194",
+    "pledge_id": "AANIRBHA-2025-6TGVF7-7",
+    "original_pledge_id": "AANIRBHA-2025-6TGVF7-7",
+    "created_at": "2025-09-26T22:11:35.412805+00:00",
+    "created_by": "Surender sharma",
+    "metadata": {
+      "name": "Surender sharma",
+      "village": "Sinwer",
+      "district": "Jaipur",
+      "created_at": "2025-09-26T16:41:33.587Z",
+      "constituency": "46 Jhotwara"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9725cc24-0300-4390-8ed5-3f8f53e51d85",
+    "tracking_id": "TRK-589C97",
+    "pledge_id": "AANIRBHA-2025-C88SAY-3",
+    "original_pledge_id": "AANIRBHA-2025-C88SAY-3",
+    "created_at": "2025-09-26T22:15:28.822561+00:00",
+    "created_by": "Manish yogi",
+    "metadata": {
+      "name": "Manish yogi",
+      "village": "Madni Manda",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:45:27.567Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "72e510f2-1f12-4143-b7b1-efff7a1fe73e",
+    "tracking_id": "TRK-430647",
+    "pledge_id": "AANIRBHA-2025-ZYQX6T-3",
+    "original_pledge_id": "AANIRBHA-2025-ZYQX6T-3",
+    "created_at": "2025-09-26T22:16:30.827018+00:00",
+    "created_by": "Babulal Haldunia ",
+    "metadata": {
+      "name": "Babulal Haldunia ",
+      "village": "Khachariawas ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:46:29.827Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "13ba3a3b-4e3c-49be-961a-2f9fa3606d69",
+    "tracking_id": "TRK-0C3E39",
+    "pledge_id": "AANIRBHA-2025-R4MXWP-3",
+    "original_pledge_id": "AANIRBHA-2025-R4MXWP-3",
+    "created_at": "2025-09-26T22:16:41.010259+00:00",
+    "created_by": "Subhash Kumar",
+    "metadata": {
+      "name": "Subhash Kumar",
+      "village": "RJ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:46:38.584Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a048b565-5383-4938-bfb2-5fe0ab54c1fc",
+    "tracking_id": "TRK-7E7E2C",
+    "pledge_id": "AANIRBHA-2025-R6TNBB-7",
+    "original_pledge_id": "AANIRBHA-2025-R6TNBB-7",
+    "created_at": "2025-09-26T22:18:01.278496+00:00",
+    "created_by": "Suresh Pareek",
+    "metadata": {
+      "name": "Suresh Pareek",
+      "village": "Danta ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:47:59.877Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "55c2c9ab-e7c6-4ba5-a168-a1522e688feb",
+    "tracking_id": "TRK-3992D4",
+    "pledge_id": "AANIRBHA-2025-XERDM6-5",
+    "original_pledge_id": "AANIRBHA-2025-XERDM6-5",
+    "created_at": "2025-09-26T22:18:47.047554+00:00",
+    "created_by": "Mukesh Bijarniya ",
+    "metadata": {
+      "name": "Mukesh Bijarniya ",
+      "village": "Rooppur ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:48:46.685Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f03ea9bc-1e33-49ff-b621-c8def3d3d46d",
+    "tracking_id": "TRK-BBCED4",
+    "pledge_id": "AANIRBHA-2025-ZVN39G-0",
+    "original_pledge_id": "AANIRBHA-2025-ZVN39G-0",
+    "created_at": "2025-09-26T22:20:40.005003+00:00",
+    "created_by": "Deepak yogi",
+    "metadata": {
+      "name": "Deepak yogi",
+      "village": "Jhamawash ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:50:38.947Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7dafc30c-c351-4c60-a281-12a386f000c3",
+    "tracking_id": "TRK-254BC6",
+    "pledge_id": "AANIRBHA-2025-STTPEZ-7",
+    "original_pledge_id": "AANIRBHA-2025-STTPEZ-7",
+    "created_at": "2025-09-26T22:23:06.075335+00:00",
+    "created_by": "Sandeep kumawat ",
+    "metadata": {
+      "name": "Sandeep kumawat ",
+      "village": "Vaid ki dhani ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:53:02.390Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3a3d2db9-49bc-482a-9f71-52dfb928e7f9",
+    "tracking_id": "TRK-198B20",
+    "pledge_id": "AANIRBHA-2025-PLSJBF-6",
+    "original_pledge_id": "AANIRBHA-2025-PLSJBF-6",
+    "created_at": "2025-09-26T22:23:56.185432+00:00",
+    "created_by": "Santosh saini ",
+    "metadata": {
+      "name": "Santosh saini ",
+      "village": "Dantaramgarh ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:53:54.363Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "47c55f5f-d9fb-498c-8dfd-d69fa883ed78",
+    "tracking_id": "TRK-0380F1",
+    "pledge_id": "AANIRBHA-2025-3BKEYP-7",
+    "original_pledge_id": "AANIRBHA-2025-3BKEYP-7",
+    "created_at": "2025-09-26T22:25:30.559743+00:00",
+    "created_by": "  Bajrang Lal jat",
+    "metadata": {
+      "name": "  Bajrang Lal jat",
+      "village": "Amaanipura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:55:28.501Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b608063e-eaf3-46de-ba06-0679fcc98881",
+    "tracking_id": "TRK-A5EAEC",
+    "pledge_id": "AANIRBHA-2025-DFDVHX-9",
+    "original_pledge_id": "AANIRBHA-2025-DFDVHX-9",
+    "created_at": "2025-09-26T22:29:16.935625+00:00",
+    "created_by": "Rampal yogi ",
+    "metadata": {
+      "name": "Rampal yogi ",
+      "village": "Madni",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:59:15.405Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3cdba08e-b049-4588-ae6f-b20c587ecdc6",
+    "tracking_id": "TRK-4EB85B",
+    "pledge_id": "AANIRBHA-2025-4T3ZV7-5",
+    "original_pledge_id": "AANIRBHA-2025-4T3ZV7-5",
+    "created_at": "2025-09-26T22:29:48.927865+00:00",
+    "created_by": "Mahendra Dhaka ",
+    "metadata": {
+      "name": "Mahendra Dhaka ",
+      "village": "Bhojasar Bara",
+      "district": "Sikar",
+      "created_at": "2025-09-26T16:59:46.543Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a061ae34-a79a-4123-a262-7de8024ec87c",
+    "tracking_id": "TRK-EC4ED9",
+    "pledge_id": "AANIRBHA-2025-8T8C9U-2",
+    "original_pledge_id": "AANIRBHA-2025-8T8C9U-2",
+    "created_at": "2025-09-26T22:35:27.724662+00:00",
+    "created_by": "Rakesh Sharma..",
+    "metadata": {
+      "name": "Rakesh Sharma..",
+      "village": "Balaran..",
+      "district": "Sikar",
+      "created_at": "2025-09-26T17:05:23.803Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d31dfe92-39ec-4055-ba3c-c3397d1179f0",
+    "tracking_id": "TRK-EC8C6E",
+    "pledge_id": "AANIRBHA-2025-DPDZBY-8",
+    "original_pledge_id": "AANIRBHA-2025-DPDZBY-8",
+    "created_at": "2025-09-26T22:35:50.216446+00:00",
+    "created_by": "Rajendra kumar meena ",
+    "metadata": {
+      "name": "Rajendra kumar meena ",
+      "village": "Rajanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-26T17:05:48.482Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9c1f377f-815e-4dd6-9527-4faf809a2d4e",
+    "tracking_id": "TRK-B37284",
+    "pledge_id": "AANIRBHA-2025-3KCRTU-1",
+    "original_pledge_id": "AANIRBHA-2025-3KCRTU-1",
+    "created_at": "2025-09-26T22:43:30.003101+00:00",
+    "created_by": "Rajendra kumar meena ",
+    "metadata": {
+      "name": "Rajendra kumar meena ",
+      "village": "Rajanpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T17:13:28.245Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "13fd6501-7387-44a2-81d0-7dc23639d3c0",
+    "tracking_id": "TRK-98F1C9",
+    "pledge_id": "AANIRBHA-2025-GFR2RR-4",
+    "original_pledge_id": "AANIRBHA-2025-GFR2RR-4",
+    "created_at": "2025-09-26T22:48:08.691111+00:00",
+    "created_by": "Mahendra",
+    "metadata": {
+      "name": "Mahendra",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T17:18:07.566Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bdd7c215-128c-4f0b-8b09-a9aa2d17a792",
+    "tracking_id": "TRK-6032EF",
+    "pledge_id": "AANIRBHA-2025-AUBJFC-4",
+    "original_pledge_id": "AANIRBHA-2025-AUBJFC-4",
+    "created_at": "2025-09-26T22:55:26.24693+00:00",
+    "created_by": "Ramesh kumar saini ",
+    "metadata": {
+      "name": "Ramesh kumar saini ",
+      "village": "Madani mandha ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T17:25:25.151Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "00aa7064-c088-4459-885b-bd2854617dad",
+    "tracking_id": "TRK-B0E8E4",
+    "pledge_id": "AANIRBHA-2025-Y7C6K3-8",
+    "original_pledge_id": "AANIRBHA-2025-Y7C6K3-8",
+    "created_at": "2025-09-26T23:13:24.242356+00:00",
+    "created_by": "DINESH KARWASRA",
+    "metadata": {
+      "name": "DINESH KARWASRA",
+      "village": "Rajasthan",
+      "district": "Nagaur",
+      "created_at": "2025-09-26T17:43:22.553Z",
+      "constituency": "110 Khinwsar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c7d7ea7c-aa20-4b93-8ec4-e139a182d421",
+    "tracking_id": "TRK-5B2D53",
+    "pledge_id": "AANIRBHA-2025-CT98BM-4",
+    "original_pledge_id": "AANIRBHA-2025-CT98BM-4",
+    "created_at": "2025-09-26T23:50:20.739578+00:00",
+    "created_by": "LAKHAVEER MUNDOTIYA",
+    "metadata": {
+      "name": "LAKHAVEER MUNDOTIYA",
+      "village": "Abhawas",
+      "district": "Sikar",
+      "created_at": "2025-09-26T18:20:17.541Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "d315436b-65bd-4eee-bd32-156992abd6b4",
+    "tracking_id": "TRK-EF42CF",
+    "pledge_id": "AANIRBHA-2025-JDD9VP-0",
+    "original_pledge_id": "AANIRBHA-2025-JDD9VP-0",
+    "created_at": "2025-09-26T23:55:14.6701+00:00",
+    "created_by": " RAJESHWAR DAYAL ",
+    "metadata": {
+      "name": " RAJESHWAR DAYAL ",
+      "village": "PACHAR ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T18:25:12.226Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "647b76f7-3a86-47ac-bc24-de96ceb9e164",
+    "tracking_id": "TRK-DF5868",
+    "pledge_id": "AANIRBHA-2025-A789RD-0",
+    "original_pledge_id": "AANIRBHA-2025-A789RD-0",
+    "created_at": "2025-09-27T00:28:06.175906+00:00",
+    "created_by": "Ajit singh",
+    "metadata": {
+      "name": "Ajit singh",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T18:58:04.636Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "daa5ba98-f9bd-4125-a507-995602eb304f",
+    "tracking_id": "TRK-9072A8",
+    "pledge_id": "AANIRBHA-2025-SXZAPR-5",
+    "original_pledge_id": "AANIRBHA-2025-SXZAPR-5",
+    "created_at": "2025-09-27T00:32:02.913792+00:00",
+    "created_by": "Manju kunari",
+    "metadata": {
+      "name": "Manju kunari",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-26T19:02:00.877Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f9caa5aa-c7e3-4fcc-bdd4-e0e298636219",
+    "tracking_id": "TRK-3300D6",
+    "pledge_id": "AANIRBHA-2025-LYZV8Q-5",
+    "original_pledge_id": "AANIRBHA-2025-LYZV8Q-5",
+    "created_at": "2025-09-27T01:51:52.244455+00:00",
+    "created_by": "ashok Sharma",
+    "metadata": {
+      "name": "ashok Sharma",
+      "village": "Rajasthan",
+      "district": "Bhilwara",
+      "created_at": "2025-09-26T20:21:49.748Z",
+      "constituency": "177 Asind"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c843d240-dd2c-4b05-929f-7d8f6ca92a62",
+    "tracking_id": "TRK-676A33",
+    "pledge_id": "AANIRBHA-2025-7Y3AQE-7",
+    "original_pledge_id": "AANIRBHA-2025-7Y3AQE-7",
+    "created_at": "2025-09-27T02:43:45.281391+00:00",
+    "created_by": "Ram swami",
+    "metadata": {
+      "name": "Ram swami",
+      "village": "Aloda",
+      "district": "Sikar",
+      "created_at": "2025-09-26T21:13:42.973Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "61c2e522-fda4-4d47-8a0d-0c66765ee092",
+    "tracking_id": "TRK-632715",
+    "pledge_id": "AANIRBHA-2025-UL54F6-7",
+    "original_pledge_id": "AANIRBHA-2025-UL54F6-7",
+    "created_at": "2025-09-27T04:05:58.490379+00:00",
+    "created_by": "Mukesh Kumar Sharma ",
+    "metadata": {
+      "name": "Mukesh Kumar Sharma ",
+      "village": "Sawaipura ",
+      "district": "Sikar",
+      "created_at": "2025-09-26T22:35:57.271Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "4b10f9de-0dde-4a73-b4b1-aa85abd1ac55",
+    "tracking_id": "TRK-A464A2",
+    "pledge_id": "AANIRBHA-2025-QHKS6L-8",
+    "original_pledge_id": "AANIRBHA-2025-QHKS6L-8",
+    "created_at": "2025-09-27T06:23:20.879485+00:00",
+    "created_by": "Vikash kumar Saini",
+    "metadata": {
+      "name": "Vikash kumar Saini",
+      "village": "Khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T00:53:19.024Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f070e103-dcdb-4942-80cd-09be3cb93e26",
+    "tracking_id": "TRK-D299F7",
+    "pledge_id": "AANIRBHA-2025-4MS2EJ-2",
+    "original_pledge_id": "AANIRBHA-2025-4MS2EJ-2",
+    "created_at": "2025-09-27T06:37:26.183828+00:00",
+    "created_by": "Umashankar Saroj ",
+    "metadata": {
+      "name": "Umashankar Saroj ",
+      "village": "Danta ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T01:07:25.087Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a1f48a28-da8a-4424-9f96-d9b5bb546224",
+    "tracking_id": "TRK-3F5509",
+    "pledge_id": "AANIRBHA-2025-ARJGRQ-2",
+    "original_pledge_id": "AANIRBHA-2025-ARJGRQ-2",
+    "created_at": "2025-09-27T07:14:00.952555+00:00",
+    "created_by": "Balmukand sharma ",
+    "metadata": {
+      "name": "Balmukand sharma ",
+      "village": "Umara ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T01:43:59.255Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "86f2087a-ff66-464d-b466-10ee1f35bd92",
+    "tracking_id": "TRK-669DCD",
+    "pledge_id": "AANIRBHA-2025-QTYKRG-9",
+    "original_pledge_id": "AANIRBHA-2025-QTYKRG-9",
+    "created_at": "2025-09-27T08:11:50.730468+00:00",
+    "created_by": "Purushottam chandolia",
+    "metadata": {
+      "name": "Purushottam chandolia",
+      "village": "Balaran",
+      "district": "Sikar",
+      "created_at": "2025-09-27T02:41:48.552Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e6e2357c-4559-4ed1-9f0c-538c954ca276",
+    "tracking_id": "TRK-0C8333",
+    "pledge_id": "AANIRBHA-2025-SCC5ZH-9",
+    "original_pledge_id": "AANIRBHA-2025-SCC5ZH-9",
+    "created_at": "2025-09-27T08:12:52.786696+00:00",
+    "created_by": "Govind Ram Kumawat",
+    "metadata": {
+      "name": "Govind Ram Kumawat",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T02:42:48.999Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "67d2b043-db50-4b28-8771-aecb8735749b",
+    "tracking_id": "TRK-33E4AA",
+    "pledge_id": "AANIRBHA-2025-USDDLQ-8",
+    "original_pledge_id": "AANIRBHA-2025-USDDLQ-8",
+    "created_at": "2025-09-27T08:21:44.523219+00:00",
+    "created_by": "Kailash Garhwal",
+    "metadata": {
+      "name": "Kailash Garhwal",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T02:51:42.070Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8a0e8c96-08e4-40db-a0cb-c5335aaee170",
+    "tracking_id": "TRK-B3B981",
+    "pledge_id": "AANIRBHA-2025-Z89JEX-1",
+    "original_pledge_id": "AANIRBHA-2025-Z89JEX-1",
+    "created_at": "2025-09-27T08:23:56.203671+00:00",
+    "created_by": "Bhardwaj Manish",
+    "metadata": {
+      "name": "Bhardwaj Manish",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T02:53:55.160Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "754cc865-f33c-4a6d-a629-768b573def73",
+    "tracking_id": "TRK-C87599",
+    "pledge_id": "AANIRBHA-2025-HNR78C-7",
+    "original_pledge_id": "AANIRBHA-2025-HNR78C-7",
+    "created_at": "2025-09-27T08:24:38.284903+00:00",
+    "created_by": "Bajrang Singh",
+    "metadata": {
+      "name": "Bajrang Singh",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T02:54:37.293Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5e7d97c9-980a-4bf8-99d1-b20e539240fe",
+    "tracking_id": "TRK-05C4BC",
+    "pledge_id": "AANIRBHA-2025-7CR3TQ-7",
+    "original_pledge_id": "AANIRBHA-2025-7CR3TQ-7",
+    "created_at": "2025-09-27T08:55:53.448857+00:00",
+    "created_by": "Jyoti ",
+    "metadata": {
+      "name": "Jyoti ",
+      "village": "Palasara ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T03:25:52.501Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "79a700d1-eeed-43b8-9973-7a0b8b0be886",
+    "tracking_id": "TRK-1F8432",
+    "pledge_id": "AANIRBHA-2025-P5SR55-1",
+    "original_pledge_id": "AANIRBHA-2025-P5SR55-1",
+    "created_at": "2025-09-27T09:08:45.411293+00:00",
+    "created_by": "Atul Sharma ",
+    "metadata": {
+      "name": "Atul Sharma ",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T03:38:44.111Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "922d0921-7562-4446-85e9-a72c4193cb9a",
+    "tracking_id": "TRK-540181",
+    "pledge_id": "AANIRBHA-2025-CFAQTB-0",
+    "original_pledge_id": "AANIRBHA-2025-CFAQTB-0",
+    "created_at": "2025-09-27T09:09:19.703768+00:00",
+    "created_by": "Anil kumar sharma Advocate ",
+    "metadata": {
+      "name": "Anil kumar sharma Advocate ",
+      "village": "Umara ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T03:39:18.642Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5bfe22bb-4093-460d-847e-55cddaf5cdfd",
+    "tracking_id": "TRK-E9B259",
+    "pledge_id": "AANIRBHA-2025-VLGY8E-4",
+    "original_pledge_id": "AANIRBHA-2025-VLGY8E-4",
+    "created_at": "2025-09-27T09:21:48.254058+00:00",
+    "created_by": "Mukesh gujar ",
+    "metadata": {
+      "name": "Mukesh gujar ",
+      "village": "Harjanpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T03:51:46.820Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "894eb7c1-42e6-4b89-bd00-e6eb62a8d92f",
+    "tracking_id": "TRK-6842A3",
+    "pledge_id": "AANIRBHA-2025-GA9RM3-0",
+    "original_pledge_id": "AANIRBHA-2025-GA9RM3-0",
+    "created_at": "2025-09-27T09:28:39.730773+00:00",
+    "created_by": "Deepak Sharma ",
+    "metadata": {
+      "name": "Deepak Sharma ",
+      "village": "Harjanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T03:58:37.847Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "db38a1a4-6654-4509-b310-bd2d22b2d61f",
+    "tracking_id": "TRK-CD0948",
+    "pledge_id": "AANIRBHA-2025-WWZGC3-0",
+    "original_pledge_id": "AANIRBHA-2025-WWZGC3-0",
+    "created_at": "2025-09-27T09:30:18.982552+00:00",
+    "created_by": "Mukesh Sharma ",
+    "metadata": {
+      "name": "Mukesh Sharma ",
+      "village": "Harjanpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T04:00:17.096Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "28b2eae8-f687-4650-b156-c702448d47a9",
+    "tracking_id": "TRK-93B8B5",
+    "pledge_id": "AANIRBHA-2025-5MPS6Z-4",
+    "original_pledge_id": "AANIRBHA-2025-5MPS6Z-4",
+    "created_at": "2025-09-27T09:33:53.607173+00:00",
+    "created_by": "Hemraj Gurjar",
+    "metadata": {
+      "name": "Hemraj Gurjar",
+      "village": "Harjanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T04:03:52.157Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b1e2ee53-639d-44a6-9ca6-b091d27fdf92",
+    "tracking_id": "TRK-E8CBD5",
+    "pledge_id": "AANIRBHA-2025-AN99DD-0",
+    "original_pledge_id": "AANIRBHA-2025-AN99DD-0",
+    "created_at": "2025-09-27T09:45:38.031718+00:00",
+    "created_by": "Kailash Garhwal",
+    "metadata": {
+      "name": "Kailash Garhwal",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T04:15:35.004Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cc488b02-c177-4059-871c-c45d35437087",
+    "tracking_id": "TRK-0FD5C0",
+    "pledge_id": "AANIRBHA-2025-T2JGZ6-0",
+    "original_pledge_id": "AANIRBHA-2025-T2JGZ6-0",
+    "created_at": "2025-09-27T10:08:14.627813+00:00",
+    "created_by": "Rajendra sunda",
+    "metadata": {
+      "name": "Rajendra sunda",
+      "village": "karanpura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T04:38:07.619Z",
+      "constituency": "34 Dhod (SC)"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "918ce41c-d085-4730-ae64-f35be5c04c58",
+    "tracking_id": "TRK-139A76",
+    "pledge_id": "AANIRBHA-2025-26XPJF-3",
+    "original_pledge_id": "AANIRBHA-2025-26XPJF-3",
+    "created_at": "2025-09-27T10:34:02.193289+00:00",
+    "created_by": "X",
+    "metadata": {
+      "name": "X",
+      "village": "Se",
+      "district": "Alwar",
+      "created_at": "2025-09-27T05:04:00.256Z",
+      "constituency": "60 Kishangarh Bas"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0333c54a-97ed-4b4e-9abf-9ca4a86c6182",
+    "tracking_id": "TRK-3F0EF5",
+    "pledge_id": "AANIRBHA-2025-K5XJ65-4",
+    "original_pledge_id": "AANIRBHA-2025-K5XJ65-4",
+    "created_at": "2025-09-27T10:36:35.126528+00:00",
+    "created_by": "Siddharth Verma",
+    "metadata": {
+      "name": "Siddharth Verma",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:06:33.748Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f076ad41-e4b4-42e9-865e-d84f3c814cad",
+    "tracking_id": "TRK-3BD119",
+    "pledge_id": "AANIRBHA-2025-4CENEJ-6",
+    "original_pledge_id": "AANIRBHA-2025-4CENEJ-6",
+    "created_at": "2025-09-27T10:42:38.871742+00:00",
+    "created_by": "Kanchan Tiwari Advocate ",
+    "metadata": {
+      "name": "Kanchan Tiwari Advocate ",
+      "village": "Rajasthan",
+      "district": "Alwar",
+      "created_at": "2025-09-27T05:12:37.069Z",
+      "constituency": "59 Tijara"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "75f107b3-2319-4214-9675-a32c03ff526d",
+    "tracking_id": "TRK-A0BDB8",
+    "pledge_id": "AANIRBHA-2025-MWDAU3-0",
+    "original_pledge_id": "AANIRBHA-2025-MWDAU3-0",
+    "created_at": "2025-09-27T10:43:17.832379+00:00",
+    "created_by": "Rajendra kumar aliya",
+    "metadata": {
+      "name": "Rajendra kumar aliya",
+      "village": "खंडेला",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:13:16.607Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "08d0b25e-dfad-4362-932e-b6cbd6e05c97",
+    "tracking_id": "TRK-2E5421",
+    "pledge_id": "AANIRBHA-2025-RC2UYS-3",
+    "original_pledge_id": "AANIRBHA-2025-RC2UYS-3",
+    "created_at": "2025-09-27T10:47:32.231784+00:00",
+    "created_by": "Rajesh Nitharwal",
+    "metadata": {
+      "name": "Rajesh Nitharwal",
+      "village": "Barsinghpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:17:31.196Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "53ed5c78-0ea8-4250-8464-891d7825272b",
+    "tracking_id": "TRK-480B9D",
+    "pledge_id": "AANIRBHA-2025-VVQXCE-4",
+    "original_pledge_id": "AANIRBHA-2025-VVQXCE-4",
+    "created_at": "2025-09-27T10:52:03.016091+00:00",
+    "created_by": "Subhash chand kumawat ",
+    "metadata": {
+      "name": "Subhash chand kumawat ",
+      "village": "Jugalpura ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:22:01.799Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "db744e8c-0344-4f80-baad-8e6dcd3d8958",
+    "tracking_id": "TRK-EC1806",
+    "pledge_id": "AANIRBHA-2025-SE3564-9",
+    "original_pledge_id": "AANIRBHA-2025-SE3564-9",
+    "created_at": "2025-09-27T10:52:38.95418+00:00",
+    "created_by": "Adv Kanchan Tiwari",
+    "metadata": {
+      "name": "Adv Kanchan Tiwari",
+      "village": "Rajasthan",
+      "district": "Alwar",
+      "created_at": "2025-09-27T05:22:37.566Z",
+      "constituency": "59 Tijara"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "83ec676b-4d5e-4d12-8395-0d5312f5e0a7",
+    "tracking_id": "TRK-8F2352",
+    "pledge_id": "AANIRBHA-2025-CBJHND-2",
+    "original_pledge_id": "AANIRBHA-2025-CBJHND-2",
+    "created_at": "2025-09-27T11:00:43.797419+00:00",
+    "created_by": "Srita sharma ",
+    "metadata": {
+      "name": "Srita sharma ",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:30:41.632Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "fd85fb13-01f1-405a-8a90-c0f2f47616a9",
+    "tracking_id": "TRK-6030F9",
+    "pledge_id": "AANIRBHA-2025-3BZ887-1",
+    "original_pledge_id": "AANIRBHA-2025-3BZ887-1",
+    "created_at": "2025-09-27T11:03:20.01557+00:00",
+    "created_by": "Srita sharma ",
+    "metadata": {
+      "name": "Srita sharma ",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:33:18.295Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "76937d52-bf18-4a5f-a976-c9f6e60fb792",
+    "tracking_id": "TRK-72F42E",
+    "pledge_id": "AANIRBHA-2025-ST5LLT-3",
+    "original_pledge_id": "AANIRBHA-2025-ST5LLT-3",
+    "created_at": "2025-09-27T11:05:14.923299+00:00",
+    "created_by": "Renu sharma ",
+    "metadata": {
+      "name": "Renu sharma ",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:35:13.071Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cf338c1f-9ea2-4b6e-96a0-db5dda9b97db",
+    "tracking_id": "TRK-A9DE01",
+    "pledge_id": "AANIRBHA-2025-LGDNGE-0",
+    "original_pledge_id": "AANIRBHA-2025-LGDNGE-0",
+    "created_at": "2025-09-27T11:06:58.985+00:00",
+    "created_by": "Chandra Prakash chejara",
+    "metadata": {
+      "name": "Chandra Prakash chejara",
+      "village": "Guhala",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:36:57.566Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "da935451-5dbd-42ac-9efe-a25e6986406c",
+    "tracking_id": "TRK-2FA732",
+    "pledge_id": "AANIRBHA-2025-PF2NAB-6",
+    "original_pledge_id": "AANIRBHA-2025-PF2NAB-6",
+    "created_at": "2025-09-27T11:12:14.343702+00:00",
+    "created_by": "Nitesh joshi",
+    "metadata": {
+      "name": "Nitesh joshi",
+      "village": "Wardno. 24maniko ka mohlla",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:42:11.090Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "aa44c2bc-d6f3-472b-a1a1-5522cfd2b0f2",
+    "tracking_id": "TRK-429C28",
+    "pledge_id": "AANIRBHA-2025-Z3SAXS-7",
+    "original_pledge_id": "AANIRBHA-2025-Z3SAXS-7",
+    "created_at": "2025-09-27T11:12:56.130183+00:00",
+    "created_by": "Wajid khan",
+    "metadata": {
+      "name": "Wajid khan",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T05:42:54.191Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "0ec556c1-97e0-4651-8873-ce71cf0024d0",
+    "tracking_id": "TRK-E830FB",
+    "pledge_id": "AANIRBHA-2025-P3WNUK-3",
+    "original_pledge_id": "AANIRBHA-2025-P3WNUK-3",
+    "created_at": "2025-09-27T11:55:16.334408+00:00",
+    "created_by": "Kashri Nandan agrawal ",
+    "metadata": {
+      "name": "Kashri Nandan agrawal ",
+      "village": "श्रीमाधोपुर ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T06:25:13.824Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "f65e4748-2366-40f9-b6b4-1b1c771b3441",
+    "tracking_id": "TRK-C54516",
+    "pledge_id": "AANIRBHA-2025-ZW6EV3-4",
+    "original_pledge_id": "AANIRBHA-2025-ZW6EV3-4",
+    "created_at": "2025-09-27T12:01:20.93727+00:00",
+    "created_by": "Samir khan",
+    "metadata": {
+      "name": "Samir khan",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T06:31:18.444Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1f49d3a5-0db1-49fe-a493-acecb245d3cb",
+    "tracking_id": "TRK-9CB9A0",
+    "pledge_id": "AANIRBHA-2025-DGV4HV-2",
+    "original_pledge_id": "AANIRBHA-2025-DGV4HV-2",
+    "created_at": "2025-09-27T12:38:34.095014+00:00",
+    "created_by": "Navdeep mathur ",
+    "metadata": {
+      "name": "Navdeep mathur ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T07:08:32.860Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "a41596cf-1a1a-4ac1-851f-66bd387264b8",
+    "tracking_id": "TRK-383EEE",
+    "pledge_id": "AANIRBHA-2025-KARQFL-6",
+    "original_pledge_id": "AANIRBHA-2025-KARQFL-6",
+    "created_at": "2025-09-27T13:07:17.22509+00:00",
+    "created_by": "Kumkum Mathur ",
+    "metadata": {
+      "name": "Kumkum Mathur ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T07:37:15.440Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8d516222-d326-42d6-a34a-3cdbf441de05",
+    "tracking_id": "TRK-88E625",
+    "pledge_id": "AANIRBHA-2025-RZ5SGB-2",
+    "original_pledge_id": "AANIRBHA-2025-RZ5SGB-2",
+    "created_at": "2025-09-27T13:09:39.794794+00:00",
+    "created_by": "Kumkum Mathur ",
+    "metadata": {
+      "name": "Kumkum Mathur ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T07:39:37.523Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "531aae6e-60e3-4ab6-860c-2871c64b3441",
+    "tracking_id": "TRK-A1BAA0",
+    "pledge_id": "AANIRBHA-2025-MZY2Q4-6",
+    "original_pledge_id": "AANIRBHA-2025-MZY2Q4-6",
+    "created_at": "2025-09-27T13:19:42.81403+00:00",
+    "created_by": "Mahendra Sharma",
+    "metadata": {
+      "name": "Mahendra Sharma",
+      "village": "Rajasthan",
+      "district": "Ajmer",
+      "created_at": "2025-09-27T07:49:40.920Z",
+      "constituency": "100 Ajmer North"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c8781719-0326-434a-a223-517a7884d859",
+    "tracking_id": "TRK-F83731",
+    "pledge_id": "AANIRBHA-2025-52DH76-9",
+    "original_pledge_id": "AANIRBHA-2025-52DH76-9",
+    "created_at": "2025-09-27T13:28:41.106494+00:00",
+    "created_by": "Deepa Ram Kajla",
+    "metadata": {
+      "name": "Deepa Ram Kajla",
+      "village": "Chala",
+      "district": "Sikar",
+      "created_at": "2025-09-27T07:58:39.529Z",
+      "constituency": "38 Neem Ka Thana"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cc46ba29-c1a2-4f6b-9dd7-773146c70d0a",
+    "tracking_id": "TRK-9CD0BB",
+    "pledge_id": "AANIRBHA-2025-JBG47R-7",
+    "original_pledge_id": "AANIRBHA-2025-JBG47R-7",
+    "created_at": "2025-09-27T13:39:40.273751+00:00",
+    "created_by": "Mahendra gurjar ",
+    "metadata": {
+      "name": "Mahendra gurjar ",
+      "village": "Reta",
+      "district": "Sikar",
+      "created_at": "2025-09-27T08:09:39.104Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e74485e4-3d42-4189-9ef3-1345dcfbeadf",
+    "tracking_id": "TRK-28F1D9",
+    "pledge_id": "AANIRBHA-2025-VDVTTW-2",
+    "original_pledge_id": "AANIRBHA-2025-VDVTTW-2",
+    "created_at": "2025-09-27T13:41:35.103253+00:00",
+    "created_by": "MUKESH KUMAR SAINI",
+    "metadata": {
+      "name": "MUKESH KUMAR SAINI",
+      "village": "Khandela",
+      "district": "Sikar",
+      "created_at": "2025-09-27T08:11:35.764Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7aa35c5d-14e4-4d93-b822-cf82ed981ed8",
+    "tracking_id": "TRK-BF74B7",
+    "pledge_id": "AANIRBHA-2025-7VQJF3-4",
+    "original_pledge_id": "AANIRBHA-2025-7VQJF3-4",
+    "created_at": "2025-09-27T15:22:00.333153+00:00",
+    "created_by": "Kailash Chand  Kumawat",
+    "metadata": {
+      "name": "Kailash Chand  Kumawat",
+      "village": "Danta ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T09:51:58.991Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "bb748397-1a7a-4bf8-8213-fdfbb05e5802",
+    "tracking_id": "TRK-FC581A",
+    "pledge_id": "AANIRBHA-2025-HYQMQG-8",
+    "original_pledge_id": "AANIRBHA-2025-HYQMQG-8",
+    "created_at": "2025-09-27T15:28:24.144113+00:00",
+    "created_by": "Kailash Chand  Kumawat",
+    "metadata": {
+      "name": "Kailash Chand  Kumawat",
+      "village": "Danta ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T09:58:21.754Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "2e876d5c-38fc-413c-a271-c69b3deb8fef",
+    "tracking_id": "TRK-D07E97",
+    "pledge_id": "AANIRBHA-2025-F48SV3-5",
+    "original_pledge_id": "AANIRBHA-2025-F48SV3-5",
+    "created_at": "2025-09-27T15:54:14.153178+00:00",
+    "created_by": "Devendra singh khejdoliya ",
+    "metadata": {
+      "name": "Devendra singh khejdoliya ",
+      "village": "City",
+      "district": "Sikar",
+      "created_at": "2025-09-27T10:24:12.198Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "9ee5bf14-d03f-445f-91e2-519245c2fc67",
+    "tracking_id": "TRK-CAC03F",
+    "pledge_id": "AANIRBHA-2025-2APSJ2-9",
+    "original_pledge_id": "AANIRBHA-2025-2APSJ2-9",
+    "created_at": "2025-09-27T16:10:30.009647+00:00",
+    "created_by": "Gulab chand daiya ",
+    "metadata": {
+      "name": "Gulab chand daiya ",
+      "village": "Sikar ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T10:40:28.888Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "c4c42147-eead-4d6f-8092-0af1da21fae5",
+    "tracking_id": "TRK-B9408F",
+    "pledge_id": "AANIRBHA-2025-F6TVV5-0",
+    "original_pledge_id": "AANIRBHA-2025-F6TVV5-0",
+    "created_at": "2025-09-27T16:50:15.661064+00:00",
+    "created_by": "Mangeja Ram Mahich ",
+    "metadata": {
+      "name": "Mangeja Ram Mahich ",
+      "village": "Balaran ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T11:20:14.025Z",
+      "constituency": "33 Lachhmangarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "8badd435-1ad2-43b4-a8f8-3936a330d1f3",
+    "tracking_id": "TRK-8349D7",
+    "pledge_id": "AANIRBHA-2025-J9KJP4-9",
+    "original_pledge_id": "AANIRBHA-2025-J9KJP4-9",
+    "created_at": "2025-09-27T16:51:41.436375+00:00",
+    "created_by": "Ajay  ",
+    "metadata": {
+      "name": "Ajay  ",
+      "village": "khandela ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T11:21:40.599Z",
+      "constituency": "37 Khandela"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "6bdcfe06-39c6-4988-9090-4b3b1c9845de",
+    "tracking_id": "TRK-C371E0",
+    "pledge_id": "AANIRBHA-2025-B584E5-6",
+    "original_pledge_id": "AANIRBHA-2025-B584E5-6",
+    "created_at": "2025-09-27T18:08:03.864819+00:00",
+    "created_by": "Puranmal jakhar",
+    "metadata": {
+      "name": "Puranmal jakhar",
+      "village": "Udaipura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T12:38:01.786Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "e322cf1a-e2f9-489a-8d25-ff4c7ca354f0",
+    "tracking_id": "TRK-D1B025",
+    "pledge_id": "AANIRBHA-2025-Q7T8JX-5",
+    "original_pledge_id": "AANIRBHA-2025-Q7T8JX-5",
+    "created_at": "2025-09-27T18:18:22.536808+00:00",
+    "created_by": "Vijay Kumawat ",
+    "metadata": {
+      "name": "Vijay Kumawat ",
+      "village": "Lakhipura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T12:48:21.211Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "5b4648ad-7af2-4f2b-8d5f-5b3fcddd28af",
+    "tracking_id": "TRK-5CACC2",
+    "pledge_id": "AANIRBHA-2025-6HEDS2-3",
+    "original_pledge_id": "AANIRBHA-2025-6HEDS2-3",
+    "created_at": "2025-09-27T19:05:50.809424+00:00",
+    "created_by": "Sapna jain",
+    "metadata": {
+      "name": "Sapna jain",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:35:20.745Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "dadc9091-1f43-4739-a59d-59ab5407f6bd",
+    "tracking_id": "TRK-AB9929",
+    "pledge_id": "AANIRBHA-2025-T43YY9-9",
+    "original_pledge_id": "AANIRBHA-2025-T43YY9-9",
+    "created_at": "2025-09-27T19:12:49.893537+00:00",
+    "created_by": "Adv. Jaiprakash saini",
+    "metadata": {
+      "name": "Adv. Jaiprakash saini",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:42:47.982Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "3a02b852-c806-446c-8227-03562e5f38c2",
+    "tracking_id": "TRK-C8D53A",
+    "pledge_id": "AANIRBHA-2025-CH46JK-1",
+    "original_pledge_id": "AANIRBHA-2025-CH46JK-1",
+    "created_at": "2025-09-27T19:13:08.153798+00:00",
+    "created_by": "Rahul Kumawat ",
+    "metadata": {
+      "name": "Rahul Kumawat ",
+      "village": "Karad ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:43:07.629Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "303c8e8e-a5cf-4a1b-bd3a-669168f66898",
+    "tracking_id": "TRK-F559CE",
+    "pledge_id": "AANIRBHA-2025-HVA5XT-5",
+    "original_pledge_id": "AANIRBHA-2025-HVA5XT-5",
+    "created_at": "2025-09-27T19:18:36.458439+00:00",
+    "created_by": "Tarachand saini ",
+    "metadata": {
+      "name": "Tarachand saini ",
+      "village": "Radha kishan pura",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:48:35.007Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "62c93906-45aa-487c-8511-fbb4aa65b454",
+    "tracking_id": "TRK-F06DA5",
+    "pledge_id": "AANIRBHA-2025-HMRZXX-4",
+    "original_pledge_id": "AANIRBHA-2025-HMRZXX-4",
+    "created_at": "2025-09-27T19:27:51.278126+00:00",
+    "created_by": "Chiranji lal saini",
+    "metadata": {
+      "name": "Chiranji lal saini",
+      "village": "Sikar",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:57:49.793Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "71dfb815-5b6b-4dec-ab22-a60bb277394d",
+    "tracking_id": "TRK-CB8B64",
+    "pledge_id": "AANIRBHA-2025-SCMWFJ-5",
+    "original_pledge_id": "AANIRBHA-2025-SCMWFJ-5",
+    "created_at": "2025-09-27T19:29:17.873951+00:00",
+    "created_by": "Pramod Kumar",
+    "metadata": {
+      "name": "Pramod Kumar",
+      "village": "Dharmshala ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T13:59:15.211Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "cdb89ee1-f945-4554-9f98-c4d756889af8",
+    "tracking_id": "TRK-594C1E",
+    "pledge_id": "AANIRBHA-2025-T98P6G-9",
+    "original_pledge_id": "AANIRBHA-2025-T98P6G-9",
+    "created_at": "2025-09-27T20:31:11.414612+00:00",
+    "created_by": "PRAHALAD SAHAY VERMA",
+    "metadata": {
+      "name": "PRAHALAD SAHAY VERMA",
+      "village": "Kailash",
+      "district": "Sikar",
+      "created_at": "2025-09-27T15:01:09.984Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "1e16cd7a-a788-462c-8b49-331c5d7d546b",
+    "tracking_id": "TRK-C54DA7",
+    "pledge_id": "AANIRBHA-2025-62TXNZ-1",
+    "original_pledge_id": "AANIRBHA-2025-62TXNZ-1",
+    "created_at": "2025-09-27T20:59:19.803858+00:00",
+    "created_by": "Phoolchand bajor ",
+    "metadata": {
+      "name": "Phoolchand bajor ",
+      "village": "Bajor ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T15:29:18.363Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "645382ab-542f-4151-b9e1-99a4bfd2854a",
+    "tracking_id": "TRK-F222D0",
+    "pledge_id": "AANIRBHA-2025-49TGZG-2",
+    "original_pledge_id": "AANIRBHA-2025-49TGZG-2",
+    "created_at": "2025-09-27T21:05:48.609269+00:00",
+    "created_by": "Ramesh singh inda",
+    "metadata": {
+      "name": "Ramesh singh inda",
+      "village": "Laxmi nagar",
+      "district": "Barmer",
+      "created_at": "2025-09-27T15:35:45.597Z",
+      "constituency": "135 Barmer"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "377ecf6f-0f99-4957-9043-766c8c2b0102",
+    "tracking_id": "TRK-06ADF1",
+    "pledge_id": "AANIRBHA-2025-ZR2DAQ-3",
+    "original_pledge_id": "AANIRBHA-2025-ZR2DAQ-3",
+    "created_at": "2025-09-27T21:36:29.728271+00:00",
+    "created_by": "Umesh sankhala ",
+    "metadata": {
+      "name": "Umesh sankhala ",
+      "village": "Dantaramgarh ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T16:06:27.358Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "19bed30c-a08e-4a1b-8a31-391cb473f066",
+    "tracking_id": "TRK-AAC049",
+    "pledge_id": "AANIRBHA-2025-YLA2G6-2",
+    "original_pledge_id": "AANIRBHA-2025-YLA2G6-2",
+    "created_at": "2025-09-27T21:39:53.584819+00:00",
+    "created_by": "Ratan lal Sharma",
+    "metadata": {
+      "name": "Ratan lal Sharma",
+      "village": "Umara ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T16:09:52.146Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "81921389-bca2-416e-8554-929e018ac11a",
+    "tracking_id": "TRK-3D3F30",
+    "pledge_id": "AANIRBHA-2025-4YGV2C-2",
+    "original_pledge_id": "AANIRBHA-2025-4YGV2C-2",
+    "created_at": "2025-09-27T22:28:17.873489+00:00",
+    "created_by": "Chhoga Ram Jatolia ",
+    "metadata": {
+      "name": "Chhoga Ram Jatolia ",
+      "village": "VPO Roopgarh ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T16:58:15.945Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "7089d1ed-985b-42b6-80ff-f5c8d6aa29a5",
+    "tracking_id": "TRK-80713D",
+    "pledge_id": "AANIRBHA-2025-29M4S2-6",
+    "original_pledge_id": "AANIRBHA-2025-29M4S2-6",
+    "created_at": "2025-09-27T22:41:04.786342+00:00",
+    "created_by": "VIJAY KUMAR TAK",
+    "metadata": {
+      "name": "VIJAY KUMAR TAK",
+      "village": "DANTA SIKAR",
+      "district": "Sikar",
+      "created_at": "2025-09-27T17:11:03.418Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "b8909c17-21d2-45f5-a53b-80bbb6e618c2",
+    "tracking_id": "TRK-4BFE8C",
+    "pledge_id": "AANIRBHA-2025-UL3BXE-2",
+    "original_pledge_id": "AANIRBHA-2025-UL3BXE-2",
+    "created_at": "2025-09-27T22:56:38.224119+00:00",
+    "created_by": "bhavesh  agarwal",
+    "metadata": {
+      "name": "bhavesh  agarwal",
+      "village": "Rajasthan",
+      "district": "Sikar",
+      "created_at": "2025-09-27T17:26:37.634Z",
+      "constituency": "35 Sikar"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "38f58a55-8200-4a8c-a466-8a7744f2f7c5",
+    "tracking_id": "TRK-E46992",
+    "pledge_id": "AANIRBHA-2025-HDHUCX-9",
+    "original_pledge_id": "AANIRBHA-2025-HDHUCX-9",
+    "created_at": "2025-09-27T23:07:07.877012+00:00",
+    "created_by": "Bajarang Lal Kumawat",
+    "metadata": {
+      "name": "Bajarang Lal Kumawat",
+      "village": "Sakaray ",
+      "district": "Sikar",
+      "created_at": "2025-09-27T17:37:06.221Z",
+      "constituency": "39 Srimadhopur"
+    },
+    "is_active": true,
+    "expires_at": null
+  },
+  {
+    "id": "fe10d11d-b0db-41e9-ba8f-861d4a6c3f00",
+    "tracking_id": "TRK-47D63A",
+    "pledge_id": "AANIRBHA-2025-KAMCFJ-5",
+    "original_pledge_id": "AANIRBHA-2025-KAMCFJ-5",
+    "created_at": "2025-09-27T23:40:34.140855+00:00",
+    "created_by": "Prashant Kumar ",
+    "metadata": {
+      "name": "Prashant Kumar ",
+      "village": "Umara",
+      "district": "Sikar",
+      "created_at": "2025-09-27T18:10:32.241Z",
+      "constituency": "36 Dantaramgarh"
+    },
+    "is_active": true,
+    "expires_at": null
+  }
+]

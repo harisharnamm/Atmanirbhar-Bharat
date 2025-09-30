@@ -5,6 +5,7 @@
 
 import "regenerator-runtime/runtime"
 import type { PledgeFormValues } from "@/components/pledge/step-form"
+import { getDistrictInHindi } from "./district-mapping"
 
 // We'll dynamic import to avoid bundling pdf-lib in non-certificate paths
 export async function generateCertificateFromTemplate({
@@ -53,31 +54,85 @@ export async function generateCertificateFromTemplate({
     ;(pdfDoc as any).registerFontkit((fontkit as any).default)
   }
 
-  // Load standard fonts for English text only
-  let font = null as any
-  let fontBold = null as any
-  
+  // Load fonts - both Hindi and English fonts for proper script support
+  let hindiFont = null as any
+  let hindiFontBold = null as any
+  let englishFont = null as any
+  let englishFontBold = null as any
+
   try {
-    // Load Helvetica fonts for reliable English text rendering
-    font = await pdfDoc.embedFont('Helvetica')
-    fontBold = await pdfDoc.embedFont('Helvetica-Bold')
+    // Load English fonts first (Helvetica)
+    englishFont = await pdfDoc.embedFont('Helvetica')
+    englishFontBold = await pdfDoc.embedFont('Helvetica-Bold')
     console.log("[pdf-template] Helvetica fonts loaded successfully")
+
+    // Try to load local Noto Sans Devanagari fonts for Hindi support
+    const notoRegularResponse = await fetch('/fonts/NotoSansDevanagari-Regular.ttf')
+    if (notoRegularResponse.ok) {
+      const notoRegularBytes = await notoRegularResponse.arrayBuffer()
+      hindiFont = await pdfDoc.embedFont(notoRegularBytes)
+      console.log("[pdf-template] Noto Sans Devanagari (local) loaded successfully")
+    } else {
+      console.warn("[pdf-template] Local Noto Regular not available")
+      hindiFont = englishFont // fallback
+    }
+
+    // Try to load Noto Sans Devanagari Bold
+    const notoBoldResponse = await fetch('/fonts/NotoSansDevanagari-Bold.ttf')
+    if (notoBoldResponse.ok) {
+      const notoBoldBytes = await notoBoldResponse.arrayBuffer()
+      hindiFontBold = await pdfDoc.embedFont(notoBoldBytes)
+      console.log("[pdf-template] Noto Sans Devanagari Bold (local) loaded successfully")
+    } else {
+      console.warn("[pdf-template] Local Noto Bold not available, using regular for bold")
+      hindiFontBold = hindiFont
+    }
   } catch (error) {
-    console.warn("[pdf-template] Failed to load Helvetica fonts:", error)
+    console.warn("[pdf-template] Failed to load fonts:", error)
     // Last resort: let pdf-lib use its default font
+    try {
+      englishFont = await pdfDoc.embedFont('Helvetica')
+      englishFontBold = await pdfDoc.embedFont('Helvetica-Bold')
+      hindiFont = englishFont
+      hindiFontBold = englishFontBold
+    } catch (fallbackError) {
+      console.warn("[pdf-template] Failed to load any fonts:", fallbackError)
+    }
+  }
+
+  // Set default fonts (English for backward compatibility)
+  let font = englishFont
+  let fontBold = englishFontBold
+
+  // Helper function to detect if text contains Hindi/Devanagari characters
+  const containsHindi = (text: string): boolean => {
+    // Check for Devanagari Unicode range (U+0900-U+097F)
+    const hindiRegex = /[\u0900-\u097F]/
+    return hindiRegex.test(text)
+  }
+
+  // Helper function to get appropriate font based on text content
+  const getAppropriateFont = (text: string, isBold: boolean = false): any => {
+    const hasHindi = containsHindi(text)
+
+    if (hasHindi && hindiFont) {
+      return isBold ? hindiFontBold : hindiFont
+    } else {
+      return isBold ? englishFontBold : englishFont
+    }
   }
 
   // Helpers: incoming coords are specified with origin at top-left (0,0),
   // y increasing downward. pdf-lib uses bottom-left origin. Convert y.
   const drawTextTopLeft = (text: string, xTL: number, yTL: number, size = 12, customFont?: any) => {
-    const fontToUse = customFont ?? font
-    console.log("[pdf-template] Drawing text:", { text, fontAvailable: !!fontToUse, customFont: !!customFont })
-    
+    const fontToUse = customFont ?? getAppropriateFont(text, false)
+    console.log("[pdf-template] Drawing text:", { text, fontAvailable: !!fontToUse, customFont: !!customFont, script: containsHindi(text) ? 'hindi' : 'english' })
+
     page.drawText(text, {
       x: xTL,
       y: pageH - yTL,
       size,
-      font: fontToUse, // Remove undefined fallback - let pdf-lib handle it
+      font: fontToUse,
       color: rgb(0, 0, 0),
     })
   }
@@ -85,10 +140,10 @@ export async function generateCertificateFromTemplate({
   const centerTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12, customFont?: any) => {
     let textWidth = 0
     try {
-      const metricsFont = customFont ?? font
+      const metricsFont = customFont ?? getAppropriateFont(text, false)
       if (metricsFont) {
         textWidth = metricsFont.widthOfTextAtSize(text, size)
-        console.log("[pdf-template] Text width calculated:", { text, textWidth, fontAvailable: !!metricsFont })
+        console.log("[pdf-template] Text width calculated:", { text, textWidth, fontAvailable: !!metricsFont, script: containsHindi(text) ? 'hindi' : 'english' })
       } else {
         // heuristic fallback when no font metrics available
         textWidth = text.length * size * 0.55
@@ -105,15 +160,17 @@ export async function generateCertificateFromTemplate({
 
   // Bold centered draw (uses bold font if available, else simulates bold by multi-pass)
   const centerBoldTextTopLeft = (text: string, yTL: number, xStart: number, xEnd: number, size = 12) => {
-    if (fontBold) {
-      centerTextTopLeft(text, yTL, xStart, xEnd, size, fontBold)
+    const appropriateBoldFont = getAppropriateFont(text, true)
+    if (appropriateBoldFont) {
+      centerTextTopLeft(text, yTL, xStart, xEnd, size, appropriateBoldFont)
       return
     }
     // Synthetic bold: draw multiple slight offsets
     let textWidth = 0
     try {
-      if (font) {
-        textWidth = font.widthOfTextAtSize(text, size)
+      const metricsFont = getAppropriateFont(text, false)
+      if (metricsFont) {
+        textWidth = metricsFont.widthOfTextAtSize(text, size)
       } else {
         textWidth = text.length * size * 0.55
       }
@@ -137,12 +194,12 @@ export async function generateCertificateFromTemplate({
   // A4 ~ 595 x 842 pt. Update these after a test render.
   const coordsTL = {
     // Positions provided with top-left origin per user's template grid
-    name: { x: 238, y: 428, size: 24 },
+    name: { x: 238, y: 436, size: 20 },
     // meta removed per request
     // DATE must start right after text "ने आज दिनांक" at this exact point
-    date: { x: 237, y: 461, size: 18 },
+    date: { x: 144, y: 457, size: 10 },
     pledgeId: { x: 194, y: 905, size: 16 },
-    selfie: { x: 257, y: 241, w: 120, h: 120 },
+    selfie: { x: 237, y: 266, w: 130, h: 130 },
   }
 
   const now = new Date()
@@ -152,8 +209,64 @@ export async function generateCertificateFromTemplate({
   const dateStr = `${dd}/${mm}/${yyyy}`
 
   // Draw content
-  // Center the name between X:190 and X:440 at the provided Y (bold)
-  centerBoldTextTopLeft(name, coordsTL.name.y, 190, 440, coordsTL.name.size)
+  // Center the name between X:190 and X:440 at the provided Y (bold) with district in Hindi
+  const hindiDistrict = getDistrictInHindi(district)
+
+  // Split into parts: English name + Hindi connector + Hindi district
+  const englishName = name
+  const hindiConnector = " - विधानसभा क्षेत्र "
+  const hindiDistrictPart = hindiDistrict
+
+  // Calculate total width and center the entire text
+  let totalWidth = 0
+  let englishFontForCalc, hindiFontForCalc
+
+  try {
+    englishFontForCalc = getAppropriateFont(englishName, true)
+    hindiFontForCalc = getAppropriateFont(hindiConnector, true)
+
+    // Fallback to default fonts if appropriate font not found
+    if (!englishFontForCalc) englishFontForCalc = englishFontBold || englishFont
+    if (!hindiFontForCalc) hindiFontForCalc = hindiFontBold || hindiFont
+
+    const englishWidth = englishFontForCalc.widthOfTextAtSize(englishName, coordsTL.name.size)
+    const hindiConnectorWidth = hindiFontForCalc.widthOfTextAtSize(hindiConnector, coordsTL.name.size)
+    const hindiDistrictWidth = hindiFontForCalc.widthOfTextAtSize(hindiDistrictPart, coordsTL.name.size)
+
+    totalWidth = englishWidth + hindiConnectorWidth + hindiDistrictWidth
+  } catch (error) {
+    console.warn("[pdf-template] Font metrics failed for name parts:", error)
+    totalWidth = (englishName.length + hindiConnector.length + hindiDistrictPart.length) * coordsTL.name.size * 0.55
+    englishFontForCalc = englishFontBold || englishFont
+    hindiFontForCalc = hindiFontBold || hindiFont
+  }
+
+  const boxCenter = (190 + 440) / 2
+  let currentX = boxCenter - totalWidth / 2
+
+  // Draw English name part
+  if (englishFontForCalc) {
+    page.drawText(englishName, {
+      x: currentX,
+      y: pageH - coordsTL.name.y,
+      size: coordsTL.name.size,
+      font: englishFontForCalc,
+      color: rgb(0, 0, 0),
+    })
+  }
+  currentX += englishFontForCalc?.widthOfTextAtSize(englishName, coordsTL.name.size) || (englishName.length * coordsTL.name.size * 0.55)
+
+  // Draw Hindi connector and district parts
+  if (hindiFontForCalc) {
+    const hindiText = hindiConnector + hindiDistrictPart
+    page.drawText(hindiText, {
+      x: currentX,
+      y: pageH - coordsTL.name.y,
+      size: coordsTL.name.size,
+      font: hindiFontForCalc,
+      color: rgb(0, 0, 0),
+    })
+  }
   const metaLine =
     lang === "hi"
       ? `जिला: ${district}   विधानसभा: ${constituency}   गाँव/शहर: ${village}`
@@ -163,8 +276,8 @@ export async function generateCertificateFromTemplate({
   // Only draw the date string; background already has "ने आज दिनांक"
   drawTextTopLeft(dateStr, coordsTL.date.x, coordsTL.date.y, coordsTL.date.size)
 
-  // Draw only the ID value (no label)
-  drawTextTopLeft(id, coordsTL.pledgeId.x, coordsTL.pledgeId.y, coordsTL.pledgeId.size)
+  // Draw only the ID value (no label) - TEMPORARILY DISABLED
+  // drawTextTopLeft(id, coordsTL.pledgeId.x, coordsTL.pledgeId.y, coordsTL.pledgeId.size)
 
   // Add selfie if provided
   if (selfieDataUrl) {

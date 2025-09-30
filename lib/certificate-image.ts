@@ -1,6 +1,7 @@
 "use client"
 
 import "regenerator-runtime/runtime"
+import { getDistrictInHindi } from "./district-mapping"
 
 export interface CertificateImageOptions {
   scale?: number
@@ -68,13 +69,13 @@ export async function generateCertificateImage(
     // The JPG template dimensions are: width x height pixels
     const coords = {
       // Name position (centered between x:190-440 in PDF)
-      name: { x: 800, y: 1115, size: 72 },
+      name: { x: 1450, y: 2000, size: 72 },
       // Date position (after "ने आज दिनांक" text)
-      date: { x: 620, y: 1215, size: 48 },
+      date: { x: 685, y: 2133, size: 47 },
       // Pledge ID position (bottom of certificate)
       pledgeId: { x: 520, y: 2400, size: 48 },
       // Selfie position and size
-      selfie: { x: 700, y: 650, w: 330, h: 330 }
+      selfie: { x: 1150, y: 1280, w: 600, h: 600 }
     }
     
     console.log("[certificate-image] Using manual coordinates:", coords)
@@ -90,9 +91,34 @@ export async function generateCertificateImage(
     ctx.textAlign = "left"
     ctx.textBaseline = "top"
 
-    // Draw name (centered) - English only
-    const nameText = templateData.name
-    ctx.font = `bold ${coords.name.size}px Arial, sans-serif`
+    // Preload local fonts for Devanagari support
+    try {
+      // Load local Noto Sans Devanagari fonts
+      const fontFace = new FontFace('Noto Sans Devanagari', 'url(/fonts/NotoSansDevanagari-Regular.ttf)', {
+        style: 'normal',
+        weight: '400'
+      })
+      const fontFaceBold = new FontFace('Noto Sans Devanagari', 'url(/fonts/NotoSansDevanagari-Bold.ttf)', {
+        style: 'normal',
+        weight: '700'
+      })
+
+      await Promise.all([
+        fontFace.load(),
+        fontFaceBold.load()
+      ])
+
+      document.fonts.add(fontFace)
+      document.fonts.add(fontFaceBold)
+      console.log("[certificate-image] Local Noto Sans Devanagari fonts loaded successfully")
+    } catch (fontError) {
+      console.warn("[certificate-image] Failed to load local fonts, using fallback:", fontError)
+    }
+
+    // Draw name (centered) - with district in Hindi
+    const hindiDistrict = getDistrictInHindi(templateData.district)
+    const nameText = `${templateData.name} - विधानसभा क्षेत्र ${hindiDistrict}`
+    ctx.font = `bold ${coords.name.size}px "Noto Sans Devanagari", Arial, sans-serif`
     
     // Center the name at the specified position
     const nameWidth = ctx.measureText(nameText).width
@@ -117,9 +143,9 @@ export async function generateCertificateImage(
     ctx.font = `${coords.date.size}px Arial, sans-serif`
     ctx.fillText(dateStr, coords.date.x, coords.date.y)
 
-    // Draw pledge ID
-    ctx.font = `${coords.pledgeId.size}px Arial, sans-serif`
-    ctx.fillText(templateData.id, coords.pledgeId.x, coords.pledgeId.y)
+    // Draw pledge ID - TEMPORARILY DISABLED
+    // ctx.font = `${coords.pledgeId.size}px Arial, sans-serif`
+    // ctx.fillText(templateData.id, coords.pledgeId.x, coords.pledgeId.y)
 
     // Draw selfie if provided
     if (templateData.selfieDataUrl) {

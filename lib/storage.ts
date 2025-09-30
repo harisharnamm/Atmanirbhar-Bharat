@@ -77,6 +77,55 @@ export async function uploadSelfie(pledgeId: string, file: Blob): Promise<string
   }
 }
 
+export async function uploadCertificateImage(pledgeId: string, file: Blob): Promise<string> {
+  try {
+    // Convert Blob to File for compression
+    const originalFile = new File([file], 'certificate.png', { type: 'image/png' })
+    const originalSize = getFileSizeKB(originalFile)
+
+    // Compress image for storage (aggressive compression for certificates)
+    const compressedFile = await compressImageForStorage(originalFile, {
+      maxSizeMB: 0.5, // ~500KB max
+      maxWidthOrHeight: 1200,
+      quality: 0.7,
+      fileType: 'image/webp'
+    })
+
+    const compressedSize = getFileSizeKB(compressedFile)
+    console.log(`Certificate image compression: ${originalSize}KB -> ${compressedSize}KB (${Math.round((1 - compressedSize/originalSize) * 100)}% reduction)`)
+
+    // Upload to Firebase Storage only
+    const { storage } = createFirebaseServerClient()
+    const firebaseRef = ref(storage, `certificates/${pledgeId}.webp`)
+    await uploadBytes(firebaseRef, compressedFile, { contentType: 'image/webp' })
+    const firebaseUrl = await getDownloadURL(firebaseRef)
+    console.log(`[uploadCertificateImage] Successfully uploaded to Firebase: ${pledgeId}`)
+
+    // Update both Supabase and Firebase databases with Firebase URL
+    await supabase
+      .from('pledges')
+      .update({
+        certificate_status: 'available',
+        certificate_image_url: firebaseUrl
+      })
+      .eq('pledge_id', pledgeId)
+
+    // Update Firebase pledge document
+    const { db } = createFirebaseServerClient()
+    const { doc, setDoc } = await import('firebase/firestore')
+    const pledgeRef = doc(db, 'pledges', pledgeId)
+    await setDoc(pledgeRef, {
+      certificate_status: 'available',
+      certificate_image_url: firebaseUrl
+    }, { merge: true })
+
+    return firebaseUrl
+  } catch (error) {
+    console.error('Certificate image upload failed:', error)
+    throw error
+  }
+}
+
 export async function uploadCertificatePdf(pledgeId: string, file: Blob): Promise<string> {
   // Direct upload without compression - template is already optimized
 

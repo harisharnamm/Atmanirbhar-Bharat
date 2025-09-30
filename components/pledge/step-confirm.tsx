@@ -4,8 +4,8 @@ import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { isNewPledgeIdFormat, generatePledgeId } from "@/lib/utils"
-import { generateCertificateFromTemplate } from "@/lib/pdf-template"
-import { uploadCertificatePdf, uploadSelfie } from "@/lib/storage"
+import { generateHighQualityCertificateImage } from "@/lib/certificate-image"
+import { uploadCertificateImage, uploadSelfie } from "@/lib/storage"
 import { supabase } from "@/lib/supabase"
 import { Loader2, Copy, Check } from "lucide-react"
 import ShareButtons from "@/components/pledge/share-buttons"
@@ -101,8 +101,8 @@ export default function StepConfirm({
       try {
         const originalSelfieDataUrl = selfieDataUrl ?? ((typeof window !== "undefined" && (window as any).__pledgeSelfie) || undefined)
         
-        // 1) Generate certificate (single high-quality version)
-        const { blob: pdfBlob, fileName } = await generateCertificateFromTemplate({
+        // 1) Generate certificate image (high-quality)
+        const certificateImageDataUrl = await generateHighQualityCertificateImage({
           id: formattedId,
           name: values.name,
           district: values.district,
@@ -110,12 +110,22 @@ export default function StepConfirm({
           village: values.village,
           lang: safeLang,
           selfieDataUrl: originalSelfieDataUrl,
-          download: false,
         })
+
+        // Convert data URL to blob
+        const certificateBlob = await (await fetch(certificateImageDataUrl)).blob()
         
-        // Store the PDF blob for sharing/download
-        setPdfBlob(pdfBlob)
-        
+        // Store the certificate image blob for sharing/download
+        setPdfBlob(certificateBlob)
+
+        // Automatically download the certificate image
+        const downloadLink = document.createElement('a')
+        downloadLink.href = certificateImageDataUrl
+        downloadLink.download = `certificate-${formattedId}.png`
+        document.body.appendChild(downloadLink)
+        downloadLink.click()
+        document.body.removeChild(downloadLink)
+
         // Store certificate data for image generation
         setCertificateData({
           id: formattedId,
@@ -140,23 +150,23 @@ export default function StepConfirm({
           }
         }
 
-        // 3) Upload PDF to storage (best-effort)
-        let pdfPublicUrl: string | undefined
-        {
+        // 3) Upload certificate image to storage (best-effort)
+        let certificateImagePublicUrl: string | undefined
+        if (certificateBlob) {
           let lastErr: any
           for (let i = 0; i < 2; i++) {
             try {
-              pdfPublicUrl = await uploadCertificatePdf(formattedId, pdfBlob)
+              certificateImagePublicUrl = await uploadCertificateImage(formattedId, certificateBlob)
               break
             } catch (e) {
               lastErr = e
               await new Promise((r) => setTimeout(r, 300))
             }
           }
-          if (!pdfPublicUrl && lastErr) {
-            console.log("[v0] PDF upload failed:", lastErr)
+          if (!certificateImagePublicUrl && lastErr) {
+            console.log("[v0] Certificate image upload failed:", lastErr)
             // Fallback: create a local blob URL
-            pdfPublicUrl = URL.createObjectURL(pdfBlob)
+            certificateImagePublicUrl = URL.createObjectURL(certificateBlob)
           }
         }
 
@@ -171,7 +181,7 @@ export default function StepConfirm({
           gender: (values as any).gender ?? null,
           lang: safeLang,
           selfie_url: selfiePublicUrl ?? null,
-          certificate_pdf_url: pdfPublicUrl ?? null,
+          certificate_image_url: certificateImagePublicUrl ?? null,
         })
 
         // Mark conversion for attribution (best-effort)
@@ -186,8 +196,7 @@ export default function StepConfirm({
         // 5) Create tracking link after pledge is saved
         await createTrackingLinkAfterPledgeSaved()
 
-        // Finally trigger download
-        triggerDownload(pdfBlob, fileName)
+        // Certificate automatically downloaded above
       } catch (error: any) {
         console.log("[v0] Certificate generation error:", error?.message || error)
       } finally {
@@ -276,9 +285,9 @@ export default function StepConfirm({
             ;(async () => {
               try {
                 const originalSelfieDataUrl = selfieDataUrl ?? ((window as any).__pledgeSelfie ?? undefined)
-                
-                // 1) Generate certificate (single high-quality version)
-                const { blob: pdfBlob, fileName } = await generateCertificateFromTemplate({
+
+                // 1) Generate certificate image (high-quality)
+                const certificateImageDataUrl = await generateHighQualityCertificateImage({
                   id: formattedId,
                   name: values.name,
                   district: values.district,
@@ -286,11 +295,21 @@ export default function StepConfirm({
                   village: values.village,
                   lang: safeLang,
                   selfieDataUrl: originalSelfieDataUrl,
-                  download: false,
                 })
-                
-                // Store the PDF blob for sharing
-                setPdfBlob(pdfBlob)
+
+                // Convert data URL to blob
+                const certificateBlob = await (await fetch(certificateImageDataUrl)).blob()
+
+                // Store the certificate image blob for sharing and download
+                setPdfBlob(certificateBlob) // Reusing pdfBlob state for image blob
+
+                // Automatically download the certificate image
+                const downloadLink = document.createElement('a')
+                downloadLink.href = certificateImageDataUrl
+                downloadLink.download = `certificate-${formattedId}.png`
+                document.body.appendChild(downloadLink)
+                downloadLink.click()
+                document.body.removeChild(downloadLink)
                 
                 // Store certificate data for image generation (with original selfie)
                 setCertificateData({
@@ -317,24 +336,24 @@ export default function StepConfirm({
                   }
                 }
 
-                // 3) Upload PDF to storage (best-effort)
-                let pdfPublicUrl: string | undefined
-                if (pdfBlob) {
+                // 3) Upload certificate image to storage (best-effort)
+                let certificateImagePublicUrl: string | undefined
+                if (certificateBlob) {
                   let lastErr: any
                   for (let i = 0; i < 2; i++) {
                     try {
-                      // Upload PDF to storage
-                      pdfPublicUrl = await uploadCertificatePdf(formattedId, pdfBlob)
+                      // Upload certificate image to storage
+                      certificateImagePublicUrl = await uploadCertificateImage(formattedId, certificateBlob)
                       break
                     } catch (e) {
                       lastErr = e
                       await new Promise((r) => setTimeout(r, 300))
                     }
                   }
-                  if (!pdfPublicUrl && lastErr) {
-                    console.log("[v0] PDF upload failed:", lastErr)
+                  if (!certificateImagePublicUrl && lastErr) {
+                    console.log("[v0] Certificate image upload failed:", lastErr)
                     // Fallback: create a local blob URL
-                    pdfPublicUrl = URL.createObjectURL(pdfBlob)
+                    certificateImagePublicUrl = URL.createObjectURL(certificateBlob)
                   }
                 }
 
@@ -349,7 +368,7 @@ export default function StepConfirm({
                   gender: (values as any).gender ?? null,
                   lang: safeLang,
                   selfie_url: selfiePublicUrl ?? null,
-                  certificate_pdf_url: pdfPublicUrl ?? null,
+                  certificate_image_url: certificateImagePublicUrl ?? null,
                 })
 
                 // Mark conversion for attribution (best-effort)
@@ -361,8 +380,7 @@ export default function StepConfirm({
                 // 5) Create tracking link after pledge is saved
                 await createTrackingLinkAfterPledgeSaved()
 
-                // Trigger download at the very end
-                triggerDownload(pdfBlob, fileName)
+                // Certificate automatically downloaded above
               } catch (error: any) {
                 console.log("[v0] Certificate generation error (manual):", error?.message || error)
               } finally {

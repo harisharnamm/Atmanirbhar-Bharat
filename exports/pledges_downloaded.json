@@ -1,0 +1,57 @@
+[
+  {
+    "pledge_id": "AANIRBHA-2025-GM7MVW-0",
+    "name": "मुरारी लाल कुमावत ",
+    "mobile": "9660172471",
+    "district": "Sikar",
+    "constituency": "34 Dhod (SC)",
+    "village": "गोठड़ा तगेलान ",
+    "gender": "male",
+    "certificate_status": "available",
+    "selfie_status": "downloaded"
+  },
+  {
+    "pledge_id": "AANIRBHA-2025-UXJNK9-4",
+    "name": "Jitesh kumar sharma",
+    "mobile": "9772758001",
+    "district": "Sikar",
+    "constituency": "35 Sikar",
+    "village": "Dasa ki dhani ",
+    "gender": "male",
+    "certificate_status": "available",
+    "selfie_status": "downloaded"
+  },
+  {
+    "pledge_id": "AANIRBHA-2025-8ET5KY-3",
+    "name": "Omendra singh ",
+    "mobile": "8104600066",
+    "district": "Sikar",
+    "constituency": "35 Sikar",
+    "village": "Todi nagar",
+    "gender": "male",
+    "certificate_status": "available",
+    "selfie_status": "downloaded"
+  },
+  {
+    "pledge_id": "AANIRBHA-2025-X3ULUS-5",
+    "name": "Raajveer ",
+    "mobile": "9929951933",
+    "district": "Sikar",
+    "constituency": "38 Neem Ka Thana",
+    "village": "Chala ",
+    "gender": "male",
+    "certificate_status": "downloaded",
+    "selfie_status": "downloaded"
+  },
+  {
+    "pledge_id": "AANIRBHA-2025-TSF3J8-5",
+    "name": "Vijay pal bhuria ",
+    "mobile": "9166291990",
+    "district": "Sikar",
+    "constituency": "33 Lachhmangarh",
+    "village": "Bhuria ka bas lalasi ",
+    "gender": "male",
+    "certificate_status": "downloaded",
+    "selfie_status": "downloaded"
+  }
+]
