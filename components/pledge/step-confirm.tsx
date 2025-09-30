@@ -171,6 +171,7 @@ export default function StepConfirm({
           constituency: values.constituency,
           village: (values as any).village ?? null,
           gender: (values as any).gender ?? null,
+          profession: (values as any).profession ?? null,
           lang: safeLang,
           selfie_url: selfiePublicUrl ?? null,
           certificate_image_url: certificateImagePublicUrl ?? null,

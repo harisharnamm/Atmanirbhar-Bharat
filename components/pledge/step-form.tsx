@@ -14,6 +14,7 @@ export type PledgeFormValues = {
   name: string
   mobile: string
   gender: "male" | "female" | "other"
+  profession: string
   district: string
   constituency: string
   village: string
@@ -22,6 +23,21 @@ export type PledgeFormValues = {
 const MOBILE_IN_PATTERN = /^[6-9]\d{9}$/
 // Allow both English and Hindi (Devanagari) characters
 const NAME_PATTERN = /^[a-zA-Z\s.'\-\u0900-\u097F]+$/
+
+const PROFESSION_OPTIONS = [
+  "Student",
+  "Teacher/Educator",
+  "Doctor/Healthcare Professional",
+  "Engineer/IT Professional",
+  "Business Owner/Entrepreneur",
+  "Farmer/Agriculturist",
+  "Government Employee",
+  "Private Sector Employee",
+  "Self-Employed",
+  "Retired",
+  "Homemaker",
+  "Other"
+]
 
 const RAJASTHAN_DISTRICTS = [
   "Ajmer",
@@ -348,12 +364,13 @@ export default function StepForm({
   onValid: (vals: PledgeFormValues) => void
 }) {
   const [values, setValues] = useState<PledgeFormValues>(
-    initialValues ?? { name: "", mobile: "", gender: "male", district: "", constituency: "", village: "" },
+    initialValues ?? { name: "", mobile: "", gender: "male", profession: "", district: "", constituency: "", village: "" },
   )
   const [touched, setTouched] = useState<Record<keyof PledgeFormValues, boolean>>({
     name: false,
     mobile: false,
     gender: false,
+    profession: false,
     district: false,
     constituency: false,
     village: false,
@@ -371,6 +388,7 @@ export default function StepForm({
     else if (!NAME_PATTERN.test(values.name)) e.name = "Name must contain only letters (English or Hindi), spaces, and common punctuation"
     if (!MOBILE_IN_PATTERN.test(values.mobile)) e.mobile = strings.form.errors.mobile
     if (!values.gender) e.gender = strings.form.errors.required
+    if (!values.profession) e.profession = strings.form.errors.required
     if (!values.district.trim()) e.district = strings.form.errors.required
     if (values.district && !values.constituency.trim()) e.constituency = strings.form.errors.required
     if (!values.village.trim()) e.village = strings.form.errors.required
@@ -458,6 +476,33 @@ export default function StepForm({
             <p className="text-xs text-destructive">{errors.gender}</p>
           )}
         </div>
+
+        <div className="grid gap-2">
+          <Label htmlFor="profession">{lang === "hi" ? "पेशा" : "Profession"}</Label>
+          <select
+            id="profession"
+            name="profession"
+            value={values.profession}
+            onChange={(e) => setValues((v) => ({ ...v, profession: e.target.value }))}
+            onBlur={() => setTouched((t) => ({ ...t, profession: true }))}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            aria-invalid={!!errors.profession && (touched.profession || isSubmittedOnce)}
+            aria-describedby={errors.profession && (touched.profession || isSubmittedOnce) ? "profession-error" : undefined}
+          >
+            <option value="">{lang === "hi" ? "पेशा चुनें" : "Select profession"}</option>
+            {PROFESSION_OPTIONS.map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {(touched.profession || isSubmittedOnce) && errors.profession && (
+            <p id="profession-error" className="text-xs text-destructive">
+              {errors.profession}
+            </p>
+          )}
+        </div>
+
         <div className="grid gap-2">
           <Label htmlFor="name">{strings.form.name}</Label>
           <Input
