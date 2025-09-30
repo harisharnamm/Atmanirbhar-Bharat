@@ -9,6 +9,8 @@ export default function ShareButtons({
   url,
   text,
   certificateData,
+  saveToGalleryText,
+  disabled = false,
 }: {
   label: string
   url: string
@@ -22,6 +24,8 @@ export default function ShareButtons({
     lang: "en" | "hi"
     selfieDataUrl?: string | null
   }
+  saveToGalleryText?: string
+  disabled?: boolean
 }) {
   const [copied, setCopied] = useState(false)
   const [savingToGallery, setSavingToGallery] = useState(false)
@@ -108,16 +112,16 @@ export default function ShareButtons({
   return (
     <div className="flex flex-col items-center gap-2">
       <div className="flex flex-wrap items-center justify-center gap-2">
-        <Button onClick={onShare}>
+        <Button onClick={onShare} disabled={disabled}>
           {label}
         </Button>
-        <Button 
-          variant="outline" 
-          onClick={onSaveToGallery} 
-          disabled={savingToGallery || !certificateData}
+        <Button
+          variant="outline"
+          onClick={onSaveToGallery}
+          disabled={disabled || savingToGallery || !certificateData}
           aria-label="Save certificate to gallery"
         >
-          {savingToGallery ? "Saving..." : "Save to Gallery"}
+          {savingToGallery ? (saveToGalleryText === "गैलरी में सहेजें" ? "सहेज रहा है..." : "Saving...") : (saveToGalleryText || "Save to Gallery")}
         </Button>
       </div>
       {!navigator.share && (

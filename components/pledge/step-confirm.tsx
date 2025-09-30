@@ -454,6 +454,8 @@ export default function StepConfirm({
           url={shareUrl}
           text={`${values.name} ने "आत्मनिर्भर भारत का संकल्प" लिया है।`}
           certificateData={certificateData}
+          saveToGalleryText={strings.confirm.saveToGallery}
+          disabled={downloading}
         />
       </div>
     </section>
@@ -493,6 +495,6 @@ function Checkmark() {
 function getStringsMock() {
   return {
     __lang: "en",
-    confirm: { title: "", cert: "", share: "" },
+    confirm: { title: "", cert: "", share: "", saveToGallery: "" },
   }
 }

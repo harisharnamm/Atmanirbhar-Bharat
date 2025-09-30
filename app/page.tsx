@@ -167,6 +167,7 @@ function getStrings(lang: "en" | "hi") {
         title: "धन्यवाद! आपकी प्रतिज्ञा दर्ज हो गई है।",
         cert: "प्रमाण पत्र डाउनलोड करें",
         share: "शेयर करें",
+        saveToGallery: "गैलरी में सहेजें",
       },
     }
   }
@@ -207,6 +208,7 @@ function getStrings(lang: "en" | "hi") {
       title: "Thank you! Your pledge is recorded.",
       cert: "Download certificate",
       share: "Share",
+      saveToGallery: "Save to Gallery",
     },
   }
 }
