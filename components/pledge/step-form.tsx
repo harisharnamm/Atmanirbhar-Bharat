@@ -20,7 +20,8 @@ export type PledgeFormValues = {
 }
 
 const MOBILE_IN_PATTERN = /^[6-9]\d{9}$/
-const ENGLISH_ONLY_PATTERN = /^[a-zA-Z\s.'-]+$/
+// Allow both English and Hindi (Devanagari) characters
+const NAME_PATTERN = /^[a-zA-Z\s.'\-\u0900-\u097F]+$/
 
 const RAJASTHAN_DISTRICTS = [
   "Ajmer",
@@ -367,7 +368,7 @@ export default function StepForm({
   const errors = useMemo(() => {
     const e: Partial<Record<keyof PledgeFormValues, string>> = {}
     if (!values.name.trim()) e.name = strings.form.errors.required
-    else if (!ENGLISH_ONLY_PATTERN.test(values.name)) e.name = "Name must contain only English letters, spaces, and common punctuation"
+    else if (!NAME_PATTERN.test(values.name)) e.name = "Name must contain only letters (English or Hindi), spaces, and common punctuation"
     if (!MOBILE_IN_PATTERN.test(values.mobile)) e.mobile = strings.form.errors.mobile
     if (!values.gender) e.gender = strings.form.errors.required
     if (!values.district.trim()) e.district = strings.form.errors.required
@@ -464,15 +465,15 @@ export default function StepForm({
             name="name"
             value={values.name}
             onChange={(e) => {
-              // Filter out non-English characters in real-time
-              const filteredValue = e.target.value.replace(/[^a-zA-Z\s.'-]/g, '')
+              // Allow both English and Hindi (Devanagari) characters
+              const filteredValue = e.target.value.replace(/[^a-zA-Z\s.'\-\u0900-\u097F]/g, '')
               setValues((v) => ({ ...v, name: filteredValue }))
             }}
             onBlur={() => setTouched((t) => ({ ...t, name: true }))}
             aria-invalid={!!errors.name && (touched.name || isSubmittedOnce)}
             aria-describedby={errors.name && (touched.name || isSubmittedOnce) ? "name-error" : undefined}
             autoComplete="name"
-            placeholder="Enter name in English"
+            placeholder={lang === "hi" ? "नाम दर्ज करें (हिंदी या अंग्रेजी)" : "Enter name (English or Hindi)"}
           />
           {(touched.name || isSubmittedOnce) && errors.name && (
             <p id="name-error" className="text-xs text-destructive">

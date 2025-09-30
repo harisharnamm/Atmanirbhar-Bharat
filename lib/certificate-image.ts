@@ -75,7 +75,7 @@ export async function generateCertificateImage(
       // Pledge ID position (bottom of certificate)
       pledgeId: { x: 520, y: 2400, size: 48 },
       // Selfie position and size
-      selfie: { x: 1150, y: 1280, w: 600, h: 600 }
+      selfie: { x: 1153, y: 1280, w: 600, h: 600 }
     }
     
     console.log("[certificate-image] Using manual coordinates:", coords)

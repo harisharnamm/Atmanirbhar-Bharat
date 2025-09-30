@@ -8,11 +8,12 @@ import StepForm, { type PledgeFormValues } from "@/components/pledge/step-form"
 import StepAcknowledge from "@/components/pledge/step-ack"
 import StepConfirm from "@/components/pledge/step-confirm"
 import Progress from "@/components/pledge/progress"
+import LangToggle from "@/components/pledge/lang-toggle"
 
 type Lang = "en" | "hi"
 
 export default function HomePage() {
-  const [lang] = useState<Lang>("en") // Fixed to English only
+  const [lang, setLang] = useState<Lang>("en")
   const [step, setStep] = useState(0)
   const [pledgeId, setPledgeId] = useState<string>("")
   const [formValues, setFormValues] = useState<PledgeFormValues | null>(null)
@@ -55,6 +56,7 @@ export default function HomePage() {
               className="h-16 w-auto"
             />
           </div>
+          <LangToggle lang={lang} onLangChange={setLang} />
         </header>
 
         <div className="mb-6 text-center">
