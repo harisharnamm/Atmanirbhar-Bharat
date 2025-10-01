@@ -128,12 +128,12 @@ export const CONSTITUENCY_HINDI_MAPPING: Record<string, string> = {
 
   // Sikar constituencies
   "Fatehpur": "फतेहपुर",
-  "Lachhmangarh": "लाखमानगढ",
-  "Dhod": "ढोढ",
+  "Lachhmangarh": "लक्ष्मणगढ़",
+  "Dhod": "धोद",
   "Sikar": "सीकर",
-  "Dantaramgarh": "दानतारामगढ़",
+  "Dantaramgarh": "दतारामगढ़",
   "Khandela": "खंडेला",
-  "Neem Ka Thana": "नीम का थाना",
+  "Neem Ka Thana": "नीमकाथाना",
   "Srimadhopur": "श्रीमाधोपुर",
 
   // Sawai Madhopur constituencies
