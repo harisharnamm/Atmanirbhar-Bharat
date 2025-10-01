@@ -1,7 +1,7 @@
 "use client"
 
 import "regenerator-runtime/runtime"
-import { getDistrictInHindi } from "./district-mapping"
+import { getDistrictInHindi, getConstituencyInHindi } from "./district-mapping"
 
 export interface CertificateImageOptions {
   scale?: number
@@ -17,6 +17,7 @@ export async function generateCertificateImage(
   templateData: {
     id: string
     name: string
+    profession?: string
     district: string
     constituency: string
     village: string
@@ -115,9 +116,12 @@ export async function generateCertificateImage(
       console.warn("[certificate-image] Failed to load local fonts, using fallback:", fontError)
     }
 
-    // Draw name (centered) - with district in Hindi
-    const hindiDistrict = getDistrictInHindi(templateData.district)
-    const nameText = `${templateData.name} - विधानसभा क्षेत्र ${hindiDistrict}`
+    // Draw name (centered) - with profession and constituency in Hindi (no pledge ID)
+    const hindiConstituency = getConstituencyInHindi(templateData.constituency)
+    const profession = templateData.profession || ''
+    const nameText = profession
+      ? `${templateData.name} - विधानसभा क्षेत्र ${hindiConstituency}`
+      : `${templateData.name} - विधानसभा क्षेत्र ${hindiConstituency}`
     ctx.font = `bold ${coords.name.size}px "Noto Sans Devanagari", Arial, sans-serif`
     
     // Center the name at the specified position
@@ -190,6 +194,7 @@ export async function generateCertificateImage(
 export async function generateSocialMediaCertificateImage(templateData: {
   id: string
   name: string
+  profession?: string
   district: string
   constituency: string
   village: string
@@ -209,6 +214,7 @@ export async function generateSocialMediaCertificateImage(templateData: {
 export async function generateHighQualityCertificateImage(templateData: {
   id: string
   name: string
+  profession?: string
   district: string
   constituency: string
   village: string

@@ -18,6 +18,7 @@ export default function ShareButtons({
   certificateData?: {
     id: string
     name: string
+    profession?: string
     district: string
     constituency: string
     village: string

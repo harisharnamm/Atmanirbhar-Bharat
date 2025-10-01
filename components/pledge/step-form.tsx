@@ -9,6 +9,7 @@ import { Button } from "@/components/ui/button"
 import { Command, CommandEmpty, CommandGroup, CommandInput, CommandItem, CommandList } from "@/components/ui/command"
 import { Check, ChevronsUpDown } from "lucide-react"
 import { cn } from "@/lib/utils"
+import { getProfessionOptions, getDistrictInHindi, getDistrictOptions, CONSTITUENCY_HINDI_MAPPING, getEnglishDistrictFromHindi } from "@/lib/district-mapping"
 
 export type PledgeFormValues = {
   name: string
@@ -24,22 +25,9 @@ const MOBILE_IN_PATTERN = /^[6-9]\d{9}$/
 // Allow both English and Hindi (Devanagari) characters
 const NAME_PATTERN = /^[a-zA-Z\s.'\-\u0900-\u097F]+$/
 
-const PROFESSION_OPTIONS = [
-  "Student",
-  "Teacher/Educator",
-  "Doctor/Healthcare Professional",
-  "Engineer/IT Professional",
-  "Business Owner/Entrepreneur",
-  "Farmer/Agriculturist",
-  "Government Employee",
-  "Private Sector Employee",
-  "Self-Employed",
-  "Retired",
-  "Homemaker",
-  "Other"
-]
+// Profession and district options will be generated dynamically based on language
 
-const RAJASTHAN_DISTRICTS = [
+const RAJASTHAN_DISTRICTS_ENGLISH = [
   "Ajmer",
   "Alwar",
   "Balotra",
@@ -478,32 +466,6 @@ export default function StepForm({
         </div>
 
         <div className="grid gap-2">
-          <Label htmlFor="profession">{lang === "hi" ? "पेशा" : "Profession"}</Label>
-          <select
-            id="profession"
-            name="profession"
-            value={values.profession}
-            onChange={(e) => setValues((v) => ({ ...v, profession: e.target.value }))}
-            onBlur={() => setTouched((t) => ({ ...t, profession: true }))}
-            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
-            aria-invalid={!!errors.profession && (touched.profession || isSubmittedOnce)}
-            aria-describedby={errors.profession && (touched.profession || isSubmittedOnce) ? "profession-error" : undefined}
-          >
-            <option value="">{lang === "hi" ? "पेशा चुनें" : "Select profession"}</option>
-            {PROFESSION_OPTIONS.map((option) => (
-              <option key={option} value={option}>
-                {option}
-              </option>
-            ))}
-          </select>
-          {(touched.profession || isSubmittedOnce) && errors.profession && (
-            <p id="profession-error" className="text-xs text-destructive">
-              {errors.profession}
-            </p>
-          )}
-        </div>
-
-        <div className="grid gap-2">
           <Label htmlFor="name">{strings.form.name}</Label>
           <Input
             id="name"
@@ -523,6 +485,32 @@ export default function StepForm({
           {(touched.name || isSubmittedOnce) && errors.name && (
             <p id="name-error" className="text-xs text-destructive">
               {errors.name}
+            </p>
+          )}
+        </div>
+
+        <div className="grid gap-2">
+          <Label htmlFor="profession">{lang === "hi" ? "पेशा" : "Profession"}</Label>
+          <select
+            id="profession"
+            name="profession"
+            value={values.profession}
+            onChange={(e) => setValues((v) => ({ ...v, profession: e.target.value }))}
+            onBlur={() => setTouched((t) => ({ ...t, profession: true }))}
+            className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            aria-invalid={!!errors.profession && (touched.profession || isSubmittedOnce)}
+            aria-describedby={errors.profession && (touched.profession || isSubmittedOnce) ? "profession-error" : undefined}
+          >
+            <option value="">{lang === "hi" ? "पेशा चुनें" : "Select profession"}</option>
+            {getProfessionOptions(lang).map((option) => (
+              <option key={option} value={option}>
+                {option}
+              </option>
+            ))}
+          </select>
+          {(touched.profession || isSubmittedOnce) && errors.profession && (
+            <p id="profession-error" className="text-xs text-destructive">
+              {errors.profession}
             </p>
           )}
         </div>
@@ -578,7 +566,7 @@ export default function StepForm({
                   <CommandList className="max-h-[200px]">
                     <CommandEmpty>No district found.</CommandEmpty>
                     <CommandGroup>
-                      {RAJASTHAN_DISTRICTS.map((district) => (
+                      {getDistrictOptions(lang).map((district) => (
                         <CommandItem
                           key={district}
                           value={district}
@@ -645,26 +633,32 @@ export default function StepForm({
                     <CommandList className="max-h-[200px]">
                       <CommandEmpty>No constituency found.</CommandEmpty>
                       <CommandGroup>
-                        {DISTRICT_CONSTITUENCIES[values.district]?.map((constituency) => (
-                          <CommandItem
-                            key={`${constituency.number}-${constituency.name}`}
-                            value={`${constituency.number} ${constituency.name}`}
-                            onSelect={(currentValue) => {
-                              setValues((v) => ({ ...v, constituency: currentValue === values.constituency ? "" : currentValue }))
-                              setConstituencyOpen(false)
-                              setTouched((t) => ({ ...t, constituency: true }))
-                            }}
-                            className="cursor-pointer"
-                          >
-                            <Check
-                              className={cn(
-                                "mr-2 h-4 w-4",
-                                values.constituency === `${constituency.number} ${constituency.name}` ? "opacity-100" : "opacity-0"
-                              )}
-                            />
-                            {constituency.number} - {constituency.name}
-                          </CommandItem>
-                        ))}
+                        {DISTRICT_CONSTITUENCIES[getEnglishDistrictFromHindi(values.district)]?.map((constituency) => {
+                          // Extract the base name without (ST) or other suffixes for translation
+                          const baseName = constituency.name.replace(/\s*\([^)]*\)\s*$/, '')
+                          const hindiName = CONSTITUENCY_HINDI_MAPPING[baseName] || constituency.name
+                          const displayValue = lang === "hi" ? `${constituency.number} ${hindiName}` : `${constituency.number} ${constituency.name}`
+                          return (
+                            <CommandItem
+                              key={`${constituency.number}-${constituency.name}`}
+                              value={displayValue}
+                              onSelect={(currentValue) => {
+                                setValues((v) => ({ ...v, constituency: currentValue === values.constituency ? "" : currentValue }))
+                                setConstituencyOpen(false)
+                                setTouched((t) => ({ ...t, constituency: true }))
+                              }}
+                              className="cursor-pointer"
+                            >
+                              <Check
+                                className={cn(
+                                  "mr-2 h-4 w-4",
+                                  values.constituency === displayValue ? "opacity-100" : "opacity-0"
+                                )}
+                              />
+                              {constituency.number} - {lang === "hi" ? hindiName : constituency.name}
+                            </CommandItem>
+                          )
+                        })}
                       </CommandGroup>
                     </CommandList>
                   </Command>

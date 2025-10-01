@@ -30,6 +30,7 @@ export default function StepConfirm({
   const [certificateData, setCertificateData] = useState<{
     id: string
     name: string
+    profession?: string
     district: string
     constituency: string
     village: string
@@ -122,6 +123,7 @@ export default function StepConfirm({
         setCertificateData({
           id: formattedId,
           name: values.name,
+          profession: (values as any).profession,
           district: values.district,
           constituency: values.constituency,
           village: values.village,

@@ -5,12 +5,13 @@
 
 import "regenerator-runtime/runtime"
 import type { PledgeFormValues } from "@/components/pledge/step-form"
-import { getDistrictInHindi } from "./district-mapping"
+import { getDistrictInHindi, getConstituencyInHindi } from "./district-mapping"
 
 // We'll dynamic import to avoid bundling pdf-lib in non-certificate paths
 export async function generateCertificateFromTemplate({
   id,
   name,
+  profession,
   district,
   constituency,
   village,
@@ -20,6 +21,7 @@ export async function generateCertificateFromTemplate({
 }: {
   id: string
   name: string
+  profession?: string
   district: string
   constituency: string
   village: string
@@ -209,40 +211,54 @@ export async function generateCertificateFromTemplate({
   const dateStr = `${dd}/${mm}/${yyyy}`
 
   // Draw content
-  // Center the name between X:190 and X:440 at the provided Y (bold) with district in Hindi
-  const hindiDistrict = getDistrictInHindi(district)
+  // Center the name between X:190 and X:440 at the provided Y (bold) with profession and constituency in Hindi
+  const hindiConstituency = getConstituencyInHindi(constituency)
 
-  // Split into parts: English name + Hindi connector + Hindi district
+  // Split into parts: Profession + Name + Hindi connector + Hindi constituency (no pledge ID)
+  const professionPart = profession ? `${profession} - ` : ''
   const englishName = name
-  const hindiConnector = " - विधानसभा क्षेत्र "
-  const hindiDistrictPart = hindiDistrict
+  const hindiConnector = "विधानसभा क्षेत्र "
+  const hindiConstituencyPart = hindiConstituency
 
   // Calculate total width and center the entire text
   let totalWidth = 0
   let englishFontForCalc, hindiFontForCalc
 
   try {
-    englishFontForCalc = getAppropriateFont(englishName, true)
+    englishFontForCalc = getAppropriateFont(profession || englishName, true)
     hindiFontForCalc = getAppropriateFont(hindiConnector, true)
 
     // Fallback to default fonts if appropriate font not found
     if (!englishFontForCalc) englishFontForCalc = englishFontBold || englishFont
     if (!hindiFontForCalc) hindiFontForCalc = hindiFontBold || hindiFont
 
-    const englishWidth = englishFontForCalc.widthOfTextAtSize(englishName, coordsTL.name.size)
+    const professionWidth = profession ? englishFontForCalc.widthOfTextAtSize(professionPart, coordsTL.name.size) : 0
+    const englishNameWidth = englishFontForCalc.widthOfTextAtSize(englishName, coordsTL.name.size)
     const hindiConnectorWidth = hindiFontForCalc.widthOfTextAtSize(hindiConnector, coordsTL.name.size)
-    const hindiDistrictWidth = hindiFontForCalc.widthOfTextAtSize(hindiDistrictPart, coordsTL.name.size)
+    const hindiConstituencyWidth = hindiFontForCalc.widthOfTextAtSize(hindiConstituencyPart, coordsTL.name.size)
 
-    totalWidth = englishWidth + hindiConnectorWidth + hindiDistrictWidth
+    totalWidth = professionWidth + englishNameWidth + hindiConnectorWidth + hindiConstituencyWidth
   } catch (error) {
     console.warn("[pdf-template] Font metrics failed for name parts:", error)
-    totalWidth = (englishName.length + hindiConnector.length + hindiDistrictPart.length) * coordsTL.name.size * 0.55
+    totalWidth = (professionPart.length + englishName.length + hindiConnector.length + hindiConstituencyPart.length) * coordsTL.name.size * 0.55
     englishFontForCalc = englishFontBold || englishFont
     hindiFontForCalc = hindiFontBold || hindiFont
   }
 
   const boxCenter = (190 + 440) / 2
   let currentX = boxCenter - totalWidth / 2
+
+  // Draw profession part (if exists)
+  if (profession && englishFontForCalc) {
+    page.drawText(professionPart, {
+      x: currentX,
+      y: pageH - coordsTL.name.y,
+      size: coordsTL.name.size,
+      font: englishFontForCalc,
+      color: rgb(0, 0, 0),
+    })
+    currentX += englishFontForCalc.widthOfTextAtSize(professionPart, coordsTL.name.size)
+  }
 
   // Draw English name part
   if (englishFontForCalc) {
@@ -256,9 +272,9 @@ export async function generateCertificateFromTemplate({
   }
   currentX += englishFontForCalc?.widthOfTextAtSize(englishName, coordsTL.name.size) || (englishName.length * coordsTL.name.size * 0.55)
 
-  // Draw Hindi connector and district parts
+  // Draw Hindi connector and constituency parts
   if (hindiFontForCalc) {
-    const hindiText = hindiConnector + hindiDistrictPart
+    const hindiText = ` - ${hindiConnector}${hindiConstituencyPart}`
     page.drawText(hindiText, {
       x: currentX,
       y: pageH - coordsTL.name.y,
