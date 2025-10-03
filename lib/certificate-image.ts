@@ -222,8 +222,8 @@ export async function generateHighQualityCertificateImage(templateData: {
   selfieDataUrl?: string | null
 }): Promise<string> {
   return generateCertificateImage(templateData, {
-    scale: 2,
-    format: "image/png",
-    quality: 1
+    scale: 1.5, // Balanced scale for quality and file size
+    format: "image/jpeg",
+    quality: 0.9 // 90% quality for excellent visual results
   })
 }
