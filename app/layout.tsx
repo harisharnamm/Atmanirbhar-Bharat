@@ -14,7 +14,7 @@ export const metadata: Metadata = {
     template: '%s – Aatmanirbhar Bharat',
   },
   description:
-    'Take the Sankalp for Aatmanirbhar Bharat. Fill details, read the pledge, add a selfie, and download your certificate.',
+    'आत्मनिर्भर भारत — स्वदेशी संकल्प | आइए हम साथ मिलकर स्वदेशी का समर्थन करें। aatmanirbharbharatabhiyan.com पर जाएँ और अपना संकल्प लें।',
   applicationName: 'Aatmanirbhar Bharat Pledge',
   keywords: [
     'Aatmanirbhar Bharat',
