@@ -83,11 +83,11 @@ export async function uploadCertificateImage(pledgeId: string, file: Blob): Prom
     const originalFile = new File([file], 'certificate.png', { type: 'image/png' })
     const originalSize = getFileSizeKB(originalFile)
 
-    // Compress image for storage (gentle compression for certificates)
+    // Compress image for storage (optimized compression for certificates)
     const compressedFile = await compressImageForStorage(originalFile, {
-      maxSizeMB: 1.0, // ~1MB max for better quality
-      maxWidthOrHeight: 1500, // Slightly larger max dimension
-      quality: 0.85, // Higher quality compression
+      maxSizeMB: 0.8, // ~800KB max for good balance
+      maxWidthOrHeight: 1400, // Reasonable max dimension
+      quality: 0.8, // Good quality compression
       fileType: 'image/webp'
     })
 
