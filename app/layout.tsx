@@ -35,7 +35,7 @@ export const metadata: Metadata = {
     url: '/',
     title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
-      'Take the Sankalp for Aatmanirbhar Bharat and receive your Sankalp Patra.',
+      'आत्मनिर्भर भारत — स्वदेशी संकल्प | आइए हम साथ मिलकर स्वदेशी का समर्थन करें। aatmanirbharbharatabhiyan.com पर जाएँ और अपना संकल्प लें।',
     siteName: 'Aatmanirbhar Bharat',
     images: [
       {
@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
-      'Take the Sankalp for Aatmanirbhar Bharat and receive your personalized certificate.',
+      'आत्मनिर्भर भारत — स्वदेशी संकल्प | आइए हम साथ मिलकर स्वदेशी का समर्थन करें। aatmanirbharbharatabhiyan.com पर जाएँ और अपना संकल्प लें।',
     images: ['https://res.cloudinary.com/dxtmchwif/image/upload/v1759514125/%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%80_%E0%A4%B8%E0%A4%82%E0%A4%95%E0%A4%B2%E0%A5%8D%E0%A4%AA_%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0.pdf-2_umnhkt.jpg'],
     creator: '@aatmanirbhar',
   },
