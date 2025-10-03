@@ -39,7 +39,7 @@ export const metadata: Metadata = {
     siteName: 'Aatmanirbhar Bharat',
     images: [
       {
-        url: 'https://res.cloudinary.com/dxtmchwif/image/upload/v1758876331/Add_a_subheading_s8oxhd.jpg',
+        url: 'https://res.cloudinary.com/dxtmchwif/image/upload/v1759514125/%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%80_%E0%A4%B8%E0%A4%82%E0%A4%95%E0%A4%B2%E0%A5%8D%E0%A4%AA_%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0.pdf-2_umnhkt.jpg',
         width: 1200,
         height: 630,
         alt: 'Aatmanirbhar Bharat',
@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     title: 'Aatmanirbhar Bharat – Sankalp Pledge',
     description:
       'Take the Sankalp for Aatmanirbhar Bharat and receive your personalized certificate.',
-    images: ['https://res.cloudinary.com/dxtmchwif/image/upload/v1758876331/Add_a_subheading_s8oxhd.jpg'],
+    images: ['https://res.cloudinary.com/dxtmchwif/image/upload/v1759514125/%E0%A4%B8%E0%A5%8D%E0%A4%B5%E0%A4%A6%E0%A5%87%E0%A4%B6%E0%A5%80_%E0%A4%B8%E0%A4%82%E0%A4%95%E0%A4%B2%E0%A5%8D%E0%A4%AA_%E0%A4%AA%E0%A4%A4%E0%A5%8D%E0%A4%B0.pdf-2_umnhkt.jpg'],
     creator: '@aatmanirbhar',
   },
   robots: {
