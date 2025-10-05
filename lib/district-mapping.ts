@@ -87,12 +87,10 @@ export const PROFESSION_HINDI_MAPPING: Record<string, string> = {
 export const CONSTITUENCY_HINDI_MAPPING: Record<string, string> = {
   // Common constituency name translations (without numbers and suffixes)
   "Ajmer": "अजमेर",
-  "Beawar": "ब्यावर",
   "Masuda": "मसूदा",
   "Kekri": "केकरी",
   "Pisangan": "पिसंगन",
   "Jaipur": "जयपुर",
-  "Jodhpur": "जोधपुर",
   "Udaipur": "उदयपुर",
   "Kota": "कोटा",
   "Bikaner": "बीकानेर",
@@ -102,7 +100,6 @@ export const CONSTITUENCY_HINDI_MAPPING: Record<string, string> = {
   "Jhadol": "झाडोल",
   "Kherwara": "खेरवाड़ा",
   "Udaipur Rural": "उदयपुर ग्रामीण",
-  "Udaipur": "उदयपुर",
   "Mavli": "मावली",
   "Vallabhnagar": "वल्लभनगर",
   "Salumber": "सलूमबर",
@@ -146,6 +143,215 @@ export const CONSTITUENCY_HINDI_MAPPING: Record<string, string> = {
   "Bhim": "भीम",
   "Kumbhalgarh": "कुंभलगढ़",
   "Rajsamand": "राजसमंद",
+
+  // Pratapgarh constituencies
+  "Dhariwad": "धारियावाद",
+  "Pratapgarh": "प्रतापगढ़",
+
+  // Pali constituencies
+  "Jaitaran": "जैतारण",
+  "Sojat": "सोजत",
+  "Pali": "पाली",
+  "Marwar Junction": "मारवाड़ जंक्शन",
+  "Bali": "बाली",
+  "Sumerpur": "सुमेरपुर",
+
+  // Nagaur constituencies
+  "Ladnun": "लाडनूं",
+  "Deedwana": "दीदवाना",
+  "Jayal": "जायल",
+  "Nagaur": "नागौर",
+  "Khinwsar": "खिंवसर",
+  "Merta": "मेड़ता",
+  "Degana": "देगाना",
+  "Makrana": "मकराना",
+  "Parbatsar": "परबतसर",
+  "Nawan": "नावान",
+
+  // Kota constituencies
+  "Pipalda": "पिपलदा",
+  "Sangod": "सांगोद",
+  "Kota North": "कोटा उत्तर",
+  "Kota South": "कोटा दक्षिण",
+  "Ladpura": "लाडपुरा",
+  "Ramganj Mandi": "रामगंज मंडी",
+
+  // Karauli constituencies
+  "Todabhim": "तोडाभीम",
+  "Hindaun": "हिण्डौन",
+  "Karauli": "करणौली",
+  "Sapotra": "सपोत्रा",
+
+  // Jodhpur constituencies
+  "Phalodi": "फलोदी",
+  "Lohawat": "लोहावत",
+  "Shergarh": "शेरगढ़",
+  "Osian": "ओसियां",
+  "Bhopalgarh": "भोपालगढ़",
+  "Sardarpura": "सरदारपुरा",
+  "Soorsagar": "सूरसागर",
+  "Luni": "लूणी",
+  "Bilara": "बिलाड़ा",
+
+  // Jhunjhunu constituencies
+  "Pilani": "पिलानी",
+  "Surajgarh": "सूरजगढ़",
+  "Jhunjhunu": "झुंझुनू",
+  "Mandawa": "मंडावा",
+  "Nawalgarh": "नवलगढ़",
+  "Udaipurwati": "उदयपुरवाटी",
+  "Khetri": "खेतड़ी",
+
+  // Jhalawar constituencies
+  "Dag": "डाग",
+  "Jhalrapatan": "झालरापाटन",
+  "Khanpur": "खानपुर",
+  "Manohar Thana": "मनोहर थाना",
+
+  // Jalore constituencies
+  "Ahore": "आहोर",
+  "Jalore": "जालोर",
+  "Bhinmal": "भीनमाल",
+  "Sanchore": "साँचौर",
+  "Raniwara": "रानीवाड़ा",
+
+  // Jaisalmer constituencies
+  "Jaisalmer": "जैसलमेर",
+  "Pokaran": "पोकरण",
+
+  // Jaipur constituencies
+  "Kotputli": "कोतपूतली",
+  "Viratnagar": "वीरतनगर",
+  "Shahpura": "शाहपुरा",
+  "Chomu": "चोमू",
+  "Phulera": "फुलेरा",
+  "Dudu": "डूडू",
+  "Jhotwara": "झोटवाड़ा",
+  "Amber": "अंबर",
+  "Jamwa Ramgarh": "जामवा रामगढ़",
+  "Hawa Mahal": "हवा महल",
+  "Vidhyadhar Nagar": "विध्याधर नगर",
+  "Civil Lines": "सिविल लाइंस",
+  "Kishanpole": "किशनपोल",
+  "Adarsh Nagar": "आदर्श नगर",
+  "Malviya Nagar": "मालवीय नगर",
+  "Sanganer": "सांगानेर",
+  "Bagru": "बगरू",
+  "Bass": "बास्सी",
+
+  // Hanumangarh constituencies
+  "Sangaria": "संगरिया",
+  "Hanumangarh": "हनुमानगढ़",
+  "Pilibanga": "पिलिबंगा",
+  "Nohar": "नोहर",
+  "Bhadra": "भादरा",
+
+  // Dungarpur constituencies
+  "Dungarpur": "डूंगरपुर",
+  "Aspur": "आसपुर",
+  "Sagwara": "सागवाड़ा",
+  "Chorasi": "चौरासी",
+
+  // Dholpur constituencies
+  "Baseri": "बसेरी",
+  "Bari": "बाड़ी",
+  "Dholpur": "धौलपुर",
+  "Rajakhera": "राजाखेड़ा",
+
+  // Dausa constituencies
+  "Bandikui": "बंदीकुई",
+  "Mahuwa": "महुवा",
+  "Sikrai": "सिकरई",
+  "Dausa": "दौसा",
+  "Lalsot": "लालसोट",
+
+  // Churu constituencies
+  "Sadulpur": "सादुलपुर",
+  "Taranagar": "तारानगर",
+  "Sardarshahar": "सरदारशहर",
+  "Churu": "चूरू",
+  "Ratangarh": "रतनगढ़",
+  "Sujangarh": "सुजानगढ़",
+
+  // Chittorgarh constituencies
+  "Kapasan": "कपासन",
+  "Begun": "बेगूं",
+  "Chittorgarh": "चित्तौड़गढ़",
+  "Nimbahera": "निंबाहेड़ा",
+  "Bari Sadri": "बड़ी सादड़ी",
+
+  // Bundi constituencies
+  "Hindoli": "हिंडोली",
+  "Keshoraipatan": "केशोराईपाटन",
+  "Bundi": "बूंदी",
+
+  // Bikaner constituencies
+  "Khajuwala": "खाजूवाला",
+  "Bikaner West": "बीकानेर पश्चिम",
+  "Bikaner East": "बीकानेर पूर्व",
+  "Kolayat": "कोलायत",
+  "Lunkaransar": "लूणकरणसर",
+  "Dungargarh": "डूंगरगढ़",
+  "Nokha": "नोखा",
+
+  // Bhilwara constituencies
+  "Asind": "आसींद",
+  "Mandal": "मांडल",
+  "Sahara": "सहारा",
+  "Bhilwara": "भीलवाड़ा",
+  "Jahazpur": "जहाजपुर",
+  "Mandalgarh": "मांडलगढ़",
+
+  // Bharatpur constituencies
+  "Kaman": "कामान",
+  "Nagar": "नागर",
+  "Deeg-Kumher": "दीग-कुम्हेर",
+  "Bharatpur": "भरतपुर",
+  "Nadbai": "नदबई",
+  "Weir": "वेर",
+  "Bayana": "बयाना",
+
+  // Barmer constituencies
+  "Sheo": "शिव",
+  "Barmer": "बाड़मेर",
+  "Baytoo": "बायतु",
+  "Pachpadra": "पचपदरा",
+  "Siwana": "सिवाना",
+  "Gudamalani": "गुड़ामलानी",
+  "Chohtan": "चोहटान",
+
+  // Baran constituencies
+  "Anta": "आंटा",
+  "Kishanganj": "किशनगंज",
+  "Baran-Atru": "बारां-अत्रू",
+  "Chhabra": "छाबड़ा",
+
+  // Banswara constituencies
+  "Ghatol": "घाटोल",
+  "Garhi": "गढ़ी",
+  "Banswara": "बांसवाड़ा",
+  "Bagidora": "बागीदौरा",
+  "Kushalgarh": "कुशलगढ़",
+
+  // Alwar constituencies
+  "Tijara": "तिजारा",
+  "Kishangarh Bas": "किशनगढ़ बस",
+  "Mundawar": "मुंडावर",
+  "Behror": "बहरोर",
+  "Bansur": "बानसूर",
+  "Thanagazi": "थानागाजी",
+  "Alwar Rural": "अलवर ग्रामीण",
+  "Alwar Urban": "अलवर शहरी",
+  "Ramgarh": "रामगढ़",
+  "Rajgarh-Laxmangarh": "राजगढ़-लक्ष्मणगढ़",
+  "Kathumar": "कटूमर",
+
+  // Ajmer constituencies
+  "Kishangarh": "किशनगढ़",
+  "Pushkar": "पुष्कर",
+  "Ajmer North": "अजमेर उत्तर",
+  "Ajmer South": "अजमेर दक्षिण",
+  "Nasirabad": "नसीराबाद",
 
   // Add more constituency mappings as needed
   // Format: "English Name": "हिंदी नाम"
