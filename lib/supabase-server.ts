@@ -8,6 +8,12 @@ export function createServerClient() {
   }
   return createClient(supabaseUrl, serviceKey, {
     auth: { persistSession: false },
+    global: {
+      headers: {
+        'Cache-Control': 'no-cache',
+        'Pragma': 'no-cache'
+      }
+    }
   })
 }
 

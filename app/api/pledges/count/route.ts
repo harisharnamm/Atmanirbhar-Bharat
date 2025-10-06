@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { createServerClient } from '@/lib/supabase-server'
 
+export const dynamic = 'force-dynamic'
+
 export async function GET(req: NextRequest) {
   try {
     // Check for required environment variables
@@ -16,27 +18,31 @@ export async function GET(req: NextRequest) {
 
     const supabase = createServerClient()
 
-    // Get the total count of pledges
-    const { count, error } = await supabase
-      .from('pledges')
-      .select('*', { count: 'exact', head: true })
+    // Use RPC to fetch precise latest count
+    const { data, error } = await supabase.rpc('get_pledge_count')
+
+    const count = data || 0
 
     if (error) {
       console.error('[api/pledges/count] Count error:', error)
       return NextResponse.json({
         error: 'Database query failed',
-        details: error.message
+        details: (error as any)?.message || 'Unknown error'
       }, { status: 400 })
     }
 
     // Add 13000 as requested by user
     const displayCount = (count || 0) + 13000
 
-    console.log(`[api/pledges/count] Total pledges: ${count}, Display count: ${displayCount}`)
-
     return NextResponse.json({
       total: count || 0,
       display: displayCount
+    }, {
+      headers: {
+        'Cache-Control': 'no-cache, no-store, must-revalidate, max-age=0',
+        'Pragma': 'no-cache',
+        'Expires': '0'
+      }
     })
   } catch (e: any) {
     console.error('[api/pledges/count] Exception:', e)
