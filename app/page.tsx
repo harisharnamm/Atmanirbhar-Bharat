@@ -9,6 +9,7 @@ import StepAcknowledge from "@/components/pledge/step-ack"
 import StepConfirm from "@/components/pledge/step-confirm"
 import Progress from "@/components/pledge/progress"
 import LangToggle from "@/components/pledge/lang-toggle"
+import PledgeCount from "@/components/pledge/pledge-count"
 
 type Lang = "en" | "hi"
 
@@ -64,6 +65,8 @@ export default function HomePage() {
             {strings.description}
           </p>
         </div>
+
+        <PledgeCount lang={lang} />
 
         <Card className="border-border">
           <CardHeader className="pb-2">
