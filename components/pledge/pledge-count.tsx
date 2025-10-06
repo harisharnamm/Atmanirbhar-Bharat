@@ -1,6 +1,6 @@
 "use client"
 
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 
 interface PledgeCountProps {
   lang: 'en' | 'hi'
@@ -46,9 +46,10 @@ export default function PledgeCount({ lang }: PledgeCountProps) {
 
   if (!count) return null
 
+  const formattedCount = count.toLocaleString()
   const message = lang === 'hi'
-    ? `${count.toLocaleString()} लोग पहले ही प्रतिज्ञा ले चुके हैं।`
-    : `${count.toLocaleString()} people have already taken the pledge.`
+    ? <> <span className="text-red-600 font-bold">{formattedCount}</span> लोग पहले ही प्रतिज्ञा ले चुके हैं।</>
+    : <> <span className="text-red-600 font-bold">{formattedCount}</span> people have already taken the pledge.</>
 
   return (
     <div className="text-center mt-2 mb-4">

@@ -29,8 +29,8 @@ export async function GET(req: NextRequest) {
       }, { status: 400 })
     }
 
-    // Add 3000 as requested by user
-    const displayCount = (count || 0) + 3000
+    // Add 13000 as requested by user
+    const displayCount = (count || 0) + 13000
 
     console.log(`[api/pledges/count] Total pledges: ${count}, Display count: ${displayCount}`)
 
